@@ -4,6 +4,7 @@
 
 ## Allow folders
 !/entities**
+!/esphome**
 !/integrations**
 
 ## Allow files

@@ -1,0 +1,114 @@
+---
+substitutions:
+  devicename: badkamer
+  friendlyname: Badkamer
+
+esphome:
+  name: ${devicename}
+  platform: ESP32
+  board: esp32doit-devkit-v1
+
+<<: !include common.txt
+
+status_led:
+  pin: GPIO2
+
+output:
+  - platform: ledc
+    pin: GPIO12
+    id: 'output_1'
+    
+  - platform: gpio
+    pin: GPIO27
+    id: 'output_2'
+    
+  - platform: gpio
+    pin: GPIO26
+    id: 'output_3'
+
+i2c:
+  sda: GPIO4
+  scl: GPIO15
+  scan: True
+  id: 'bus_1'
+
+binary_sensor:
+  - platform: status
+    name: '${friendlyname} Status'
+
+  - platform: gpio
+    pin:
+      number: GPIO16
+      mode: INPUT_PULLDOWN
+    name: '${friendlyname} Plafond Switch'
+    id: 'binary_1'
+
+  - platform: gpio
+    pin: 
+      number: GPIO17
+      mode: INPUT_PULLDOWN
+    name: '${friendlyname} Spiegel Switch'
+    id: 'binary_2'
+    on_state:
+      then:
+        - light.toggle: light_2
+
+esp32_ble_tracker:
+
+light:
+  - platform: monochromatic
+    output: 'output_1'
+    name: '${friendlyname} Nachtlampje'
+    id: 'light_1'
+    
+  - platform: binary
+    name: '${friendlyname} Spiegel'
+    output: 'output_2'
+    id: 'light_2'
+
+sensor:
+  - platform: wifi_signal
+    id: 'wifisignal'
+    update_interval: 60s
+    name: '${friendlyname} Signal'
+
+  - platform: bme280
+    temperature:
+      name: '${friendlyname} Temperatuur'
+      oversampling: 16x
+      unit_of_measurement: 'Celsius'
+    pressure:
+      name: '${friendlyname} Luchtdruk'
+      oversampling: 16x
+    humidity:
+      name: '${friendlyname} Luchtvochtigheid'
+      oversampling: 16x
+      unit_of_measurement: '%'
+    address: 0x76
+    update_interval: 10s
+
+  - platform: ble_rssi
+    mac_address: '58:2D:34:39:15:BF'
+    name: 'Xiaomi RSSI'
+    
+  - platform: xiaomi_lywsdcgq
+    mac_address: '58:2D:34:39:15:BF'
+    temperature:
+      name: 'Xiaomi Temperature'
+      unit_of_measurement: 'Celsius'
+    humidity:
+      name: 'Xiaomi Humidity'
+      unit_of_measurement: '%'
+    battery_level:
+      name: 'Xiaomi Battery Level'
+      unit_of_measurement: '%'
+
+switch:
+  - platform: restart
+    name: '${friendlyname} Restart'
+
+  - platform: output
+    name: '${friendlyname} Spiegelverwarming'
+    output: 'output_3'
+    id: 'switch_1'
+    icon: 'mdi:waves'

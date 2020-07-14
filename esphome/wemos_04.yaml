@@ -1,0 +1,28 @@
+---
+substitutions:
+  devicename: wemos_04
+  friendlyname: wemos_04
+
+esphome:
+  name: ${devicename}
+  platform: ESP8266
+  board: d1_mini_pro
+
+<<: !include common.txt
+
+status_led:
+  pin: GPIO2
+
+binary_sensor:
+  - platform: status
+    name: '${friendlyname} Status'
+
+sensor:
+  - platform: wifi_signal
+    id: 'wifisignal'
+    update_interval: 60s
+    name: '${friendlyname} Signal'
+
+switch:
+  - platform: restart
+    name: '${friendlyname} Restart'

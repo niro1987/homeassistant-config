@@ -1,0 +1,45 @@
+---
+substitutions:
+  devicename: afzuiging
+  friendlyname: Afzuiging
+
+esphome:
+  name: ${devicename}
+  platform: ESP8266
+  board: d1_mini_pro
+
+<<: !include common.txt
+
+status_led:
+  pin: 
+    number: D4
+    inverted: True
+
+output:
+  - platform: esp8266_pwm
+    pin: D1
+    frequency: 1000 Hz
+    id: pwm_output
+
+binary_sensor:
+  - platform: status
+    name: '${friendlyname} Status'
+
+fan:
+  - platform: speed
+    output: pwm_output
+    name: "Afzuiging"
+    speed:
+      low: 0.33
+      medium: 0.66
+      high: 1
+
+sensor:
+  - platform: wifi_signal
+    id: 'wifisignal'
+    update_interval: 60s
+    name: '${friendlyname} Signal'
+
+switch:
+  - platform: restart
+    name: '${friendlyname} Restart'

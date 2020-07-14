@@ -1,0 +1,38 @@
+---
+substitutions:
+  devicename: slaapkamer_olivia
+  friendlyname: Slaapkamer Olivia
+
+esphome:
+  name: ${devicename}
+  platform: ESP8266
+  board: esp01_1m
+
+<<: !include common.txt
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: true
+
+binary_sensor:
+  - platform: status
+    name: '${friendlyname} Status'
+
+  - platform: gpio
+    pin:
+      number: GPIO4
+      mode: INPUT_PULLUP
+      inverted: True
+    id: binary_1
+    name: 'Slaapkamer Olivia Switch'
+
+sensor:
+  - platform: wifi_signal
+    id: 'wifisignal'
+    update_interval: 60s
+    name: '${friendlyname} Signal'
+
+switch:
+  - platform: restart
+    name: '${friendlyname} Restart'

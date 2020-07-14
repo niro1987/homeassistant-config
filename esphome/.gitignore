@@ -1,0 +1,11 @@
+## Ignore all
+*
+**
+
+## Allow files
+!*.yaml
+!.gitignore
+!common.txt
+
+## Failsafe
+secrets.yaml
