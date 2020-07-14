@@ -455,6 +455,9 @@
   - condition: state
     entity_id: sun.sun
     state: above_horizon
+  - after: 09:00
+    before: '20:00'
+    condition: time
   action:
   - data:
       data:
