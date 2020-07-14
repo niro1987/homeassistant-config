@@ -1,0 +1,8 @@
+---
+platform: statistics
+entity_id: sensor.droger_watts
+name: Droger Stats
+sampling_size: 50000
+max_age:
+  minutes: 15
+precision: 2

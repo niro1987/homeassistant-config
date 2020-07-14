@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+
+  badkamer_luchtvochtigheid_change:
+    friendly_name: Badkamer Luchtvochtigheid Change
+    value_template: "{{ state_attr('sensor.badkamer_luchtvochtigheid_stats', 'change') | float }}"
+    unit_of_measurement: "%"

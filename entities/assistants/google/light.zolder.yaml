@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+# 
+light.zolder:
+  name: Zolder
+  expose: true
+  aliases: []
+  room: Zolder

@@ -1,0 +1,17 @@
+---
+# 
+# https://www.home-assistant.io/docs/installation/
+# 
+homeassistant:
+  # https://www.home-assistant.io/docs/authentication/providers/
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.0.0/23
+    - type: homeassistant
+  # https://www.home-assistant.io/docs/authentication/multi-factor-auth/
+  auth_mfa_modules:
+    - name: Two-Factor Authentication
+      type: totp
+  # https://www.home-assistant.io/docs/configuration/customizing-devices/#manual-customization
+  customize: !include ../customize.yaml

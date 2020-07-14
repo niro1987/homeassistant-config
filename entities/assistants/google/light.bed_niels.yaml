@@ -1,0 +1,15 @@
+---
+# 
+# 
+# 
+# 
+light.bed_niels:
+  name: Niels zijn kant
+  expose: true
+  aliases:
+    - Niels
+    - Nachtkastje
+    - Nachtkastjes
+    - Bed
+    - Naast Bed
+  room: Slaapkamer

@@ -1,0 +1,11 @@
+---
+name: Slaapkamer
+platform: circadian_lighting
+initial_transition: 0 # Transition time for the light changes when the light or switch is first turned on
+lights_ct: [] #array: List of light entities which should be set in mireds.
+lights_rgb: [] #array: List of light entities which should be set in RGB.
+lights_xy: #array: List of light entities which should be set in XY.
+  - light.in_de_hoek
+  - light.bij_de_televisie
+#  - light.boven_het_bed
+lights_brightness: [] #array: List of light entities which should only have brightness adjusted.

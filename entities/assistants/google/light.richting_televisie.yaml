@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+# 
+light.richting_televisie:
+  name: Richting Televisie
+  expose: true
+  aliases: []
+  room: Woonkamer

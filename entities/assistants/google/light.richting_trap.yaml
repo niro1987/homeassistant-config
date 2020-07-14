@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+# 
+light.richting_trap:
+  name: Richting Trap
+  expose: true
+  aliases: []
+  room: Woonkamer

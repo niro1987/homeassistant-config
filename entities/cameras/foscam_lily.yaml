@@ -1,0 +1,7 @@
+---
+name: Foscam Lily
+platform: foscam
+ip: !secret camera_lily_address
+username: !secret camera_lily_username
+password: !secret camera_lily_password
+port: !secret camera_lily_port

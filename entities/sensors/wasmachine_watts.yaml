@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  
+  wasmachine_watts:
+    friendly_name_template: "{{ state_attr('switch.wasmachine', 'friendly_name') }} Current Consumption"
+    value_template: "{{ state_attr('switch.wasmachine', 'current_power_w') | float }}"
+    unit_of_measurement: "W"

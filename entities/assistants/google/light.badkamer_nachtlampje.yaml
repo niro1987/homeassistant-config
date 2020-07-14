@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+# 
+light.badkamer_nachtlampje:
+  name: Badkamer Nachtlampje
+  expose: true
+  aliases: []
+  room: Badkamer

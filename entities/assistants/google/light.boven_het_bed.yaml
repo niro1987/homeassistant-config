@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+# 
+light.boven_het_bed:
+  name: Boven het bed
+  expose: true
+  aliases: []
+  room: Slaapkamer

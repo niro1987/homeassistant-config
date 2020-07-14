@@ -1,0 +1,15 @@
+---
+# 
+# 
+# 
+# 
+light.bed_daan:
+  name: Daniëlle's kant
+  expose: true
+  aliases:
+    - Daniëlle
+    - Nachtkastje
+    - Nachtkastjes
+    - Bed
+    - Naast Bed
+  room: Slaapkamer

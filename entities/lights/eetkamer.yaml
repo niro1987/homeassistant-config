@@ -1,0 +1,6 @@
+---
+name: Eetkamer
+platform: group
+entities:
+  - light.bar
+  - light.eettafel

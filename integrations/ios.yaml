@@ -1,0 +1,16 @@
+---
+# 
+# https://www.home-assistant.io/integrations/ios/
+# 
+ios:
+  push:
+    categories:
+      - name: Light
+        identifier: 'light'
+        actions:
+          - identifier: 'turn_off'
+            title: 'Turn Off'
+            activationMode: 'background'
+            authenticationRequired: true
+            destructive: true
+            behavior: 'default'

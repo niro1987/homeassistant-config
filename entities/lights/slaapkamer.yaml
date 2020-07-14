@@ -1,0 +1,7 @@
+---
+name: Slaapkamer
+platform: group
+entities:
+  - light.bed_daan
+  - light.bed_niels
+  - light.boven_het_bed

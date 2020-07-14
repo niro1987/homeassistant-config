@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  
+  droger_variance:
+    friendly_name: Droger Variance
+    value_template: "{{ state_attr('sensor.droger_stats', 'variance') | float }}"
+    unit_of_measurement: "W"

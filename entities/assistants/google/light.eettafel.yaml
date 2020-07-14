@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+# 
+light.eettafel:
+  name: Eettafel
+  expose: true
+  aliases: []
+  room: Eetkamer

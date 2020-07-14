@@ -1,0 +1,6 @@
+# Kodi Slaapkamer
+name: Kodi Slaapkamer
+platform: kodi
+host: !secret kodi_slaapkamer
+port: 80
+tcp_port: 9090

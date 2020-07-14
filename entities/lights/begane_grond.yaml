@@ -1,0 +1,12 @@
+---
+name: Begane Grond
+platform: group
+entities:
+  - light.richting_hoek
+  - light.richting_televisie
+  - light.richting_trap
+  - light.eettafel
+  - light.bar
+  - light.keuken_kastjes
+  - light.keuken_plafond
+  - light.gang

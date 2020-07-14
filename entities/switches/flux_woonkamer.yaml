@@ -1,0 +1,5 @@
+---
+name: Woonkamer Flux
+platform: flux
+lights:
+  - light.woonkamer

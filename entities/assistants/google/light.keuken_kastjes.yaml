@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+# 
+light.keuken_kastjes:
+  name: Keuken Kastjes
+  expose: true
+  aliases: []
+  room: Keuken

@@ -1,0 +1,12 @@
+---
+name: Eerste Verdieping
+platform: group
+entities:
+  - light.boven_het_bed
+  - light.bed_daan
+  - light.bed_niels
+  - light.badkamer_plafond
+  - light.badkamer_spiegel
+  - light.badkamer_nachtlampje
+  - light.lily_plafond
+  - light.olivia_plafond

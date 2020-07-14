@@ -1,0 +1,6 @@
+---
+name: Keuken
+platform: group
+entities:
+  - light.keuken_plafond
+  - light.keuken_kastjes

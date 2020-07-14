@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+# 
+light.bar:
+  name: Bar
+  expose: true
+  aliases: []
+  room: Eetkamer

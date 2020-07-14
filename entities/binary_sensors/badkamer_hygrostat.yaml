@@ -1,0 +1,10 @@
+---
+# 
+# https://github.com/basschipper/homeassistant-generic-hygrostat
+# 
+platform: generic_hygrostat
+name: Badkamer Hygrostat
+sensor: sensor.badkamer_luchtvochtigheid # Source humidity sensor
+delta_trigger: 3 # Optional humidity swing to detect
+target_offset: 3 # Optional dehumidification target offset
+max_on_time: 5400 # Optional # Optional safety max on time

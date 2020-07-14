@@ -1,0 +1,471 @@
+- id: '1594194118733'
+  alias: Badkamer Afzuiging Aan
+  description: ''
+  trigger:
+  - above: '8'
+    entity_id: sensor.badkamer_luchtvochtigheid_change
+    platform: numeric_state
+  condition: []
+  action:
+  - data: {}
+    entity_id: fan.afzuiging
+    service: fan.turn_on
+  - data:
+      speed: high
+    entity_id: fan.afzuiging
+    service: fan.set_speed
+- id: '1594194405133'
+  alias: Badkamer Afzuiging Uit
+  description: ''
+  trigger:
+  - entity_id: fan.afzuiging
+    platform: state
+    to: 'on'
+  - event: start
+    platform: homeassistant
+  condition:
+  - condition: state
+    entity_id: fan.afzuiging
+    state: 'on'
+  action:
+  - delay: 00:45:00
+  - data: {}
+    entity_id: fan.afzuiging
+    service: fan.turn_off
+- id: '1594194765644'
+  alias: Badkamer Spiegelverwarming Aan
+  description: ''
+  trigger:
+  - above: '8'
+    entity_id: sensor.badkamer_luchtvochtigheid_change
+    platform: numeric_state
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.badkamer_spiegelverwarming
+    service: switch.turn_on
+- id: '1594194891882'
+  alias: Badkamer Spiegelverwarming Uit
+  description: ''
+  trigger:
+  - entity_id: switch.badkamer_spiegelverwarming
+    platform: state
+    to: 'on'
+  - event: start
+    platform: homeassistant
+  condition:
+  - condition: state
+    entity_id: switch.badkamer_spiegelverwarming
+    state: 'on'
+  action:
+  - delay: 00:45:00
+  - data: {}
+    entity_id: switch.badkamer_spiegelverwarming
+    service: switch.turn_off
+- id: '1594195113899'
+  alias: Droger Notificatie Daan
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.droger
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: person.danielle
+    state: home
+  action:
+  - data:
+      data:
+        group: Droger
+        tag: Droger
+      message: Klaar!
+      title: Droger
+    service: notify.mobile_app_j9210
+- id: '1594195231939'
+  alias: Droger Notificatie Niels
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.droger
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: person.niels
+    state: home
+  action:
+  - data:
+      data:
+        apns_headers:
+          apns-collapse-id: Droger
+        push:
+          thread-id: Droger
+      message: Klaar!
+      title: Droger
+    service: notify.mobile_app_nimbus_2000
+- id: '1594195432253'
+  alias: Droger Klaar Uit-Aan
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.droger
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.droger
+    service: switch.turn_off
+  - delay: 00:00:01
+  - data: {}
+    entity_id: switch.droger
+    service: switch.turn_on
+- id: '1594195540501'
+  alias: Samba Backup
+  description: ''
+  trigger:
+  - at: 00:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      addon: 15d21743_samba_backup
+      input: trigger
+    service: hassio.addon_stdin
+- id: '1594195813098'
+  alias: Schakelaar Badkamer Plafond
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.badkamer_plafond_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.badkamer_plafond_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      brightness: 254
+    entity_id: light.badkamer_plafond
+    service: light.toggle
+- id: '1594196323199'
+  alias: Deurbel Notificatie Niels
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.deurbel
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: person.niels
+    state: home
+  action:
+  - data:
+      data:
+        apns_headers:
+          apns-collapse-id: Deurbel
+        push:
+          thread-id: Deurbel
+      message: Ding! Dong!
+      title: Deurbel
+    service: notify.mobile_app_nimbus_2000
+- id: '1594196425601'
+  alias: Deurbel Notificatie Daan
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.deurbel
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: person.danielle
+    state: home
+  action:
+  - data:
+      data:
+        group: Deurbel
+        tag: Deurbel
+      message: Ding Dong!
+      title: Deurbel
+    service: notify.mobile_app_j9210
+- id: '1594196575813'
+  alias: Deurbel Notificatie Google Home
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.deurbel
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      media_content_id: https://annanas.diskstation.me:8123/local/deurbel.mp3
+      media_content_type: music
+    entity_id: media_player.alle_speakers
+    service: media_player.play_media
+- id: '1594196895227'
+  alias: Schakelaar Keukenkastjes
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.keukenkastjes_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.keukenkastjes_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      brightness: 254
+    entity_id: light.keuken_kastjes
+    service: light.toggle
+- id: '1594196983001'
+  alias: Schakelaar Keuken Plafond
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.keukenplafond_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.keukenplafond_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    entity_id: light.keuken_plafond
+    service: light.toggle
+- id: '1594197177829'
+  alias: Schakelaar Slaapkamer (Aan)
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.slaapkamer_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.slaapkamer_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.slaapkamer
+    state: 'off'
+  action:
+  - data:
+      brightness: 50
+    entity_id: light.bed_daan
+    service: light.turn_on
+  - data:
+      brightness: 50
+      hs_color:
+      - 38.222
+      - 52.941
+    entity_id: light.bed_niels
+    service: light.turn_on
+- id: '1594197340450'
+  alias: Schakelaar Slaapkamer (Uit)
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.slaapkamer_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.slaapkamer_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.slaapkamer
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: light.slaapkamer
+    service: light.turn_off
+- id: '1594197481882'
+  alias: Schakelaar Slaapkamer Lily
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.slaapkamer_lily_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.slaapkamer_lily_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    entity_id: light.lily_plafond
+    service: light.toggle
+- id: '1594197561379'
+  alias: Schakelaar Slaapkamer Olivia
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.slaapkamer_olivia_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.slaapkamer_olivia_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    entity_id: light.olivia_plafond
+    service: light.toggle
+- id: '1594197635252'
+  alias: Schakelaar Woonkamer Plafond
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.woonkamer_switch
+    from: 'on'
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.woonkamer_switch
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    entity_id: light.woonkamer
+    service: light.toggle
+- id: '1594197739917'
+  alias: Wasmachine Notificatie Daan
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.wasmachine
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: person.danielle
+    state: home
+  action:
+  - data:
+      data:
+        group: Wasmachine
+        tag: Wasmachine
+      message: Klaar!
+      title: Wasmachine
+    service: notify.mobile_app_j9210
+- id: '1594197839201'
+  alias: Wasmachine Notificatie Niels
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.wasmachine
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: person.niels
+    state: home
+  action:
+  - data:
+      data:
+        apns_headers:
+          apns-collapse-id: Wasmachine
+        push:
+          thread-id: Wasmachine
+      message: Klaar!
+      title: Wasmachine
+    service: notify.mobile_app_nimbus_2000
+- id: '1594458559299'
+  alias: Naar bed routine
+  description: ''
+  trigger:
+  - entity_id: light.begane_grond
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition:
+  - after: '22:00'
+    condition: time
+  - condition: state
+    entity_id: light.eerste_verdieping
+    state: 'off'
+  action:
+  - data:
+      brightness: 1
+    entity_id: light.badkamer_plafond
+    service: light.turn_on
+  - data:
+      brightness: 50
+      hs_color:
+      - 38.222
+      - 52.941
+    entity_id: light.bed
+    service: light.turn_on
+- id: '1594460535345'
+  alias: Gang Automatisch Uit
+  description: ''
+  trigger:
+  - entity_id: light.gang
+    for: 0:{{ states('input_number.gang_automatisch_uit')|int }}:00
+    platform: state
+    to: 'on'
+  condition:
+  - above: '0'
+    condition: numeric_state
+    entity_id: input_number.gang_automatisch_uit
+  action:
+  - data: {}
+    entity_id: light.gang
+    service: light.turn_off
+- id: '1594645738949'
+  alias: Slaapkamer Lily Overdag Notificatie Niels
+  description: ''
+  trigger:
+  - entity_id: light.lily_plafond
+    for: 00:00:01
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  action:
+  - data:
+      data:
+        action_data:
+          entity_id: light.lily_plafond
+        apns_headers:
+          apns-collapse-id: Lily
+        push:
+          category: light
+          thread-id: Lily
+        url: /lovelace/slaapkamer_lily
+      message: Lily d'r licht staat aan.
+      title: Lily
+    service: notify.mobile_app_nimbus_2000

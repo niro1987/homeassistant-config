@@ -1,0 +1,4 @@
+---
+# Slimme meter
+platform: dsmr
+dsmr_version: 4

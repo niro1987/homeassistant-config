@@ -1,0 +1,6 @@
+
+sensor.badkamer_luchtvochtigheid:
+  device_class: humidity
+
+sensor.badkamer_temperatuur:
+  device_class: temperature

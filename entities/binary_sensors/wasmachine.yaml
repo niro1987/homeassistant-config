@@ -1,0 +1,11 @@
+---
+platform: template
+sensors:
+  wasmachine:
+    friendly_name: Wasmachine
+    value_template: "{{ state_attr('switch.wasmachine', 'current_power_w')|float > 1.5 }}"
+    availability_template: "{{ state_attr('switch.wasmachine', 'current_power_w')|string != 'None' }}"
+    delay_off:
+      seconds: 35
+    delay_on:
+      seconds: 35

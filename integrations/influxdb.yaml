@@ -1,0 +1,17 @@
+---
+# 
+# https://github.com/hassio-addons/addon-influxdb
+# https://github.com/hassio-addons/addon-grafana
+# https://www.home-assistant.io/integrations/influxdb/
+#
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  max_retries: 3
+  tags_attributes:
+    - device_class
+    - friendly_name
+    - entity_id

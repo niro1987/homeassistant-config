@@ -1,0 +1,21 @@
+## Ignore all
+*
+**
+
+## Allow folders
+!/entities**
+!/integrations**
+
+## Allow files
+!/automations.yaml
+!/configuration.yaml
+!/customize.yaml
+!/light_profiles.csv
+!/scenes.yaml
+!/scripts.yaml
+!/.gitignore
+!/README.md
+!/LICENSE
+
+## Failsafe
+secrets.yaml
