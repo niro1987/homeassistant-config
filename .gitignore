@@ -14,6 +14,7 @@
 !/light_profiles.csv
 !/scenes.yaml
 !/scripts.yaml
+!/.HA_VERSION
 !/.gitignore
 !/README.md
 !/LICENSE
