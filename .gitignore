@@ -7,6 +7,7 @@
 !/entities**
 !/esphome**
 !/integrations**
+!/ios_notifications**
 
 ## Allow files
 !/automations.yaml
