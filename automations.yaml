@@ -561,7 +561,7 @@
   - data:
       data:
         actions:
-        - action: turn_off
+        - action: light.olivia_plafond
           title: Uitschakelen
         clickAction: /lovelace/slaapkamer_olivia
         group: Olivia
@@ -596,8 +596,9 @@
   - data:
       data:
         actions:
-        - action: turn_off
-          title: Uitschakelen
+        - action: URI
+          title: Open App
+          url: /lovelace/slaapkamer_lily
         clickAction: /lovelace/slaapkamer_lily
         group: Lily
         image: /local/snapshots/current.foscam_lily.jpg
