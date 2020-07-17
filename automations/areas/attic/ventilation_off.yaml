@@ -37,7 +37,7 @@ condition:
         entity_id: fan.afzuiging
         state: 'on'
         for:
-          minuts: 45
+          minutes: 45
 action:
   - service: fan.turn_off
     data:
