@@ -6,11 +6,23 @@ id: '1594194765644'
 alias: Badkamer Spiegelverwarming Aan
 description: ''
 trigger:
-- above: '8'
-  entity_id: sensor.badkamer_luchtvochtigheid_change
-  platform: numeric_state
-condition: []
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+      - sensor.badkamer_luchtvochtigheid_5min
+      - light.badkamer
+      - fan.afzuiging
+condition:
+  - condition: state
+    entity_id: switch.badkamer_spiegelverwarming
+    state: 'off'
+  - condition: template
+    value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) > 5 }}"
 action:
-- data: {}
-  entity_id: switch.badkamer_spiegelverwarming
-  service: switch.turn_on
+  - service: switch.turn_on
+    data:
+      entity_id: 
+        - switch.badkamer_spiegelverwarming

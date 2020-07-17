@@ -14,20 +14,15 @@ trigger:
     event_type: automation_reloaded
   - platform: state
     entity_id:
-      - sensor.badkamer_luchtvochtigheid_change
+      - sensor.badkamer_luchtvochtigheid_5min
       - light.badkamer
       - fan.afzuiging
 condition:
-  - condition: or
-    conditions:
-      - condition: numeric_state
-        entity_id: sensor.badkamer_luchtvochtigheid_change
-        above: 8
-      - condition: state
-        entity_id: light.badkamer
-        state: 'on'
-        for:
-          minutes: 3
+  - condition: state
+    entity_id: fan.afzuiging
+    state: 'off'
+  - condition: template
+    value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) > 5 }}"
 action:
   - service: fan.turn_on
     data:
