@@ -1,8 +1,0 @@
----
-platform: template
-sensors:
-  
-  badkamer_temperatuur_change:
-    friendly_name: Badkamer Temperatuur Change
-    value_template: "{{ state_attr('sensor.badkamer_temperatuur_stats', 'change') | float }}"
-    unit_of_measurement: "Celsius"
