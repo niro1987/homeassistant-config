@@ -1,0 +1,25 @@
+---
+#
+#
+#
+id: '1594196425601'
+alias: Deurbel Notificatie Daan
+description: ''
+trigger:
+- entity_id: binary_sensor.deurbel
+  from: 'off'
+  platform: state
+  to: 'on'
+condition:
+- condition: state
+  entity_id: person.danielle
+  state: home
+action:
+- data:
+    data:
+      group: Deurbel
+      tag: Deurbel
+      timeout: 60
+    message: Ding Dong!
+    title: Deurbel
+  service: notify.mobile_app_j9210

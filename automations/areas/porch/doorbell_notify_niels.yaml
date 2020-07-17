@@ -1,0 +1,26 @@
+---
+#
+#
+#
+id: '1594196323199'
+alias: Deurbel Notificatie Niels
+description: ''
+trigger:
+- entity_id: binary_sensor.deurbel
+  from: 'off'
+  platform: state
+  to: 'on'
+condition:
+- condition: state
+  entity_id: person.niels
+  state: home
+action:
+- data:
+    data:
+      apns_headers:
+        apns-collapse-id: Deurbel
+      push:
+        thread-id: Deurbel
+    message: Ding! Dong!
+    title: Deurbel
+  service: notify.mobile_app_nimbus_2000

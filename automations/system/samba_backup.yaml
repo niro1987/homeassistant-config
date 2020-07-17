@@ -1,0 +1,16 @@
+---
+#
+#
+#
+id: '1594195540501'
+alias: Samba Backup
+description: ''
+trigger:
+- at: 00:00:00
+  platform: time
+condition: []
+action:
+- data:
+    addon: 15d21743_samba_backup
+    input: trigger
+  service: hassio.addon_stdin

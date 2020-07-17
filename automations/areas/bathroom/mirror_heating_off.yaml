@@ -1,0 +1,22 @@
+---
+# 
+#
+#
+id: '1594194891882'
+alias: Badkamer Spiegelverwarming Uit
+description: ''
+trigger:
+- entity_id: switch.badkamer_spiegelverwarming
+  platform: state
+  to: 'on'
+- event: start
+  platform: homeassistant
+condition:
+- condition: state
+  entity_id: switch.badkamer_spiegelverwarming
+  state: 'on'
+action:
+- delay: 00:45:00
+- data: {}
+  entity_id: switch.badkamer_spiegelverwarming
+  service: switch.turn_off

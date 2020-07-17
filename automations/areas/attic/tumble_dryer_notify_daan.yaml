@@ -1,0 +1,25 @@
+---
+#
+#
+#
+id: '1594195113899'
+alias: Droger Notificatie Daan
+description: ''
+trigger:
+- entity_id: binary_sensor.droger
+  from: 'on'
+  platform: state
+  to: 'off'
+condition:
+- condition: state
+  entity_id: person.danielle
+  state: home
+action:
+- data:
+    data:
+      group: Droger
+      tag: Droger
+      timeout: 600
+    message: Klaar!
+    title: Droger
+  service: notify.mobile_app_j9210

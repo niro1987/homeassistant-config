@@ -1,0 +1,39 @@
+---
+#
+#
+#
+id: '1594826708602'
+alias: Slaapkamer Olivia Overdag Notificatie Daan
+description: ''
+trigger:
+- entity_id: light.olivia_plafond
+  for: 00:01:00
+  from: 'off'
+  platform: state
+  to: 'on'
+condition:
+- condition: state
+  entity_id: sun.sun
+  state: above_horizon
+- after: 09:00
+  before: '20:00'
+  condition: time
+action:
+- data_template:
+    filename: /config/www/snapshots/current.foscam_olivia.jpg
+  entity_id: camera.foscam_olivia
+  service: camera.snapshot
+- delay: 00:00:01
+- data:
+    data:
+      actions:
+      - action: light.olivia_plafond
+        title: Uitschakelen
+      clickAction: /lovelace/slaapkamer_olivia
+      group: Olivia
+      image: /local/snapshots/current.foscam_olivia.jpg
+      tag: Olivia
+      timeout: 60
+    message: Olivia d'r licht staat aan.
+    title: Olivia
+  service: notify.mobile_app_j9210

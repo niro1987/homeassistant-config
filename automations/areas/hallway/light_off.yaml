@@ -1,0 +1,20 @@
+---
+#
+#
+#
+id: '1594460535345'
+alias: Gang Automatisch Uit
+description: ''
+trigger:
+- entity_id: light.gang
+  for: 0:{{ states('input_number.gang_automatisch_uit')|int }}:00
+  platform: state
+  to: 'on'
+condition:
+- above: '0'
+  condition: numeric_state
+  entity_id: input_number.gang_automatisch_uit
+action:
+- data: {}
+  entity_id: light.gang
+  service: light.turn_off

@@ -1,0 +1,21 @@
+---
+#
+#
+#
+id: '1594195432253'
+alias: Droger Klaar Uit-Aan
+description: ''
+trigger:
+- entity_id: binary_sensor.droger
+  from: 'on'
+  platform: state
+  to: 'off'
+condition: []
+action:
+- data: {}
+  entity_id: switch.droger
+  service: switch.turn_off
+- delay: 00:00:01
+- data: {}
+  entity_id: switch.droger
+  service: switch.turn_on

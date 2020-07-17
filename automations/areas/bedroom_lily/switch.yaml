@@ -1,0 +1,27 @@
+---
+# 
+# Ì've modified my existing Busch-Jaeger light switch with ESPHome and a Sonoff Mini
+# to make sure I can still toggle the hue light when the switch is in the off position.
+# 
+id: '1594197481882'
+alias: Schakelaar Slaapkamer Lily
+description: ''
+trigger:
+- platform: state
+  entity_id: binary_sensor.slaapkamer_lily_switch
+  from: 'on'
+  to: 'off'
+- platform: state
+  entity_id: binary_sensor.slaapkamer_lily_switch
+  from: 'off'
+  to: 'on'
+action:
+- service: light.toggle
+  entity_id: light.lily_plafond
+  data:
+    brightness: 254
+    hs_color:
+    - 38.222
+    - 52.941
+    transition: 1
+  

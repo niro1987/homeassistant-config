@@ -1,0 +1,40 @@
+---
+#
+#
+#
+id: '1594827852053'
+alias: Slaapkamer Lily Overdag Notificatie Daan
+description: ''
+trigger:
+- entity_id: light.lily_plafond
+  for: 00:01:00
+  from: 'off'
+  platform: state
+  to: 'on'
+condition:
+- condition: state
+  entity_id: sun.sun
+  state: above_horizon
+- after: 09:00
+  before: '20:00'
+  condition: time
+action:
+- data_template:
+    filename: /config/www/snapshots/current.foscam_lily.jpg
+  entity_id: camera.foscam_lily
+  service: camera.snapshot
+- delay: 00:00:01
+- data:
+    data:
+      actions:
+      - action: URI
+        title: Open App
+        url: /lovelace/slaapkamer_lily
+      clickAction: /lovelace/slaapkamer_lily
+      group: Lily
+      image: /local/snapshots/current.foscam_lily.jpg
+      tag: Lily
+      timeout: 60
+    message: Lily d'r licht staat aan.
+    title: Lily
+  service: notify.mobile_app_j9210

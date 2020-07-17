@@ -1,0 +1,30 @@
+---
+#
+#
+#
+id: '1594458559299'
+alias: Naar bed routine
+description: ''
+trigger:
+- entity_id: light.begane_grond
+  from: 'on'
+  platform: state
+  to: 'off'
+condition:
+- after: '22:00'
+  condition: time
+- condition: state
+  entity_id: light.eerste_verdieping
+  state: 'off'
+action:
+- data:
+    brightness: 1
+  entity_id: light.badkamer_plafond
+  service: light.turn_on
+- data:
+    brightness: 50
+    hs_color:
+    - 38.222
+    - 52.941
+  entity_id: light.bed
+  service: light.turn_on

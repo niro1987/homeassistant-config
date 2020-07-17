@@ -1,0 +1,16 @@
+---
+#
+#
+#
+id: '1594194765644'
+alias: Badkamer Spiegelverwarming Aan
+description: ''
+trigger:
+- above: '8'
+  entity_id: sensor.badkamer_luchtvochtigheid_change
+  platform: numeric_state
+condition: []
+action:
+- data: {}
+  entity_id: switch.badkamer_spiegelverwarming
+  service: switch.turn_on
