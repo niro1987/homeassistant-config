@@ -1,8 +1,0 @@
----
-platform: statistics
-entity_id: sensor.badkamer_luchtvochtigheid
-name: Badkamer Luchtvochtigheid Stats
-sampling_size: 5000
-max_age:
-  minutes: 5
-precision: 2

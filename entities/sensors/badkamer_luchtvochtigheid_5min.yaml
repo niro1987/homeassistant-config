@@ -1,0 +1,14 @@
+---
+# 
+# https://www.home-assistant.io/integrations/statistics/
+# 
+# Calculate min_gradiant:
+# Tracks [X] humidity readings over [T] minutes. If the change is greater than [D]%, evals to true. (D/(60*T))
+
+# 
+platform: statistics
+entity_id: sensor.badkamer_luchtvochtigheid
+name: badkamer_luchtvochtigheid_5min
+sampling_size: 50
+max_age:
+  minutes: 5
