@@ -1,0 +1,13 @@
+---
+#
+# 
+# 
+id: '1595190679155'
+alias: Woonkamer Mini Volume Hoog
+description: ''
+trigger:
+  - platform: time
+    at: '08:00:00'
+action:
+  - service: media_player.volume_set
+    volume_level: 0.3
