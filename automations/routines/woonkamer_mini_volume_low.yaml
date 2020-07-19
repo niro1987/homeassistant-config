@@ -10,4 +10,6 @@ trigger:
     at: '21:00:00'
 action:
   - service: media_player.volume_set
-    volume_level: 0.1
+    data:
+      entity_id: media_player.woonkamer_mini
+      volume_level: 0.1
