@@ -1,13 +1,1 @@
-- id: '1595169176013'
-  alias: Sun Test
-  description: ''
-  trigger:
-  - entity_id:
-    - sun.sun
-    platform: state
-  condition: []
-  action:
-  - data:
-      message: sun changed state
-      title: Sun
-    service: notify.mobile_app_nimbus_2000
+[]
