@@ -13,37 +13,14 @@ trigger:
   - platform: state
     entity_id:
       - sensor.badkamer_luchtvochtigheid_5min
-  - platform: state
-    entity_id: light.badkamer
-    from: 'on'
-    to: 'off'
-    for: '00:05:00'
 condition:
   - condition: state
     entity_id: switch.badkamer_spiegelverwarming
     state: 'on'
-  - condition: or
-    conditions:
-      - condition: template
-        value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) < 10 }}"
-      - condition: state
-        entity_id: switch.badkamer_spiegelverwarming
-        state: 'on'
-        for:
-          hours: 1
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: light.badkamer
-            state: 'off'
-            for: '00:05:00'
-          - condition: not
-            conditions:
-              - condition: state
-                entity_id: light.badkamer
-                state: 'off'
-                for: '00:05:10'
+  - condition: template
+    value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) < 10 }}"
 action:
   - service: switch.turn_off
     data:
-      entity_id: switch.badkamer_spiegelverwarming
+      entity_id:
+        - switch.badkamer_spiegelverwarming

@@ -18,7 +18,7 @@ condition:
     entity_id: switch.badkamer_spiegelverwarming
     state: 'off'
   - condition: template
-    value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) > 5 }}"
+    value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) > 10 }}"
 action:
   - service: switch.turn_on
     data:
