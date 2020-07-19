@@ -13,8 +13,6 @@ trigger:
   - platform: state
     entity_id:
       - sensor.badkamer_luchtvochtigheid_5min
-      - light.badkamer
-      - fan.afzuiging
 condition:
   - condition: state
     entity_id: switch.badkamer_spiegelverwarming
