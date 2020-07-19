@@ -15,14 +15,12 @@ trigger:
   - platform: state
     entity_id:
       - sensor.badkamer_luchtvochtigheid_5min
-      - light.badkamer
-      - fan.afzuiging
 condition:
   - condition: state
     entity_id: fan.afzuiging
     state: 'off'
   - condition: template
-    value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) > 5 }}"
+    value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) > 10 }}"
 action:
   - service: fan.turn_on
     data:
