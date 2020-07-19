@@ -6,15 +6,28 @@ id: '1594460535345'
 alias: Gang Automatisch Uit
 description: ''
 trigger:
-- entity_id: light.gang
-  for: 0:{{ states('input_number.gang_automatisch_uit')|int }}:00
-  platform: state
-  to: 'on'
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+      - light.gang
+      - input_number.gang_automatisch_uit
+  - platform: state
+    entity_id: light.gang
+    to: 'on'
+    for:
+      minutes: '{{ states("input_number.gang_automatisch_uit")|int }}'
 condition:
-- above: '0'
-  condition: numeric_state
-  entity_id: input_number.gang_automatisch_uit
+  - condition: state
+    entity_id: light.gang
+    state: 'on'
+  - condition: numeric_state
+    entity_id: input_number.gang_automatisch_uit
+    above: 0
+  - condition: template
+    value_template: '{{ ((as_timestamp(now()) - as_timestamp(states.light.gang.last_updated))|int) >= ((states("input_number.gang_automatisch_uit")|float * 60)|int) }}'
 action:
-- data: {}
-  entity_id: light.gang
-  service: light.turn_off
+  - service: light.turn_off
+    entity_id: light.gang

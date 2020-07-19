@@ -7,17 +7,17 @@ id: '1594196895227'
 alias: Schakelaar Keuken Kastjes
 description: ''
 trigger:
-- platform: state
-  entity_id: binary_sensor.keukenkastjes_switch
-  from: 'on'
-  to: 'off'
-- platform: state
-  entity_id: binary_sensor.keukenkastjes_switch
-  from: 'off'
-  to: 'on'
+  - platform: state
+    entity_id: binary_sensor.keukenkastjes_switch
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.keukenkastjes_switch
+    from: 'off'
+    to: 'on'
 action:
-- service: light.toggle
-  entity_id: light.keuken_kastjes
-  data:
-    brightness: 254
-    transition: 1
+  - service: light.toggle
+    entity_id: light.keuken_kastjes
+    data:
+      brightness: 254
+      transition: 1

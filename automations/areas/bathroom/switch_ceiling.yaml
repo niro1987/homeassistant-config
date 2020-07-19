@@ -7,17 +7,17 @@ id: '1594195813098'
 alias: Schakelaar Badkamer Plafond
 description: ''
 trigger:
-- platform: state
-  entity_id: binary_sensor.badkamer_plafond_switch
-  from: 'on'
-  to: 'off'
-- platform: state
-  entity_id: binary_sensor.badkamer_plafond_switch
-  from: 'off'
-  to: 'on'
+  - platform: state
+    entity_id: binary_sensor.badkamer_plafond_switch
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.badkamer_plafond_switch
+    from: 'off'
+    to: 'on'
 action:
-- service: light.toggle
-  entity_id: light.badkamer_plafond
-  data:
-    brightness: 254
-    transition: 1
+  - service: light.toggle
+    entity_id: light.badkamer_plafond
+    data:
+      brightness: 254
+      transition: 1

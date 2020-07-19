@@ -7,32 +7,32 @@ id: '1594197177829'
 alias: Schakelaar Slaapkamer (Aan)
 description: ''
 trigger:
-- platform: state
-  entity_id: binary_sensor.slaapkamer_switch
-  from: 'on'
-  to: 'off'
-- platform: state
-  entity_id: binary_sensor.slaapkamer_switch
-  from: 'off'
-  to: 'on'
+  - platform: state
+    entity_id: binary_sensor.slaapkamer_switch
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.slaapkamer_switch
+    from: 'off'
+    to: 'on'
 condition:
-- condition: state
-  entity_id: light.slaapkamer
-  state: 'off'
+  - condition: state
+    entity_id: light.slaapkamer
+    state: 'off'
 action:
-- service: light.turn_on
-  entity_id: light.bed
-  data:
-    brightness: 50
-    hs_color:
-    - 38.222
-    - 52.941
-    transition: 1
-- condition: time
-  after: '11:00'
-  before: '17:00'
-- service: light.turn_on
-  entity_id: light.boven_het_bed
-  data:
-    brightness: 254
-    transition: 1
+  - service: light.turn_on
+    entity_id: light.bed
+    data:
+      brightness: 50
+      hs_color:
+      - 38.222
+      - 52.941
+      transition: 1
+  - condition: time
+    after: '11:00'
+    before: '17:00'
+  - service: light.turn_on
+    entity_id: light.boven_het_bed
+    data:
+      brightness: 254
+      transition: 1

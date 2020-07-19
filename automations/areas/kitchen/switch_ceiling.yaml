@@ -7,20 +7,20 @@ id: '1594196983001'
 alias: Schakelaar Keuken Plafond
 description: ''
 trigger:
-- platform: state
-  entity_id: binary_sensor.keukenplafond_switch
-  from: 'on'
-  to: 'off'
-- platform: state
-  entity_id: binary_sensor.keukenplafond_switch
-  from: 'off'
-  to: 'on'
+  - platform: state
+    entity_id: binary_sensor.keukenplafond_switch
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.keukenplafond_switch
+    from: 'off'
+    to: 'on'
 action:
-- service: light.toggle
-  entity_id: light.keuken_plafond
-  data:
-    brightness: 254
-    hs_color:
-    - 38.222
-    - 52.941
-    transition: 1
+  - service: light.toggle
+    entity_id: light.keuken_plafond
+    data:
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+      transition: 1

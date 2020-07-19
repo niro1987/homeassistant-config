@@ -7,20 +7,20 @@ id: '1594197340450'
 alias: Schakelaar Slaapkamer (Uit)
 description: ''
 trigger:
-- platform: state
-  entity_id: binary_sensor.slaapkamer_switch
-  from: 'on'
-  to: 'off'
-- platform: state
-  entity_id: binary_sensor.slaapkamer_switch
-  from: 'off'
-  to: 'on'
+  - platform: state
+    entity_id: binary_sensor.slaapkamer_switch
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.slaapkamer_switch
+    from: 'off'
+    to: 'on'
 condition:
-- condition: state
-  entity_id: light.slaapkamer
-  state: 'on'
+  - condition: state
+    entity_id: light.slaapkamer
+    state: 'on'
 action:
-- service: light.turn_off
-  entity_id: light.slaapkamer
-  data:
-    transition: 1
+  - service: light.turn_off
+    entity_id: light.slaapkamer
+    data:
+      transition: 1

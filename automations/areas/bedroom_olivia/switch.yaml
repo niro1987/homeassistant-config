@@ -7,20 +7,20 @@ id: '1594197561379'
 alias: Schakelaar Slaapkamer Olivia
 description: ''
 trigger:
-- platform: state
-  entity_id: binary_sensor.slaapkamer_olivia_switch
-  from: 'on'
-  to: 'off'
-- platform: state
-  entity_id: binary_sensor.slaapkamer_olivia_switch
-  from: 'off'
-  to: 'on'
+  - platform: state
+    entity_id: binary_sensor.slaapkamer_olivia_switch
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.slaapkamer_olivia_switch
+    from: 'off'
+    to: 'on'
 action:
-- service: light.toggle
-  entity_id: light.olivia_plafond
-  data:
-    brightness: 254
-    hs_color:
-    - 38.222
-    - 52.941
-    transition: 1
+  - service: light.toggle
+    entity_id: light.olivia_plafond
+    data:
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+      transition: 1

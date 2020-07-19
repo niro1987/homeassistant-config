@@ -6,20 +6,20 @@ id: '1594195113899'
 alias: Droger Notificatie Daan
 description: ''
 trigger:
-- entity_id: binary_sensor.droger
-  from: 'on'
-  platform: state
-  to: 'off'
+  - platform: state
+    entity_id: binary_sensor.droger
+    from: 'on'
+    to: 'off'
 condition:
-- condition: state
-  entity_id: person.danielle
-  state: home
+  - condition: state
+    entity_id: person.danielle
+    state: home
 action:
-- data:
+  - service: notify.mobile_app_j9210
     data:
-      group: Droger
-      tag: Droger
-      timeout: 600
-    message: Klaar!
-    title: Droger
-  service: notify.mobile_app_j9210
+      title: Droger
+      message: Klaar!
+      data:
+        group: Washok
+        tag: Droger
+        timeout: 3600

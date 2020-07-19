@@ -6,14 +6,17 @@ id: '1594196575813'
 alias: Deurbel Notificatie Google Home
 description: ''
 trigger:
-- entity_id: binary_sensor.deurbel
-  from: 'off'
-  platform: state
-  to: 'on'
-condition: []
+  - platform: state
+    entity_id: binary_sensor.deurbel
+    from: 'off'
+    to: 'on'
 action:
-- data:
-    media_content_id: https://annanas.diskstation.me:8123/local/deurbel.mp3
-    media_content_type: music
-  entity_id: media_player.alle_speakers
-  service: media_player.play_media
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.woonkamer_mini
+      volume_level: 0.2
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.woonkamer_mini
+      media_content_id: !secret doorbell_sound
+      media_content_type: music

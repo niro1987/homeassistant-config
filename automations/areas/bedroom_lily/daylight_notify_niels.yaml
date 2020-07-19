@@ -6,36 +6,38 @@ id: '1594645738949'
 alias: Slaapkamer Lily Overdag Notificatie Niels
 description: ''
 trigger:
-- entity_id: light.lily_plafond
-  for: 00:01:00
-  from: 'off'
-  platform: state
-  to: 'on'
+  - platform: state
+    entity_id: light.lily_plafond
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 5
 condition:
-- condition: state
-  entity_id: sun.sun
-  state: above_horizon
-- after: 09:00
-  before: '20:00'
-  condition: time
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  - condition: time
+    after: '09:00:00'
+    before: '20:00:00'
 action:
-- data_template:
-    filename: /config/www/snapshots/current.foscam_lily.jpg
-  entity_id: camera.foscam_lily
-  service: camera.snapshot
-- delay: 00:00:01
-- data:
+  - service: camera.snapshot
+    data_template:
+      entity_id: camera.foscam_lily
+      filename: '/config/www/snapshots/current.foscam_lily.jpg'
+  - delay:
+      seconds: 2
+  - service: notify.mobile_app_nimbus_2000
     data:
-      action_data:
-        entity_id: light.lily_plafond
-      apns_headers:
-        apns-collapse-id: Lily
-      attachment:
-        url: /local/snapshots/current.foscam_lily.jpg
-      push:
-        category: light_off
-        thread-id: Lily
-      url: /lovelace/slaapkamer_lily
-    message: Lily d'r licht staat aan.
-    title: Lily
-  service: notify.mobile_app_nimbus_2000
+      title: Lily
+      message: Lily d'r licht staat aan.
+      data:
+        apns_headers:
+          apns-collapse-id: Energie
+        push:
+          thread-id: lily_plafond
+        attachment:
+          url: '/local/snapshots/current.foscam_lily.jpg'
+        url: '/lovelace/slaapkamer_lily'
+      
+      
+    
