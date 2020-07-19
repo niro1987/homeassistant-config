@@ -11,10 +11,6 @@ trigger:
     from: 'off'
     to: 'on'
 action:
-  - service: media_player.volume_set
-    data:
-      entity_id: media_player.woonkamer_mini
-      volume_level: 0.2
   - service: media_player.play_media
     data:
       entity_id: media_player.woonkamer_mini
