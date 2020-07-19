@@ -1,4 +1,3 @@
----
 reset_wallswitches:
   alias: Reset Wallswitches
   sequence:
@@ -14,37 +13,3 @@ reset_wallswitches:
     service_template: light.turn_ {{- states('binary_sensor.eettafel_switch') -}}
   - entity_id: light.woonkamer
     service_template: light.turn_ {{- states('binary_sensor.woonkamer_switch') -}}
-notify_niels:
-  alias: Notify Niels
-  sequence:
-  - service: notify.mobile_app_nimbus_2000
-    data_template:
-      message: '{{ message }}'
-      title: '{{ title }}'
-notify_niels_ifhome:
-  alias: Notify Niels If Home
-  sequence:
-  - condition: state
-    entity_id: person.niels
-    state: home
-  - service: notify.mobile_app_nimbus_2000
-    data_template:
-      message: '{{ message }}'
-      title: '{{ title }}'
-notify_danielle:
-  alias: Notify Daniëlle
-  sequence:
-  - service: notify.mobile_app_j9210
-    data_template:
-      message: '{{ message }}'
-      title: '{{ title }}'
-notify_danielle_ifhome:
-  alias: Notify Daniëlle If Home
-  sequence:
-  - condition: state
-    entity_id: person.danielle
-    state: home
-  - service: notify.mobile_app_j9210
-    data_template:
-      message: '{{ message }}'
-      title: '{{ title }}'
