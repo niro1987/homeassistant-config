@@ -20,4 +20,3 @@ action:
     entity_id: light.badkamer_plafond
     data:
       brightness: 254
-      transition: 1

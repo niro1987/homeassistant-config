@@ -20,4 +20,3 @@ action:
     entity_id: light.keuken_kastjes
     data:
       brightness: 254
-      transition: 1

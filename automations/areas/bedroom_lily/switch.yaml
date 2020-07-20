@@ -21,7 +21,5 @@ action:
     data:
       brightness: 254
       hs_color:
-      - 38.222
-      - 52.941
-      transition: 1
-  
+        - 38.222
+        - 52.941

@@ -22,5 +22,3 @@ condition:
 action:
   - service: light.turn_off
     entity_id: light.slaapkamer
-    data:
-      transition: 1

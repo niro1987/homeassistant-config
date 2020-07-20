@@ -27,7 +27,6 @@ action:
       hs_color:
       - 38.222
       - 52.941
-      transition: 1
   - condition: time
     after: '11:00'
     before: '17:00'
@@ -35,4 +34,3 @@ action:
     entity_id: light.boven_het_bed
     data:
       brightness: 254
-      transition: 1
