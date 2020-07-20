@@ -1,0 +1,11 @@
+---
+# 
+# 
+# 
+platform: template
+sensors:
+  
+  badkamer_luchtvochtigheid_5min_variance:
+    friendly_name: 'Badkamer Luchtvochtigheid Variance'
+    unit_of_measurement: '%'
+    value_template: '{{ state_attr("sensor.badkamer_luchtvochtigheid_5min", "variance") | float }}'

@@ -19,8 +19,9 @@ condition:
   - condition: state
     entity_id: fan.afzuiging
     state: 'on'
-  - condition: template
-    value_template: "{{ (state_attr('sensor.badkamer_luchtvochtigheid_5min', 'variance') | float) < 1 }}"
+  - condtion: numeric_state
+    entity_id: sensor.badkamer_luchtvochtigheid_5min_variance
+    below: 1
 action:
   - service: fan.turn_off
     data:
