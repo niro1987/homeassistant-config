@@ -1,7 +1,8 @@
 ---
 platform: ping
 hosts:
-  niels_perfors_ping: !secret telefoon_niels
-  danielle_galis_ping: !secret telefoon_danielle
-  yvonne_galis_ping: !secret telefoon_yvonne
-  edwin_galis_ping: !secret telefoon_edwin
+  niels_telefoon_ping: !secret niels_telefoon
+  danielle_telefoon_ping: !secret danielle_telefoon
+  yvonne_telefoon_ping: !secret yvonne_telefoon
+  yvonne_watch_ping: !secret yvonne_watch
+  edwin_telefoon_ping: !secret edwin_telefoon
