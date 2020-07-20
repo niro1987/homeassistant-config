@@ -1,0 +1,11 @@
+---
+#
+# https://www.home-assistant.io/integrations/telegram/
+# https://www.home-assistant.io/integrations/telegram_bot/
+#
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_homeassistantbot_apikey
+    parse_mode: markdown
+    allowed_chat_ids:
+      - !secret telegram_niels
