@@ -19,7 +19,7 @@ condition:
   - condition: state
     entity_id: fan.afzuiging
     state: 'on'
-  - condtion: numeric_state
+  - condition: numeric_state
     entity_id: sensor.badkamer_luchtvochtigheid_5min_variance
     below: 1
 action:
