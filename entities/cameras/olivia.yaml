@@ -2,7 +2,7 @@
 # 
 # https://www.home-assistant.io/integrations/foscam/
 # 
-name: Foscam Olivia
+name: Olivia
 platform: foscam
 ip: !secret camera_olivia_address
 username: !secret camera_olivia_username

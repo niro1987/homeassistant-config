@@ -1,0 +1,13 @@
+---
+#
+# https://www.home-assistant.io/integrations/command_line/
+# https://gist.github.com/swilson/7674fd6bf4789bb0c7938136210f1168
+#
+platform: command_line
+name: Olivia Licht
+command: !secret camera_olivia_url
+device_class: light
+payload_on: "0"
+payload_off: "1"
+scan_interval: 10
+command_timeout: 5
