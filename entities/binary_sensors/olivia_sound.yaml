@@ -4,7 +4,7 @@
 # https://community.home-assistant.io/t/foscam-motion-sound-detection-and-ir-led-status-in-ha-v2-push-method/68190/6
 # 
 platform: mqtt
-state_topic: "foscam/00626E67ED01"
+state_topic: "foscam/00626E85E9F6"
 name: Olivia Geluid
 qos: 0
 payload_on: "2"
