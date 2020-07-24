@@ -3,9 +3,10 @@
 # Ì've modified my existing Busch-Jaeger light switch with ESPHome and a Sonoff Mini
 # to make sure I can still toggle the hue light when the switch is in the off position.
 # 
-id: '1594197635252'
+id: 'living_room-switch'
 alias: Schakelaar Woonkamer Plafond
-description: ''
+description: 'Bedient de verlichting'
+mode: queued
 trigger:
   - platform: state
     entity_id: binary_sensor.woonkamer_switch

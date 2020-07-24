@@ -1,10 +1,12 @@
 ---
 #
+# This automation triggers the custom integration Samba Backup
+# https://github.com/thomasmauerer/hassio-addons/tree/master/samba-backup
 #
-#
-id: '1594195540501'
+id: 'system-samba_backup'
 alias: Samba Backup
-description: ''
+description: 'HomeAssistant Backup'
+mode: single
 trigger:
   - platform: time
     at: 00:00:00

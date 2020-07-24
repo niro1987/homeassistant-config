@@ -1,11 +1,13 @@
 ---
 # 
-# Ì've modified my existing Busch-Jaeger light switch with ESPHome and a Sonoff Mini
-# to make sure I can still toggle the hue light when the switch is in the off position.
+# Ì've modified my existing Busch-Jaeger light switch with ESPHome
+# and a Sonoff Mini to make sure I can still toggle the hue light
+# when the switch is in the off position.
 # 
-id: '1594197561379'
-alias: Schakelaar Slaapkamer Olivia
-description: ''
+id: 'bedroom_olivia-switch'
+alias: Schakelaar Olivia
+description: 'Bedient de verlichting'
+mode: queued
 trigger:
   - platform: state
     entity_id: binary_sensor.slaapkamer_olivia_switch

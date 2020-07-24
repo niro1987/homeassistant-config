@@ -1,11 +1,13 @@
 ---
 # 
-# Ì've modified my existing Busch-Jaeger light switch with ESPHome and an ESP8266 board
-# to make sure I can still toggle the hue light when the switch is in the off position.
+# Ì've modified my existing Busch-Jaeger light switch with ESPHome
+# and an ESP8266 board to make sure I can still toggle the hue light
+# remotly when the switch is in the off position.
 # 
-id: '1594195813098'
-alias: Schakelaar Badkamer Plafond
-description: ''
+id: 'bathroom-switch'
+alias: Schakelaar Badkamer
+description: 'Bedient de verlichting'
+mode: queued
 trigger:
   - platform: state
     entity_id: binary_sensor.badkamer_plafond_switch

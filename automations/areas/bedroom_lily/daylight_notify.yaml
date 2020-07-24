@@ -1,0 +1,75 @@
+---
+# 
+# Notify anyone who is home when Lily's lights are turned on during the day.
+# 
+id: 'lily-daylight_notify'
+alias: Lily Verlichting Overdag
+description: "Notificatie wanneer Lily d'r licht overdag aan staat"
+mode: single
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: state
+    entity_id: 
+      - light.lily_plafond
+      - sun.sun
+condition:
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  - condition: time
+    after: '09:00:00'
+    before: '20:00:00'
+  - condition: state
+    entity_id: light.lily_plafond
+    state: 'on'
+    for:
+      minutes: 5
+action:
+  - service: camera.snapshot
+    data_template:
+      entity_id: camera.lily
+      filename: '/config/www/snapshots/camera.lily.now.jpg'
+  - delay:
+      seconds: 2
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: person.danielle
+        state: 'home'
+      sequence:
+        - service: notify.mobile_app_j9210
+          data:
+            title: Lily
+            message: Lily d'r licht staat aan.
+            data:
+              group: Energie
+              tag: lily_plafond
+              image: '/local/snapshots/camera.lily.now.jpg'
+              clickAction: '/lovelace/slaapkamer_lily'
+              timeout: 600
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: person.niels
+        state: 'home'
+      sequence:
+        - service: notify.mobile_app_nimbus_2000
+          data:
+            title: Lily
+            message: Lily d'r licht staat aan.
+            data:
+              apns_headers:
+                apns-collapse-id: Energie
+              push:
+                thread-id: lily_plafond
+              attachment:
+                url: '/local/snapshots/camera.lily.now.jpg'
+              url: '/lovelace/slaapkamer_lily'
+  - delay:
+      minutes: 10
+
+
+

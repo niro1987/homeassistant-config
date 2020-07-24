@@ -1,10 +1,12 @@
 ---
 #
+# This routine turns on the lights in the bathroom as well as the 
+# master bedroom when we turn off all the lights on the ground-floor.
 #
-#
-id: '1594458559299'
-alias: Naar bed routine
-description: ''
+id: 'routines-to_bed'
+alias: Naar bed naar bed zei duimelot
+description: 'Eerst nog wat eten zei likkepot'
+mode: single
 trigger:
   - platform: state
     entity_id: light.begane_grond

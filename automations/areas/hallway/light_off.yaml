@@ -1,10 +1,14 @@
 ---
-#
-#
-#
-id: '1594460535345'
+# 
+# Ì've modified my existing Busch-Jaeger light switch with ESPHome
+# and a Sonoff Mini to make sure I can toggle the 'dumb' light
+# as if it was a smart-bulb. This automation turns the light off when
+# it has been left on for too long.
+# 
+id: 'hallway-auto_off'
 alias: Gang Automatisch Uit
-description: ''
+description: 'Zet de verlichting automatisch uit na x minuten'
+mode: single
 trigger:
   - platform: homeassistant
     event: start

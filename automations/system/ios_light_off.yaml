@@ -1,10 +1,13 @@
 ---
 #
+# This automation turns off the light that was passed through an actionable
+# notification on an iOS device. If the users pressed the 'Turn Off'
+# button in the notification, the light is turned off. Easy-peasy
 #
-#
-id: '1594803316444'
+id: 'system-ios_light_off'
 alias: Verlichting Uitschakelen adhv iOS Notificatie
-description: ''
+description: 'Licht uit a.u.b.'
+mode: queued
 trigger:
   - platform: event
     event_type: ios.notification_action_fired  

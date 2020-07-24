@@ -1,0 +1,51 @@
+---
+#
+# I've modified the existing Buva Q-Stream ventilation unit with ESPHome,
+# an ESP8266 and a 0-10v PWM-to-Voltage module. The unit has a 0-10v port
+# to set the speed and a 15v port to power the ESP and the module.
+#
+id: 'attic-ventilation'
+alias: Afzuiging
+description: 'Afzuiging aan bij douchen'
+mode: single
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reloaded
+  - platform: numeric_state
+    entity_id: sensor.badkamer_luchtvochtigheid
+    above: 55
+  - platform: numeric_state
+    entity_id: sensor.badkamer_luchtvochtigheid
+    below: 50
+action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.badkamer_luchtvochtigheid
+        above: 55
+      sequence:
+        repeat:
+          sequence:
+            - service: fan.turn_on
+              data_template:
+                entity_id: fan.afzuiging
+            - service: fan.set_speed
+              data_template:
+                entity_id: fan.afzuiging
+                speed: 'high'
+            - delay:
+                seconds: 5
+          until:
+            - condition: state
+              entity_id: fan.afzuiging
+              state: 'on'
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.badkamer_luchtvochtigheid
+        below: 50
+      sequence:
+        - service: fan.turn_off
+          data_template:
+            entity_id: fan.afzuiging
