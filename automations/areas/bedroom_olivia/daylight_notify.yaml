@@ -1,6 +1,6 @@
 ---
 # 
-# Notify anyone who is home when Lily's lights are turned on during the day.
+# Notify anyone who is home when Olivia's lights are turned on during the day.
 # 
 id: 'olivia-daylight_notify'
 alias: Olivia Verlichting Overdag
@@ -15,13 +15,19 @@ trigger:
     entity_id: 
       - light.olivia_plafond
       - sun.sun
+      - binary_sensor.olivia_licht
+  - platform: state
+    entity_id: light.olivia_plafond
+    to: 'on'
+    for:
+      minutes: 5
 condition:
   - condition: state
     entity_id: sun.sun
     state: above_horizon
-  - condition: time
-    after: '09:00:00'
-    before: '20:00:00'
+  - condition: state
+    entity_id: binary_sensor.olivia_licht
+    state: 'on'
   - condition: state
     entity_id: light.olivia_plafond
     state: 'on'
@@ -69,4 +75,4 @@ action:
                 url: '/local/snapshots/camera.olivia.now.jpg'
               url: '/lovelace/slaapkamer_olivia'
   - delay:
-      minutes: 10
+      minutes: 30
