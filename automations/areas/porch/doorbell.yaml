@@ -12,8 +12,9 @@ description: 'Ding Dong'
 mode: single
 trigger:
   - platform: state
-    entity_id:
-      - binary_sensor.deurbel
+    entity_id: binary_sensor.deurbel
+    from: 'off'
+    to: 'on'
 action:
   - service: media_player.play_media
     data:
