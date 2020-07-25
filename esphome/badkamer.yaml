@@ -10,8 +10,8 @@ esphome:
 
 <<: !include common.txt
 
-status_led:
-  pin: GPIO2
+# status_led:
+#   pin: GPIO2
 
 output:
   - platform: ledc

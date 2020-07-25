@@ -10,10 +10,10 @@ esphome:
 
 <<: !include common.txt
 
-status_led:
-  pin:
-    number: GPIO13
-    inverted: true
+# status_led:
+#   pin:
+#     number: GPIO13
+#     inverted: true
 
 binary_sensor:
   - platform: status

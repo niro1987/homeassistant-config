@@ -10,10 +10,10 @@ esphome:
 
 <<: !include common.txt
 
-status_led:
-  pin: 
-    number: D4
-    inverted: True
+# status_led:
+#   pin: 
+#     number: D4
+#     inverted: True
 
 output:
   - platform: esp8266_pwm
