@@ -14,9 +14,9 @@ esphome:
 #   pin: GPIO2
 
 output:
-  - platform: ledc
-    pin: GPIO12
-    id: 'output_1'
+  # - platform: ledc
+  #   pin: GPIO12
+  #   id: 'output_1'
     
   - platform: gpio
     pin: GPIO27
@@ -56,10 +56,10 @@ binary_sensor:
 esp32_ble_tracker:
 
 light:
-  - platform: monochromatic
-    output: 'output_1'
-    name: '${friendlyname} Nachtlampje'
-    id: 'light_1'
+  # - platform: monochromatic
+  #   output: 'output_1'
+  #   name: '${friendlyname} Nachtlampje'
+  #   id: 'light_1'
     
   - platform: binary
     name: '${friendlyname} Spiegel'
