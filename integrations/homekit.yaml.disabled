@@ -1,9 +1,0 @@
----
-# 
-# https://www.home-assistant.io/integrations/homekit/
-# 
-homekit:
-  name: Home Assistant  
-  auto_start: true
-  filter: !include ../entities/assistants/apple-homekit-filter.yaml
-  entity_config: !include_dir_merge_named ../entities/assistants/apple
