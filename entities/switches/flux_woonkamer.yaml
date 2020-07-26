@@ -1,4 +1,7 @@
 ---
+#
+# https://www.home-assistant.io/integrations/flux/
+#
 name: Woonkamer Flux
 platform: flux
 lights:
