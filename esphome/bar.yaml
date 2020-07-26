@@ -30,7 +30,7 @@ binary_sensor:
       mode: INPUT_PULLUP
       inverted: True
     id: binary_1
-    name: 'Bar Switch'
+    name: '${friendlyname} Switch'
     on_state:
       then:
         - light.toggle: light_1
@@ -38,7 +38,7 @@ binary_sensor:
 light:
   - platform: binary
     id: light_1
-    name: 'Bar'
+    name: '${friendlyname}'
     output: output_1
 
 sensor:
