@@ -3,8 +3,8 @@
 # 
 # 
 # 
-light.keuken_kastjes:
-  name: Keuken Kastjes
+light.keukenkastjes:
+  name: Keukenkastjes
   expose: true
   aliases: []
   room: Keuken

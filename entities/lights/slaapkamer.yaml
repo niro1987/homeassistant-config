@@ -2,6 +2,6 @@
 name: Slaapkamer
 platform: group
 entities:
-  - light.bed_daan
-  - light.bed_niels
-  - light.boven_het_bed
+  - light.slaapkamer_plafond
+  - light.slaapkamer_danielle
+  - light.slaapkamer_niels

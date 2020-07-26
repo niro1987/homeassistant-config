@@ -3,8 +3,9 @@
 # 
 # 
 # 
-light.boven_het_bed:
+light.slaapkamer_plafond:
   name: Boven het bed
   expose: true
-  aliases: []
+  aliases:
+    - Slaapkamer Plafond
   room: Slaapkamer

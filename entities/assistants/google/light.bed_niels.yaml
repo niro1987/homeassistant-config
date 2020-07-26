@@ -3,7 +3,7 @@
 # 
 # 
 # 
-light.bed_niels:
+light.slaapkamer_niels:
   name: Niels zijn kant
   expose: true
   aliases:

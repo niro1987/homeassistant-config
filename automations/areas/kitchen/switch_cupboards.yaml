@@ -18,6 +18,6 @@ trigger:
     to: 'on'
 action:
   - service: light.toggle
-    entity_id: light.keuken_kastjes
+    entity_id: light.keukenkastjes
     data:
       brightness: 254
