@@ -1,0 +1,176 @@
+---
+#
+# This automation simulates the use of the IKEA TRADFRI Remote control
+# connected through zha but should also work for other type of events.
+# Requires Home Assistant 0.113 or higher.
+#
+id: 'bedroom_olivia-ikea_remote'
+alias: Olivia IKEA Remote
+description: ''
+mode: restart
+trigger:
+  - platform: event
+    event_type: zha_event
+condition:
+  - condition: template
+    value_template: '{{ trigger.event.data.device_ieee == "14:b4:57:ff:fe:76:1d:27" }}'
+action:
+  - choose:
+# Short-Press on the power button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "toggle" }}'
+      sequence:
+        - service: light.toggle
+          data_template:
+            entity_id: light.olivia_plafond
+# Short-Press on the dim-up button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+      sequence:
+        - service: light.turn_on
+          data_template:
+            entity_id: light.olivia_plafond
+            brightness_step_pct: 20
+            transition: 0.5
+# Short-Press on the dim-down button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step" }}'
+      sequence:
+        - service: light.turn_on
+          data_template:
+            entity_id: light.olivia_plafond
+            brightness_step_pct: -20
+            transition: 0.5
+# Short-Press on the color-up button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [256,13,0] }}'
+      sequence:
+        - service: light.turn_on
+          data_template:
+            entity_id: light.olivia_plafond
+            hs_color:
+              - >-
+                {% if state_attr("light.olivia_plafond", "hs_color")[0] + 18 > 360 %}
+                  {{ state_attr("light.olivia_plafond", "hs_color")[0] + 18 - 360 }}
+                {% else %}
+                  {{ state_attr("light.olivia_plafond", "hs_color")[0] + 18 }}
+                {% endif %}
+              - '{{ state_attr("light.olivia_plafond", "hs_color")[1] }}'
+            transition: 0.5
+# Short-Press on the color-down button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [257,13,0] }}'
+      sequence:
+        - service: light.turn_on
+          data_template:
+            entity_id: light.olivia_plafond
+            hs_color:
+              - '{{ state_attr("light.olivia_plafond", "hs_color")[0] }}'
+              - >-
+                {% if state_attr("light.olivia_plafond", "hs_color")[1] - 20 < 0 %}
+                  {{ state_attr("light.olivia_plafond", "hs_color")[1] - 20 + 100 }}
+                {% else %}
+                  {{ state_attr("light.olivia_plafond", "hs_color")[1] - 20 }}
+                {% endif %}
+            transition: 0.5
+# Long-Press on the power button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off" }}'
+      sequence:
+        - service: light.turn_on
+          data_template:
+            entity_id: light.olivia_plafond
+            brightness: 254
+            hs_color:
+              - 38.222
+              - 52.941
+# Long-Press on the color-up button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3328,0] }}'
+      sequence:
+        - repeat:
+            while: []
+            sequence:
+              - service: light.turn_on
+                data_template:
+                  entity_id: light.olivia_plafond
+                  hs_color:
+                    - >-
+                      {% if state_attr("light.olivia_plafond", "hs_color")[0] + 18 > 360 %}
+                        {{ state_attr("light.olivia_plafond", "hs_color")[0] + 18 - 360 }}
+                      {% else %}
+                        {{ state_attr("light.olivia_plafond", "hs_color")[0] + 18 }}
+                      {% endif %}
+                    - '{{ state_attr("light.olivia_plafond", "hs_color")[1] }}'
+                  transition: 0.5
+              - delay:
+                  milliseconds: 500
+# Long-Press on the color-down button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3329,0] }}'
+      sequence:
+        - repeat:
+            while: []
+            sequence:
+              - service: light.turn_on
+                data_template:
+                  entity_id: light.olivia_plafond
+                  hs_color:
+                    - '{{ state_attr("light.olivia_plafond", "hs_color")[0] }}'
+                    - >-
+                      {% if state_attr("light.olivia_plafond", "hs_color")[1] - 10 < 0 %}
+                        {{ state_attr("light.olivia_plafond", "hs_color")[1] - 10 + 100 }}
+                      {% else %}
+                        {{ state_attr("light.olivia_plafond", "hs_color")[1] - 10 }}
+                      {% endif %}
+                  transition: 0.5
+              - delay:
+                  milliseconds: 500
+# Long-Press on the dim-up button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+      sequence:
+        - repeat:
+            while: []
+            sequence:
+              - service: light.turn_on
+                data_template:
+                  entity_id: light.olivia_plafond
+                  brightness_step_pct: 10
+                  transition: 0.5
+              - delay:
+                  milliseconds: 500
+# Long-Press on the dim-down button.
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move" }}'
+      sequence:
+        - repeat:
+            while: []
+            sequence:
+              - service: light.turn_on
+                data_template:
+                  entity_id: light.olivia_plafond
+                  brightness_step_pct: -10
+                  transition: 0.5
+              - delay:
+                  milliseconds: 500
+# Any other event will cancel the repeat loops.
+    default: []
