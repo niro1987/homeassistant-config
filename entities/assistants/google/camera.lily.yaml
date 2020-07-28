@@ -1,0 +1,9 @@
+---
+#
+#
+#
+camera.lily:
+  name: Camera Lily
+  expose: true
+  aliases: []
+  room: Slaapkamer Lily
