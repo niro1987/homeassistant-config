@@ -3,4 +3,4 @@
 # https://www.home-assistant.io/integrations/script/
 # 
 script: !include ../scripts.yaml
-#script spit: !include_dir_merge_named ../scripts # Not supported as of 0.110
+#script spit: !include_dir_merge_named ../scripts # Doesn't seem to work
