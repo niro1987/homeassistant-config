@@ -7,4 +7,7 @@ I chose this methodology because I like the way how the integrations are organiz
 ## Tips
 If you haven't already, please take the time to read [The Perfect Home Automation](https://www.home-assistant.io/blog/2016/01/19/perfect-home-automation/).
 
+### Other configs you should check out
+* [Frenck](https://github.com/frenck/home-assistant-config) - An inspiration to us all!
+* [hmmbob](https://github.com/hmmbob/HomeAssistantConfig) - Love his Lovelace setup!
 ---
