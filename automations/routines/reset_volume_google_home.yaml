@@ -3,14 +3,10 @@
 # This routine resets the speaker volume for the Google Home Mini
 # 
 id: 'routines-reset_volume_google_home'
-alias: Google Home Mini VOlume
-description: 'Herstel het volume van de Google Home'
+alias: Google Home Mini Volume
+description: 'Herstel volume van de Google Home'
 mode: single
 trigger:
-  - platform: homeassistant
-    event: start
-  - platform: event
-    event_type: automation_reloaded
   - platform: time
     at: '08:00:00'
   - platform: time
