@@ -4,7 +4,7 @@
 # master bedroom when we turn off all the lights on the ground-floor.
 #
 id: 'routines-to_bed'
-alias: Naar bed naar bed zei duimelot
+alias: Naar bed, Naar bed, Zei Duimelot
 description: 'Eerst nog wat eten zei likkepot'
 mode: single
 trigger:
