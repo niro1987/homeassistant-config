@@ -1,0 +1,28 @@
+---
+#
+#
+#
+path: f1
+title: First Floor
+icon: mdi:home-floor-1
+panel: false
+cards:
+  - type: vertical-stack
+    cards:
+      - type: entities
+        show_header_toggle: false
+        style: |
+          ha-card {
+            margin: 0px 14px 0px 14px;
+          }
+        entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: group.slaapkamer_bed
+              name: Slaapkamer
+            entities:
+              - entity: light.slaapkamer_danielle
+              - entity: light.slaapkamer_niels
+              - entity: light.slaapkamer_plafond
+          - entity: light.lily_plafond
+          - entity: light.olivia_plafond

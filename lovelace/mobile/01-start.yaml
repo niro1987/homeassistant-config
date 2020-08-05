@@ -1,0 +1,298 @@
+---
+#
+# 
+#
+path: start
+title: Start
+icon: mdi:home-assistant
+panel: false
+cards:
+# Hello
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: |
+          {% if now().hour < 5 %}
+            # Goede nacht, {{user}}!
+          {% elif now().hour < 12 %}
+            # Goede morgen, {{user}}!
+          {% elif now().hour < 18 %}
+            # Goede middag, {{user}}!
+          {% else %}
+            # Fijne avond, {{user}}!
+          {% endif %}
+        style:
+          .: |
+            ha-card {
+              margin: 0px 14px 0px 10px;
+              box-shadow: none;
+              --ha-card-background: rgba(0, 0, 0, 0.0)
+            }
+          ha-markdown:
+            $: |
+              h1 {
+                font-size: 20px;
+                font-weight: 500;
+                color: var(--app-header-text-color);
+              }
+# Date
+      - type: markdown
+        content: |
+          {% set months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"] %}
+          {% set month = months[now().strftime('%m') | int -1] %}
+          {% set days = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"]  %}
+          {% set day = days[now().strftime('%A') | int ] %}
+          # {{ day + ' ' + now().strftime('%-d') + ' ' + month }}
+        style:
+          .: |
+            ha-card {
+              margin: 12px 14px -5px 14px;
+              box-shadow: none;
+              --ha-card-background: rgba(0, 0, 0, 0.0)
+            }
+          ha-markdown:
+            $: |
+              h1 { 
+                font-size: 18px !important;
+                font-weight: 400 !important;
+                padding-left: 10px !important;
+                border-left: 3px solid rgba(81, 134, 236);
+              }
+# Weather
+      - type: custom:state-switch
+        entity: weather.zwaag
+        default: default
+        states:
+          sunny:
+            type: custom:simple-weather-card
+            style: |
+              ha-card {
+                box-shadow: var(--card-box-shadow);
+                margin: 0px 14px 0px 14px;
+              }
+            entity: weather.zwaag
+            name: "Zwaag"
+            primary_info: extrema
+            secondary_info: ~
+            tap_action:
+              action: more-info
+            backdrop:
+              day: 'rgba(249, 233, 181)'
+              text: var(--app-header-text-color)
+              night: 'rgba(76, 87, 110)'
+              fade: false
+          default:
+            type: custom:simple-weather-card
+            style: |
+              ha-card {
+                box-shadow: var(--card-box-shadow);
+                margin: 0px 14px 0px 14px;
+              }
+            entity: weather.zwaag
+            name: "Zwaag"
+            primary_info: extrema
+            secondary_info: ~
+            tap_action:
+              action: more-info
+            backdrop:
+              day: 'rgba(159, 193, 249)'
+              text: var(--app-header-text-color)
+              night: 'rgba(76, 87, 110)'
+              fade: false
+# Trash Today
+      - type: custom:state-switch
+        entity: sensor.afval_vandaag
+        states:
+          Restafval:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(201, 201, 201, 0.3);
+              }
+            entities:
+              - entity: sensor.afval_vandaag
+          GFT:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(0, 168, 39, 0.1);
+              }
+            entities:
+              - entity: sensor.afval_vandaag
+          Plastic:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(255, 136, 0, 0.25);
+              }
+            entities:
+              - entity: sensor.afval_vandaag
+          Oud Papier:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(0, 106, 255, 0.25);
+              }
+            entities:
+              - entity: sensor.afval_vandaag
+          Plastic Oud Papier:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: linear-gradient(45deg, rgba(255, 136, 0, 0.25),rgba(0, 106, 255, 0.25));
+              }
+            entities:
+              - entity: sensor.afval_vandaag
+# Trash Tomorrow
+      - type: custom:state-switch
+        entity: sensor.afval_morgen
+        states:
+          Restafval:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(201, 201, 201, 0.3);
+              }
+            entities:
+              - entity: sensor.afval_morgen
+          GFT:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(0, 168, 39, 0.1);
+              }
+            entities:
+              - entity: sensor.afval_morgen
+          Plastic:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(255, 136, 0, 0.25);
+              }
+            entities:
+              - entity: sensor.afval_morgen
+          Oud Papier:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(0, 106, 255, 0.25);
+              }
+            entities:
+              - entity: sensor.afval_morgen
+          Plastic Oud Papier:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: linear-gradient(45deg, rgba(255, 136, 0, 0.25),rgba(0, 106, 255, 0.25));
+              }
+            entities:
+              - entity: sensor.afval_morgen
+# Calendar
+      - type: conditional
+        conditions:
+          - entity: calendar.me_you
+            state: 'on'
+        card:
+          type: custom:calendar-card
+          style:
+            .: |
+              ha-card {
+                margin: 0px 14px -10px 14px;
+                box-shadow: none;
+                --ha-card-background: rgba(0, 0, 0, 0.0)
+              }
+          dateBottomFormat: ddd
+          dateTopFormat: DD
+          disableLinks: true
+          endText: End
+          entities:
+            - entity: calendar.me_you
+              name: Me & You
+          eventsLimit: '3'
+          fullDayEventText: All day
+          hardLimit: false
+          hideDeclined: true
+          hideHeader: true
+          hidePastEvents: true
+          hideTime: false
+          highlightToday: false
+          ignoreEventsByLocationExpression: ''
+          ignoreEventsExpression: ''
+          maxHeight: false
+          notifyDateTimeFormat: 'DD/MM/YYYY HH:mm'
+          notifyEntity: null
+          numberOfDays: '7'
+          progressBar: false
+          removeFromEventTitle: ''
+          showEventOrigin: false
+          showLocation: false
+          showLocationIcon: false
+          showMultiDay: false
+          startText: Start
+          timeFormat: 'HH:mm'
+          title: 'Me & You'
+# Lights
+      - type: entities
+        show_header_toggle: false
+        style: |
+          ha-card {
+            margin: 0px 14px 0px 14px;
+          }
+        entities:
+          - type: custom:fold-entity-row
+            head: group.lampen_woonkamer
+          - type: custom:fold-entity-row
+            head: group.lampen_eetkamer
+          - type: custom:fold-entity-row
+            head: group.lampen_keuken
+# Google Home
+      - type: conditional
+        conditions:
+          - entity: media_player.woonkamer_mini
+            state_not: 'off'
+        card:
+          type: custom:mini-media-player
+          entity: media_player.woonkamer_mini
+          icon: mdi:cast-audio
+          min_volume: 1
+          max_volume: 50
+          style: |
+            ha-card {
+              margin: 0px 14px 0px 14px;
+            }
+          artwork: cover
+          tap_action:
+            action: none
+# Televisie
+      - type: conditional
+        conditions:
+          - entity: media_player.televisie
+            state_not: 'off'
+        card:
+          type: custom:mini-media-player
+          entity: media_player.televisie
+          name: Televisie
+          icon: mdi:television-play
+          artwork: none
+          tap_action:
+            action: none
+          style: |
+            ha-card {
+              margin: 0px 14px 0px 14px;
+            }
+          source: icon
+          min_volume: 1
+          max_volume: 30
+          hide:
+            info: true
+            controls: true

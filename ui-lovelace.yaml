@@ -1,2 +1,6 @@
+---
+#
+#
+#
 title: Home Assistant
 views: !include_dir_list ./lovelace/default

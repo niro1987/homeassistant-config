@@ -1,0 +1,10 @@
+---
+#
+#
+#
+mode: yaml
+filename: ui-lovelace-mobile.yaml
+title: Mobile
+icon: mdiHomeAssistant
+show_in_sidebar: true
+require_admin: false
