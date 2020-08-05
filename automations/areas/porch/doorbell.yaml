@@ -23,9 +23,23 @@ action:
       media_content_type: music
   - choose:
     - conditions:
-      - condition: state
-        entity_id: person.danielle
-        state: 'home'
+        - condition: state
+          entity_id: binary_sensor.lily_licht
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.olivia_licht
+          state: 'on'
+      sequence:
+        - service: media_player.play_media
+          data:
+            entity_id: media_player.slaapkamer_mini
+            media_content_id: !secret doorbell_sound
+            media_content_type: music
+  - choose:
+    - conditions:
+        - condition: state
+          entity_id: person.danielle
+          state: 'home'
       sequence:
         - service: notify.mobile_app_j9210
           data:
@@ -37,9 +51,9 @@ action:
               timeout: 60
   - choose:
     - conditions:
-      - condition: state
-        entity_id: person.niels
-        state: 'home'
+        - condition: state
+          entity_id: person.niels
+          state: 'home'
       sequence:
         - service: notify.mobile_app_nimbus_2000
           data:
