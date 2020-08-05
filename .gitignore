@@ -7,6 +7,7 @@
 !/entities**
 !/esphome**
 !/integrations**
+!/lovelace**
 !/ios_notifications**
 
 ## Allow files
@@ -16,6 +17,7 @@
 !/light_profiles.csv
 !/scenes.yaml
 !/scripts.yaml
+!/ui-lovelace.yaml
 !/.HA_VERSION
 !/.gitignore
 !/README.md

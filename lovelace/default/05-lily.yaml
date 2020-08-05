@@ -1,0 +1,24 @@
+---
+#
+#
+#
+panel: true
+path: camera_lily
+theme: clear
+title: Lily
+visible: false
+badges: []
+cards:
+  - aspect_ratio: 0%
+    camera_image: camera.lily
+    entities:
+      - entity: binary_sensor.lily_beweging
+      - entity: binary_sensor.lily_geluid
+      - entity: binary_sensor.lily_licht
+    hold_action:
+      action: none
+    image: 'https://demo.home-assistant.io/stub_config/kitchen.png'
+    tap_action:
+      action: none
+    title: Lily
+    type: picture-glance

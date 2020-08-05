@@ -1,0 +1,14 @@
+---
+#
+#
+#
+panel: false
+path: bar
+theme: clear
+title: Bar
+visible: false
+badges: []
+cards:
+  - entity: light.bar
+    icon: 'mdi:beer'
+    type: light

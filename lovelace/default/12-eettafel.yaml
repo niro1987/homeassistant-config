@@ -1,0 +1,14 @@
+---
+#
+#
+#
+panel: false
+path: eettafel
+theme: clear
+title: Eettafel
+visible: false
+badges: []
+cards:
+  - entity: light.eettafel
+    icon: 'mdi:silverware'
+    type: light

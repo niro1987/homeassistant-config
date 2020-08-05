@@ -1,0 +1,37 @@
+---
+#
+#
+#
+panel: false
+path: slaapkamer
+theme: clear
+title: Slaapkamer
+visible: false
+badges: []
+cards:
+  - cards:
+      - cards:
+          - entity: light.slaapkamer
+            name: Slaapkamer
+            type: light
+          - entity: switch.circadian_lighting_slaapkamer
+            hold_action:
+              action: more-info
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+        type: horizontal-stack
+      - cards:
+          - entity: light.slaapkamer_plafond
+            name: Plafond
+            type: light
+          - entity: light.slaapkamer_danielle
+            name: Daniëlle
+            type: light
+          - entity: light.slaapkamer_niels
+            name: Niels
+            type: light
+        type: horizontal-stack
+    type: vertical-stack

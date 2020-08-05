@@ -1,0 +1,78 @@
+---
+#
+#
+#
+path: staat
+title: Staat
+theme: clear
+badges:
+  - entity: person.danielle
+  - entity: person.niels
+  - entity: person.yvonne
+  - entity: person.edwin
+cards:
+  - card:
+      title: Ramen en deuren
+    entities:
+      - entity: binary_sensor.voordeur
+        secondary_info: last-changed
+      - entity: binary_sensor.keukenraam
+        secondary_info: last-changed
+      - entity: binary_sensor.woonkamerraam
+        secondary_info: last-changed
+      - entity: binary_sensor.achterdeur
+        secondary_info: last-changed
+      - entity: binary_sensor.badkamerraam
+        secondary_info: last-changed
+      - entity: binary_sensor.slaapkamerraam
+        secondary_info: last-changed
+      - entity: binary_sensor.olivia_raam
+        secondary_info: last-changed
+      - entity: binary_sensor.lily_raam
+        secondary_info: last-changed
+      - entity: binary_sensor.zolderraam
+        secondary_info: last-changed
+      - entity: binary_sensor.gang
+        secondary_info: last-changed
+    show_empty: false
+    state_filter:
+      - 'on'
+    type: entity-filter
+  - card:
+      title: Batterij vervangen
+    entities:
+      - entity: sensor.voordeur_battery
+        secondary_info: last-changed
+      - entity: sensor.keukenraam_battery
+        secondary_info: last-changed
+      - entity: sensor.woonkamerraam_battery
+        secondary_info: last-changed
+      - entity: sensor.achterdeur_battery
+        secondary_info: last-changed
+      - entity: sensor.badkamerraam_battery
+        secondary_info: last-changed
+      - entity: sensor.slaapkamerraam_battery
+        secondary_info: last-changed
+      - entity: sensor.olivia_raam_battery
+        secondary_info: last-changed
+      - entity: sensor.lily_raam_battery
+        secondary_info: last-changed
+      - entity: sensor.zolderraam_battery
+        secondary_info: last-changed
+      - entity: sensor.gang_battery
+        secondary_info: last-changed
+      - entity: sensor.aqara_cube_battery
+        secondary_info: last-changed
+      - entity: sensor.ikea_switch_battery
+        secondary_info: last-changed
+      - entity: sensor.lily_remote_battery
+        secondary_info: last-changed
+      - entity: sensor.olivia_remote_battery
+        secondary_info: last-changed
+      - entity: sensor.xiaomi_battery_level
+        secondary_info: last-changed
+    show_empty: false
+    state_filter:
+      - operator: <
+        value: 20
+    type: entity-filter

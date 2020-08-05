@@ -1,0 +1,16 @@
+---
+#
+#
+#
+path: gang
+theme: clear
+title: Gang
+visible: false
+badges: []
+cards:
+  - entity: light.gang
+    type: light
+  - entities:
+      - entity: binary_sensor.gang
+    show_header_toggle: false
+    type: entities
