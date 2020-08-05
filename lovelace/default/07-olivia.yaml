@@ -1,0 +1,24 @@
+---
+#
+#
+#
+panel: true
+path: camera_olivia
+theme: clear
+title: Olivia
+visible: false
+badges: []
+cards:
+  - aspect_ratio: 0%
+    camera_image: camera.olivia
+    entities:
+      - entity: binary_sensor.olivia_beweging
+      - entity: binary_sensor.olivia_geluid
+      - entity: binary_sensor.olivia_licht
+    hold_action:
+      action: none
+    image: 'https://demo.home-assistant.io/stub_config/kitchen.png'
+    tap_action:
+      action: none
+    title: Olivia
+    type: picture-glance

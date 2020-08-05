@@ -1,0 +1,43 @@
+---
+#
+#
+#
+panel: false
+path: droger
+theme: clear
+title: Droger
+visible: false
+badges:
+  - entity: binary_sensor.droger
+  - entity: switch.droger
+  - entity: sensor.droger_watts
+  - entity: binary_sensor.droger_filter
+cards:
+  - cards:
+      - entities:
+          - entity: binary_sensor.droger
+          - entity: binary_sensor.droger_filter
+        hours_to_show: 4
+        refresh_interval: 10
+        type: history-graph
+      - entities:
+          - entity: sensor.droger_watts
+        hours_to_show: 4
+        refresh_interval: 10
+        type: history-graph
+      - entities:
+          - entity: sensor.droger_variance
+        hours_to_show: 4
+        refresh_interval: 10
+        type: history-graph
+      - entity: switch.droger
+        hold_action:
+          action: more-info
+        icon: 'mdi:tumble-dryer'
+        icon_height: 60px
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: entity-button
+    type: vertical-stack

@@ -2,4 +2,6 @@
 # 
 # https://www.home-assistant.io/lovelace/
 #
-lovelace: ~
+lovelace:
+  mode: yaml
+  resources: !include_dir_list ../lovelace/resources

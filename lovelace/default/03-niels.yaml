@@ -1,0 +1,34 @@
+---
+#
+#
+#
+path: niels
+theme: clear
+title: Niels
+visible: false
+badges: []
+cards:
+  - default_zoom: 15
+    entities:
+      - entity: person.niels
+    geo_location_sources: []
+    type: map
+  - entity: sensor.nimbus_2000_battery_level
+    graph: line
+    hours_to_show: 12
+    name: Nimbus 2000
+    type: sensor
+  - entities:
+      - entity: person.niels
+      - entity: device_tracker.nimbus_2000
+      - entity: device_tracker.niels_telefoon_ping
+      - entity: device_tracker.google_maps_niels_perfors1987_gmail_com
+    hours_to_show: 24
+    refresh_interval: 60
+    type: history-graph
+  - entities:
+      - entity: person.niels
+      - entity: device_tracker.nimbus_2000
+      - entity: device_tracker.niels_telefoon_ping
+      - entity: device_tracker.google_maps_niels_perfors1987_gmail_com
+    type: entities

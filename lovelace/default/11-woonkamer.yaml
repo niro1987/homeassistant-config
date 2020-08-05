@@ -1,0 +1,42 @@
+---
+#
+#
+#
+panel: false
+path: woonkamer
+theme: clear
+title: Woonkamer
+visible: false
+badges: []
+cards:
+  - cards:
+      - cards:
+          - entity: light.woonkamer
+            name: Woonkamer
+            type: light
+        type: horizontal-stack
+      - cards:
+          - entity: light.richting_hoek
+            name: Hoek
+            type: light
+          - entity: light.richting_televisie
+            name: Televisie
+            type: light
+          - entity: light.richting_trap
+            name: Trap
+            type: light
+        type: horizontal-stack
+    type: vertical-stack
+  - entities:
+      - entity: switch.woonkamer_flux
+      - entity: switch.circadian_lighting_woonkamer
+    show_header_toggle: false
+    type: entities
+  - cards:
+      - entity: media_player.woonkamer_mini
+        type: media-control
+      - entity: media_player.kodi_woonkamer
+        type: media-control
+      - entity: media_player.televisie
+        type: media-control
+    type: vertical-stack
