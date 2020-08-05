@@ -1,0 +1,8 @@
+---
+#
+# https://www.home-assistant.io/integrations/file/
+#
+name: file
+platform: file
+filename: /config/notify.txt
+timestamp: true

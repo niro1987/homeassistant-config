@@ -1,0 +1,147 @@
+---
+#
+#
+#
+id: 'lily-camera_notify'
+alias: Lily Camera
+description: "Notificatie wanneer Lily d'r camera beweging of geluid detecteert"
+mode: queued
+max: 3
+trigger:
+  - platform: event
+    event_type: foscam_intercept
+condition:
+  - condition: template
+    value_template: '{{ trigger.event.data.senderTag == "00626E67ED01" }}'
+action:
+# Snapshot
+  - service: camera.snapshot
+    data_template:
+      entity_id: camera.lily
+      filename: '/config/www/snapshots/camera.lily.now.jpg'
+  - delay:
+      seconds: 1
+# Danielle
+  - choose:
+  ## Altijd
+    - conditions:
+        - condition: template
+          value_template: >
+            {{ states("input_select.danielle_camera_notify") == "Altijd" }}
+      sequence:
+        - service: notify.mobile_app_j9210
+          data_template:
+            title: '{{ (trigger.event.data.msg | from_json).title }}'
+            message: '{{ (trigger.event.data.msg | from_json).description }}'
+            data:
+              group: Lily
+              tag: lily_camera
+              image: '/local/snapshots/camera.lily.now.jpg'
+              clickAction: '/lovelace/slaapkamer_lily'
+              timeout: 60
+  ## Alleen thuis
+    - conditions:
+        - condition: template
+          value_template: >
+            {{ states("input_select.danielle_camera_notify") == "Alleen thuis" }}
+        - condition: state
+          entity_id: person.danielle
+          state: 'home'
+      sequence:
+        - service: notify.mobile_app_j9210
+          data_template:
+            title: '{{ (trigger.event.data.msg | from_json).title }}'
+            message: '{{ (trigger.event.data.msg | from_json).description }}'
+            data:
+              group: Lily
+              tag: lily_camera
+              image: '/local/snapshots/camera.lily.now.jpg'
+              clickAction: '/lovelace/slaapkamer_lily'
+              timeout: 60
+  ## Alleen donker
+    - conditions:
+        - condition: template
+          value_template: >
+            {{ states("input_select.danielle_camera_notify") == "Alleen donker" }}
+        - condition: state
+          entity_id: binary_sensor.lily_licht
+          state: 'off'
+        - condition: state
+          entity_id: person.danielle
+          state: 'home'
+      sequence:
+        - service: notify.mobile_app_j9210
+          data_template:
+            title: '{{ (trigger.event.data.msg | from_json).title }}'
+            message: '{{ (trigger.event.data.msg | from_json).description }}'
+            data:
+              group: Lily
+              tag: lily_camera
+              image: '/local/snapshots/camera.lily.now.jpg'
+              clickAction: '/lovelace/slaapkamer_lily'
+              timeout: 60
+# Niels
+  - choose:
+  ## Altijd
+    - conditions:
+        - condition: template
+          value_template: >
+            {{ states("input_select.niels_camera_notify") == "Altijd" }}
+      sequence:
+        - service: notify.mobile_app_nimbus_2000
+          data_template:
+            title: '{{ (trigger.event.data.msg | from_json).title }}'
+            message: '{{ (trigger.event.data.msg | from_json).description }}'
+            data:
+              apns_headers:
+                apns-collapse-id: Lily
+              push:
+                thread-id: lily_camera
+              attachment:
+                url: '/local/snapshots/camera.lily.now.jpg'
+              url: '/lovelace/slaapkamer_lily'
+  ## Alleen thuis
+    - conditions:
+        - condition: template
+          value_template: >
+            {{ states("input_select.niels_camera_notify") == "Alleen thuis" }}
+        - condition: state
+          entity_id: person.niels
+          state: 'home'
+      sequence:
+        - service: notify.mobile_app_nimbus_2000
+          data_template:
+            title: '{{ (trigger.event.data.msg | from_json).title }}'
+            message: '{{ (trigger.event.data.msg | from_json).description }}'
+            data:
+              apns_headers:
+                apns-collapse-id: Lily
+              push:
+                thread-id: lily_camera
+              attachment:
+                url: '/local/snapshots/camera.lily.now.jpg'
+              url: '/lovelace/slaapkamer_lily'
+  ## Alleen donker
+    - conditions:
+        - condition: template
+          value_template: >
+            {{ states("input_select.niels_camera_notify") == "Alleen donker" }}
+        - condition: state
+          entity_id: binary_sensor.lily_licht
+          state: 'off'
+        - condition: state
+          entity_id: person.niels
+          state: 'home'
+      sequence:
+        - service: notify.mobile_app_nimbus_2000
+          data_template:
+            title: '{{ (trigger.event.data.msg | from_json).title }}'
+            message: '{{ (trigger.event.data.msg | from_json).description }}'
+            data:
+              apns_headers:
+                apns-collapse-id: Lily
+              push:
+                thread-id: lily_camera
+              attachment:
+                url: '/local/snapshots/camera.lily.now.jpg'
+              url: '/lovelace/slaapkamer_lily'

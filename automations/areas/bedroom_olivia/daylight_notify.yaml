@@ -51,7 +51,7 @@ action:
             title: Olivia
             message: Olivia d'r licht staat aan.
             data:
-              group: Energie
+              group: Olivia
               tag: olivia_plafond
               image: '/local/snapshots/camera.olivia.now.jpg'
               clickAction: '/lovelace/slaapkamer_olivia'
@@ -68,7 +68,7 @@ action:
             message: Olivia d'r licht staat aan.
             data:
               apns_headers:
-                apns-collapse-id: Energie
+                apns-collapse-id: Olivia
               push:
                 thread-id: olivia_plafond
               attachment:

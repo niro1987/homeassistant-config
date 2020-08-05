@@ -51,7 +51,7 @@ action:
             title: Lily
             message: Lily d'r licht staat aan.
             data:
-              group: Energie
+              group: Lily
               tag: lily_plafond
               image: '/local/snapshots/camera.lily.now.jpg'
               clickAction: '/lovelace/slaapkamer_lily'
@@ -68,7 +68,7 @@ action:
             message: Lily d'r licht staat aan.
             data:
               apns_headers:
-                apns-collapse-id: Energie
+                apns-collapse-id: Lily
               push:
                 thread-id: lily_plafond
               attachment:

@@ -1,0 +1,16 @@
+---
+#
+#
+#
+id: 'system-foscam_intercept'
+alias: Foscam Intercept
+description: ''
+mode: queued
+max: 100
+trigger:
+  - platform: event
+    event_type: foscam_intercept
+action:
+  - service: notify.file
+    data:
+      message: '{{ trigger.event.data }}'
