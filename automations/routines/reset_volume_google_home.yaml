@@ -8,14 +8,14 @@ description: 'Herstel volume van de Google Home'
 mode: single
 trigger:
   - platform: time
-    at: '08:00:00'
+    at: '09:00:00'
   - platform: time
     at: '21:00:00'
 action:
   - choose:
     - conditions:
       - condition: time
-        before: '08:00:00'
+        before: '09:00:00'
         after: '21:00:00'
       sequence:
         - service: media_player.volume_set
