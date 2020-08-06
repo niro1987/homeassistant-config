@@ -148,6 +148,10 @@ cards:
           navigation_path: /lovelace/hvc
         type: 'custom:button-card'
     type: horizontal-stack
+  - type: entities
+    entities:
+      - entity: sensor.xiaomi_temperature
+      - entity: sensor.badkamer_temperatuur
   - cards:
       - cards:
           - color: auto

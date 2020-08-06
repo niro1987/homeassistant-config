@@ -4,37 +4,38 @@
 #
 path: start
 title: Start
+theme: Google Light Theme
 icon: mdi:home-assistant
 panel: false
 cards:
-# Hello
   - type: vertical-stack
     cards:
-      - type: markdown
-        content: |
-          {% if now().hour < 5 %}
-            # Goede nacht, {{user}}!
-          {% elif now().hour < 12 %}
-            # Goede morgen, {{user}}!
-          {% elif now().hour < 18 %}
-            # Goede middag, {{user}}!
-          {% else %}
-            # Fijne avond, {{user}}!
-          {% endif %}
-        style:
-          .: |
-            ha-card {
-              margin: 0px 14px 0px 10px;
-              box-shadow: none;
-              --ha-card-background: rgba(0, 0, 0, 0.0)
-            }
-          ha-markdown:
-            $: |
-              h1 {
-                font-size: 20px;
-                font-weight: 500;
-                color: var(--app-header-text-color);
-              }
+# Message
+      # - type: markdown
+      #   content: |
+      #     {% if now().hour < 5 %}
+      #       # Goede nacht, {{user}}!
+      #     {% elif now().hour < 12 %}
+      #       # Goede morgen, {{user}}!
+      #     {% elif now().hour < 18 %}
+      #       # Goede middag, {{user}}!
+      #     {% else %}
+      #       # Fijne avond, {{user}}!
+      #     {% endif %}
+      #   style:
+      #     .: |
+      #       ha-card {
+      #         margin: 0px 14px 0px 10px;
+      #         box-shadow: none;
+      #         --ha-card-background: rgba(0, 0, 0, 0.0)
+      #       }
+      #     ha-markdown:
+      #       $: |
+      #         h1 {
+      #           font-size: 20px;
+      #           font-weight: 500;
+      #           color: var(--app-header-text-color);
+      #         }
 # Date
       - type: markdown
         content: |
@@ -99,19 +100,10 @@ cards:
               text: var(--app-header-text-color)
               night: 'rgba(76, 87, 110)'
               fade: false
-# Trash Today
+# Trash
       - type: custom:state-switch
-        entity: sensor.afval_vandaag
+        entity: sensor.afval_hvc
         states:
-          Restafval:
-            type: entities
-            style: |
-              ha-card {
-                margin: 0px 14px 0px 14px;
-                background: rgba(201, 201, 201, 0.3);
-              }
-            entities:
-              - entity: sensor.afval_vandaag
           GFT:
             type: entities
             style: |
@@ -120,7 +112,16 @@ cards:
                 background: rgba(0, 168, 39, 0.1);
               }
             entities:
-              - entity: sensor.afval_vandaag
+              - entity: sensor.afval_hvc
+          Papier:
+            type: entities
+            style: |
+              ha-card {
+                margin: 0px 14px 0px 14px;
+                background: rgba(0, 106, 255, 0.25);
+              }
+            entities:
+              - entity: sensor.afval_hvc
           Plastic:
             type: entities
             style: |
@@ -129,30 +130,8 @@ cards:
                 background: rgba(255, 136, 0, 0.25);
               }
             entities:
-              - entity: sensor.afval_vandaag
-          Oud Papier:
-            type: entities
-            style: |
-              ha-card {
-                margin: 0px 14px 0px 14px;
-                background: rgba(0, 106, 255, 0.25);
-              }
-            entities:
-              - entity: sensor.afval_vandaag
-          Plastic Oud Papier:
-            type: entities
-            style: |
-              ha-card {
-                margin: 0px 14px 0px 14px;
-                background: linear-gradient(45deg, rgba(255, 136, 0, 0.25),rgba(0, 106, 255, 0.25));
-              }
-            entities:
-              - entity: sensor.afval_vandaag
-# Trash Tomorrow
-      - type: custom:state-switch
-        entity: sensor.afval_morgen
-        states:
-          Restafval:
+              - entity: sensor.afval_hvc
+          Rest:
             type: entities
             style: |
               ha-card {
@@ -160,43 +139,7 @@ cards:
                 background: rgba(201, 201, 201, 0.3);
               }
             entities:
-              - entity: sensor.afval_morgen
-          GFT:
-            type: entities
-            style: |
-              ha-card {
-                margin: 0px 14px 0px 14px;
-                background: rgba(0, 168, 39, 0.1);
-              }
-            entities:
-              - entity: sensor.afval_morgen
-          Plastic:
-            type: entities
-            style: |
-              ha-card {
-                margin: 0px 14px 0px 14px;
-                background: rgba(255, 136, 0, 0.25);
-              }
-            entities:
-              - entity: sensor.afval_morgen
-          Oud Papier:
-            type: entities
-            style: |
-              ha-card {
-                margin: 0px 14px 0px 14px;
-                background: rgba(0, 106, 255, 0.25);
-              }
-            entities:
-              - entity: sensor.afval_morgen
-          Plastic Oud Papier:
-            type: entities
-            style: |
-              ha-card {
-                margin: 0px 14px 0px 14px;
-                background: linear-gradient(45deg, rgba(255, 136, 0, 0.25),rgba(0, 106, 255, 0.25));
-              }
-            entities:
-              - entity: sensor.afval_morgen
+              - entity: sensor.afval_hvc
 # Calendar
       - type: conditional
         conditions:
@@ -251,10 +194,29 @@ cards:
         entities:
           - type: custom:fold-entity-row
             head: group.lampen_woonkamer
+            entities:
+              - entity: switch.woonkamer_flux
+                icon: mdi:lightbulb-on-outline
+              - entity: light.richting_hoek
+                icon: mdi:spotlight-beam
+              - entity: light.richting_televisie
+                icon: mdi:television-clean
+              - entity: light.richting_trap
+                icon: mdi:stairs
           - type: custom:fold-entity-row
             head: group.lampen_eetkamer
+            entities:
+              - entity: light.eettafel
+                icon: mdi:table-chair
+              - entity: light.bar
+                icon: mdi:beer
           - type: custom:fold-entity-row
             head: group.lampen_keuken
+            entities:
+              - entity: light.keuken_plafond
+                icon: mdi:wall-sconce-round
+              - entity: light.keukenkastjes
+                icon: mdi:wall-sconce-flat
 # Google Home
       - type: conditional
         conditions:
