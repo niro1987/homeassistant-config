@@ -1,0 +1,12 @@
+---
+#
+#
+#
+ramen_deuren_beneden:
+  name: Ramen en deuren beneden
+  icon: mdi:home-floor-g
+  entities:
+    - binary_sensor.keukenraam
+    - binary_sensor.woonkamerraam
+    - binary_sensor.voordeur
+    - binary_sensor.achterdeur

@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+lampen_eetkamer:
+  name: Eetkamer
+  icon: mdi:silverware-variant
+  entities:
+    - light.eettafel
+    - light.bar

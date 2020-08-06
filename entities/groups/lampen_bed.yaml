@@ -1,0 +1,10 @@
+---
+# 
+# 
+# 
+lampen_slaapkamer:
+  name: Slaapkamer
+  icon: mdi:bed
+  entities:
+    - light.slaapkamer_danielle
+    - light.slaapkamer_niels

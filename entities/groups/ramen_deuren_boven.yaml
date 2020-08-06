@@ -1,0 +1,12 @@
+---
+#
+#
+#
+ramen_deuren_boven:
+  name: Ramen en deuren boven
+  icon: mdi:home-floor-1
+  entities:
+    - binary_sensor.slaapkamerraam
+    - binary_sensor.lily_raam
+    - binary_sensor.olivia_raam
+    - binary_sensor.badkamerraam

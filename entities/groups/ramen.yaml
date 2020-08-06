@@ -1,0 +1,15 @@
+---
+#
+#
+#
+ramen:
+  name: Ramen
+  icon: mdi:window-closed-variant
+  entities:
+    - binary_sensor.keukenraam
+    - binary_sensor.woonkamerraam
+    - binary_sensor.slaapkamerraam
+    - binary_sensor.lily_raam
+    - binary_sensor.olivia_raam
+    - binary_sensor.badkamerraam
+    - binary_sensor.zolderraam
