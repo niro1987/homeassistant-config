@@ -15,7 +15,7 @@ trigger:
 condition:
   - condition: time
     before: '01:00:00'
-    after: '22:00:00'
+    after: '23:00:00'
   - condition: state
     entity_id: light.eerste_verdieping
     state: 'off'
