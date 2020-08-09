@@ -4,7 +4,7 @@
 #
 panel: true
 path: camera_lily
-theme: clear
+# theme: clear
 title: Lily
 visible: false
 badges: []

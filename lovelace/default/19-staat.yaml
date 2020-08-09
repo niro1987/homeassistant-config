@@ -4,7 +4,7 @@
 #
 path: staat
 title: Staat
-theme: clear
+# theme: clear
 badges:
   - entity: person.danielle
   - entity: person.niels

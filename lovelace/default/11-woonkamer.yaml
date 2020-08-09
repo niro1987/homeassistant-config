@@ -4,7 +4,7 @@
 #
 panel: false
 path: woonkamer
-theme: clear
+# theme: clear
 title: Woonkamer
 visible: false
 badges: []

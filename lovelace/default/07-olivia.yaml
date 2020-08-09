@@ -4,7 +4,7 @@
 #
 panel: true
 path: camera_olivia
-theme: clear
+# theme: clear
 title: Olivia
 visible: false
 badges: []

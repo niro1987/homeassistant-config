@@ -3,7 +3,7 @@
 #
 #
 path: default_view
-theme: clear
+# theme: clear
 title: Home
 badges: []
 panel: false

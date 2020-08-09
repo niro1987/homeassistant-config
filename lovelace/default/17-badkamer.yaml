@@ -4,7 +4,7 @@
 #
 panel: false
 path: badkamer
-theme: clear
+# theme: clear
 title: Badkamer
 visible: false
 badges:

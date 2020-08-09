@@ -4,7 +4,7 @@
 #
 panel: false
 path: keuken
-theme: clear
+# theme: clear
 title: Keuken
 visible: false
 badges: []

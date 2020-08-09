@@ -4,7 +4,7 @@
 #
 panel: false
 path: bar
-theme: clear
+# theme: clear
 title: Bar
 visible: false
 badges: []

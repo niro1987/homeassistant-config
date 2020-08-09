@@ -3,7 +3,7 @@
 #
 #
 path: danielle
-theme: clear
+# theme: clear
 title: Danielle
 visible: false
 badges: []

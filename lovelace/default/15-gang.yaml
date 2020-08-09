@@ -3,7 +3,7 @@
 #
 #
 path: gang
-theme: clear
+# theme: clear
 title: Gang
 visible: false
 badges: []

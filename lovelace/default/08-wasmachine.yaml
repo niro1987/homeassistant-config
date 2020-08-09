@@ -4,7 +4,7 @@
 #
 panel: false
 path: wasmachine
-theme: clear
+# theme: clear
 title: Wasmachine
 visible: false
 badges:

@@ -4,7 +4,7 @@
 #
 panel: false
 path: eettafel
-theme: clear
+# theme: clear
 title: Eettafel
 visible: false
 badges: []

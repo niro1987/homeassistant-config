@@ -3,7 +3,7 @@
 #
 #
 path: niels
-theme: clear
+# theme: clear
 title: Niels
 visible: false
 badges: []
