@@ -4,5 +4,6 @@
 #
 name: Trap Flux
 platform: flux
+transition: 1
 lights:
   - light.trap
