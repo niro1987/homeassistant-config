@@ -6,4 +6,6 @@ name: Woonkamer
 platform: circadian_lighting
 initial_transition: 1
 lights_xy:
-  - light.woonkamer
+  - light.richting_hoek
+  - light.richting_televisie
+  - light.richting_trap

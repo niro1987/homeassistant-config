@@ -5,4 +5,6 @@
 name: Woonkamer Flux
 platform: flux
 lights:
-  - light.woonkamer
+  - light.richting_hoek
+  - light.richting_televisie
+  - light.richting_trap
