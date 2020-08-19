@@ -12,5 +12,5 @@ trigger:
     event_type: foscam_intercept
 action:
   - service: notify.file
-    data:
-      message: '{{ trigger.event.data }}'
+    data_template:
+      message: '{{trigger.event.data}}'
