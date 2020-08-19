@@ -11,6 +11,13 @@ badges:
   - entity: person.yvonne
   - entity: person.edwin
 cards:
+  - type: entities
+    title: Temperatuur
+    show_header_toggle: false
+    entities:
+      - entity: sensor.woonkamer_temperatuur
+      - entity: sensor.lily_temperatuur
+      - entity: sensor.olivia_temperatuur
   - card:
       title: Ramen en deuren
     entities:
@@ -46,8 +53,11 @@ cards:
       - entity: sensor.lily_remote_battery
       - entity: sensor.olivia_remote_battery
       - entity: sensor.xiaomi_battery_level
+      - entity: sensor.woonkamer_battery
+      - entity: sensor.lily_battery
+      - entity: sensor.olivia_battery
     show_empty: false
     state_filter:
-      - operator: <
+      - operator: '<'
         value: 20
     type: entity-filter
