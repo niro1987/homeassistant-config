@@ -26,11 +26,11 @@ action:
         - service: light.turn_on
           data_template:
             entity_id: light.trap
-            # brightness: 50
+            brightness: 1
             # hs_color:
             #   - 15
             #   - 71
-            # transition: 1
+            transition: 1
     default:
       - service: light.turn_off
         data_template:
