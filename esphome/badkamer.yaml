@@ -75,32 +75,38 @@ sensor:
   - platform: bme280
     temperature:
       name: '${friendlyname} Temperatuur'
-      oversampling: 16x
-      unit_of_measurement: 'Celsius'
+      oversampling: 2x
+      unit_of_measurement: '°C'
+      filters:
+        - offset: -3.4 # Measured at 29.2 -> 25.8
     pressure:
       name: '${friendlyname} Luchtdruk'
       oversampling: 16x
+      unit_of_measurement: '%'
+      accuracy_decimals: 0
     humidity:
       name: '${friendlyname} Luchtvochtigheid'
-      oversampling: 16x
+      oversampling: 1x
       unit_of_measurement: '%'
+      filters:
+        - offset: 17.8 # Measured at 48.7 -> 66.5
     address: 0x76
     update_interval: 10s
 
   - platform: ble_rssi
     mac_address: '58:2D:34:39:15:BF'
-    name: 'Xiaomi RSSI'
+    name: 'Slaapkamer Signal'
     
   - platform: xiaomi_lywsdcgq
     mac_address: '58:2D:34:39:15:BF'
     temperature:
-      name: 'Xiaomi Temperature'
-      unit_of_measurement: 'Celsius'
+      name: 'Slaapkamer Temperatuur'
+      unit_of_measurement: '°C'
     humidity:
-      name: 'Xiaomi Humidity'
+      name: 'Slaapkamer Luchtvochtigheid'
       unit_of_measurement: '%'
     battery_level:
-      name: 'Xiaomi Battery Level'
+      name: 'Slaapkamer Battery'
       unit_of_measurement: '%'
 
 switch:
