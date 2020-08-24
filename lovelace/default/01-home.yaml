@@ -9,7 +9,10 @@ badges: []
 panel: false
 cards:
   - backdrop: true
-    entity: weather.zwaag
+    entity: weather.metno
+    type: 'custom:simple-weather-card'
+  - backdrop: true
+    entity: weather.openweathermap
     type: 'custom:simple-weather-card'
   - cards:
       - entity: binary_sensor.wasmachine
@@ -148,10 +151,6 @@ cards:
           navigation_path: /lovelace/hvc
         type: 'custom:button-card'
     type: horizontal-stack
-  - type: entities
-    entities:
-      - entity: sensor.xiaomi_temperature
-      - entity: sensor.badkamer_temperatuur
   - cards:
       - cards:
           - color: auto

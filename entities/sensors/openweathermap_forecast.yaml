@@ -1,0 +1,11 @@
+---
+#
+# https://www.home-assistant.io/integrations/openweathermap/
+#
+platform: openweathermap
+api_key: !secret openweathermap_api
+name: Forecast
+forecast: false
+language: nl
+monitored_conditions:
+  - rain

@@ -61,7 +61,7 @@ cards:
               }
 # Weather
       - type: custom:state-switch
-        entity: weather.zwaag
+        entity: weather.metno
         default: default
         states:
           sunny:
@@ -71,7 +71,7 @@ cards:
                 box-shadow: var(--card-box-shadow);
                 margin: 0px 14px 0px 14px;
               }
-            entity: weather.zwaag
+            entity: weather.metno
             name: "Zwaag"
             primary_info: extrema
             secondary_info: ~
@@ -89,7 +89,7 @@ cards:
                 box-shadow: var(--card-box-shadow);
                 margin: 0px 14px 0px 14px;
               }
-            entity: weather.zwaag
+            entity: weather.metno
             name: "Zwaag"
             primary_info: extrema
             secondary_info: ~

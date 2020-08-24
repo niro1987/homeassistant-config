@@ -15,16 +15,16 @@ trigger:
     event_type: automation_reloaded
   - platform: numeric_state
     entity_id: sensor.badkamer_luchtvochtigheid
-    above: 55
+    above: 70
   - platform: numeric_state
     entity_id: sensor.badkamer_luchtvochtigheid
-    below: 50
+    below: 60
 action:
   - choose:
     - conditions:
       - condition: numeric_state
         entity_id: sensor.badkamer_luchtvochtigheid
-        above: 55
+        above: 70
       sequence:
         repeat:
           sequence:
@@ -44,7 +44,7 @@ action:
     - conditions:
       - condition: numeric_state
         entity_id: sensor.badkamer_luchtvochtigheid
-        below: 50
+        below: 60
       sequence:
         - service: fan.turn_off
           data_template:

@@ -18,6 +18,9 @@ cards:
       - entity: sensor.woonkamer_temperatuur
       - entity: sensor.lily_temperatuur
       - entity: sensor.olivia_temperatuur
+      - entity: sensor.slaapkamer_temperatuur
+      - entity: sensor.badkamer_temperatuur
+      - entity: sensor.weather_temperature
   - card:
       title: Ramen en deuren
     entities:

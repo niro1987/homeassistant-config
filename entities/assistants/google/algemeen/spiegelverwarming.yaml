@@ -7,4 +7,4 @@ switch.badkamer_spiegelverwarming:
   name: Spiegelverwarming
   expose: true
   aliases: []
-  room: Woonhuis
+  room: Algemeen

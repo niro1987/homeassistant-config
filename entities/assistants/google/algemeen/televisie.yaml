@@ -7,4 +7,4 @@ media_player.televisie:
   name: Televisie
   expose: true
   aliases: []
-  room: Media Room
+  room: Algemeen

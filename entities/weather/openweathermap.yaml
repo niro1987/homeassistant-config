@@ -1,0 +1,8 @@
+---
+#
+#
+#
+platform: openweathermap
+api_key: !secret openweathermap_api
+latitude: !secret latitude
+longitude: !secret longtitude
