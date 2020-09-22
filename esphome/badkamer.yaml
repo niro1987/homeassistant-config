@@ -77,8 +77,6 @@ sensor:
       name: '${friendlyname} Temperatuur'
       oversampling: 2x
       unit_of_measurement: '°C'
-      filters:
-        - offset: -3.4 # Measured at 29.2 -> 25.8
     pressure:
       name: '${friendlyname} Luchtdruk'
       oversampling: 16x
@@ -88,8 +86,6 @@ sensor:
       name: '${friendlyname} Luchtvochtigheid'
       oversampling: 1x
       unit_of_measurement: '%'
-      filters:
-        - offset: 17.8 # Measured at 48.7 -> 66.5
     address: 0x76
     update_interval: 10s
 
