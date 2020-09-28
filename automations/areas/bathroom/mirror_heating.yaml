@@ -6,19 +6,6 @@ id: 'bathroom-mirror_heating'
 alias: Spiegelverwarming
 description: 'Spiegelverwarming aan bij douchen'
 mode: single
-variables:
-  average_humidity: >-
-    {% 
-      set sensors = [
-        states('sensor.lily_luchtvochtigheid')|float,
-        states('sensor.olivia_luchtvochtigheid')|float
-      ]
-    %}
-    {{ (sensors|sum / sensors|count)|float }}
-  delta_humidity: >-
-    {{
-      states('sensor.slaapkamer_luchtvochtigheid')|float - average_humidity
-    }}
 trigger:
   - platform: homeassistant
     event: start
@@ -26,21 +13,21 @@ trigger:
     event_type: automation_reloaded
   - platform: state
     entity_id:
-      - sensor.lily_luchtvochtigheid
-      - sensor.olivia_luchtvochtigheid
       - sensor.slaapkamer_luchtvochtigheid
 action:
   - choose:
     - conditions:
-      - condition: template
-        value_template: "{{ delta_humidity > 20 }}"
+      - condition: numeric_state
+        entity_id: sensor.slaapkamer_luchtvochtigheid
+        above: 80
       sequence:
         - service: switch.turn_on
           data_template:
             entity_id: switch.badkamer_spiegelverwarming
     - conditions:
-      - condition: template
-        value_template: "{{ delta_humidity < 10 }}"
+      - condition: numeric_state
+        entity_id: sensor.slaapkamer_luchtvochtigheid
+        below: 75
       sequence:
         - service: switch.turn_off
           data_template:
