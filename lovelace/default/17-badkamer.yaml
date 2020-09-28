@@ -8,13 +8,11 @@ path: badkamer
 title: Badkamer
 visible: false
 badges:
-  - entity: sensor.badkamer_temperatuur
+  - entity: sensor.lily_luchtvochtigheid
+  - entity: sensor.olivia_luchtvochtigheid
   - entity: sensor.badkamer_luchtvochtigheid
-  - entity: sensor.xiaomi_temperature
-  - entity: sensor.xiaomi_humidity
-  - entity: sensor.xiaomi_battery_level
-  - entity: sensor.xiaomi_rssi
-  - entity: fan.afzuiging
+  - entity: sensor.slaapkamer_luchtvochtigheid
+  - entity: sensor.1f_gem_luchtvochtigheid
 cards:
   - cards:
       - entity: light.badkamer_plafond
