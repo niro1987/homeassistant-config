@@ -26,11 +26,11 @@ output:
     pin: GPIO26
     id: 'output_3'
 
-i2c:
-  sda: GPIO4
-  scl: GPIO15
-  scan: True
-  id: 'bus_1'
+# i2c:
+#   sda: GPIO4
+#   scl: GPIO15
+#   scan: True
+#   id: 'bus_1'
 
 binary_sensor:
   - platform: status
@@ -53,7 +53,7 @@ binary_sensor:
       then:
         - light.toggle: light_2
 
-esp32_ble_tracker:
+# esp32_ble_tracker:
 
 light:
   # - platform: monochromatic
@@ -72,38 +72,38 @@ sensor:
     update_interval: 60s
     name: '${friendlyname} Signal'
 
-  - platform: bme280
-    temperature:
-      name: '${friendlyname} Temperatuur'
-      oversampling: 2x
-      unit_of_measurement: '°C'
-    pressure:
-      name: '${friendlyname} Luchtdruk'
-      oversampling: 16x
-      unit_of_measurement: '%'
-      accuracy_decimals: 0
-    humidity:
-      name: '${friendlyname} Luchtvochtigheid'
-      oversampling: 1x
-      unit_of_measurement: '%'
-    address: 0x76
-    update_interval: 10s
+  # - platform: bme280
+  #   temperature:
+  #     name: '${friendlyname} Temperatuur'
+  #     oversampling: 2x
+  #     unit_of_measurement: '°C'
+  #   pressure:
+  #     name: '${friendlyname} Luchtdruk'
+  #     oversampling: 16x
+  #     unit_of_measurement: '%'
+  #     accuracy_decimals: 0
+  #   humidity:
+  #     name: '${friendlyname} Luchtvochtigheid'
+  #     oversampling: 1x
+  #     unit_of_measurement: '%'
+  #   address: 0x76
+  #   update_interval: 10s
 
-  - platform: ble_rssi
-    mac_address: '58:2D:34:39:15:BF'
-    name: 'Slaapkamer Signal'
+  # - platform: ble_rssi
+  #   mac_address: '58:2D:34:39:15:BF'
+  #   name: 'Slaapkamer Signal'
     
-  - platform: xiaomi_lywsdcgq
-    mac_address: '58:2D:34:39:15:BF'
-    temperature:
-      name: 'Slaapkamer Temperatuur'
-      unit_of_measurement: '°C'
-    humidity:
-      name: 'Slaapkamer Luchtvochtigheid'
-      unit_of_measurement: '%'
-    battery_level:
-      name: 'Slaapkamer Battery'
-      unit_of_measurement: '%'
+  # - platform: xiaomi_lywsdcgq
+  #   mac_address: '58:2D:34:39:15:BF'
+  #   temperature:
+  #     name: 'Slaapkamer Temperatuur'
+  #     unit_of_measurement: '°C'
+  #   humidity:
+  #     name: 'Slaapkamer Luchtvochtigheid'
+  #     unit_of_measurement: '%'
+  #   battery_level:
+  #     name: 'Slaapkamer Battery'
+  #     unit_of_measurement: '%'
 
 switch:
   - platform: restart

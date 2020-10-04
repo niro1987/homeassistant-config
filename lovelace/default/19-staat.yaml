@@ -16,11 +16,23 @@ cards:
     show_header_toggle: false
     entities:
       - entity: sensor.woonkamer_temperatuur
+      - entity: sensor.gang_temperatuur
       - entity: sensor.lily_temperatuur
       - entity: sensor.olivia_temperatuur
       - entity: sensor.slaapkamer_temperatuur
       - entity: sensor.badkamer_temperatuur
-      - entity: sensor.weather_temperature
+      - entity: sensor.zolder_temperatuur
+  - type: entities
+    title: Luchtvochtigheid
+    show_header_toggle: false
+    entities:
+      - entity: sensor.woonkamer_luchtvochtigheid
+      - entity: sensor.gang_luchtvochtigheid
+      - entity: sensor.lily_luchtvochtigheid
+      - entity: sensor.olivia_luchtvochtigheid
+      - entity: sensor.slaapkamer_luchtvochtigheid
+      - entity: sensor.badkamer_luchtvochtigheid
+      - entity: sensor.zolder_luchtvochtigheid
   - card:
       title: Ramen en deuren
     entities:
@@ -34,33 +46,44 @@ cards:
       - entity: binary_sensor.lily_raam
       - entity: binary_sensor.zolderraam
       - entity: binary_sensor.trap
+      - entity: binary_sensor.trap1_trilling
+      - entity: binary_sensor.trap2_trilling
+      - entity: binary_sensor.trap3_trilling
+      - entity: binary_sensor.trap4_trilling
     show_empty: false
     state_filter:
-      - 'on'
+      - "on"
     type: entity-filter
   - card:
       title: Batterij vervangen
     entities:
-      - entity: sensor.voordeur_battery
-      - entity: sensor.keukenraam_battery
-      - entity: sensor.woonkamerraam_battery
       - entity: sensor.achterdeur_battery
-      - entity: sensor.badkamerraam_battery
-      - entity: sensor.slaapkamerraam_battery
-      - entity: sensor.olivia_raam_battery
-      - entity: sensor.lily_raam_battery
-      - entity: sensor.zolderraam_battery
-      - entity: sensor.trap_battery
       - entity: sensor.aqara_cube_battery
+      - entity: sensor.badkamer_battery
+      - entity: sensor.badkamerraam_battery
+      - entity: sensor.gang_battery
       - entity: sensor.ikea_switch_battery
-      - entity: sensor.lily_remote_battery
-      - entity: sensor.olivia_remote_battery
-      - entity: sensor.xiaomi_battery_level
-      - entity: sensor.woonkamer_battery
+      - entity: sensor.keukenraam_battery
       - entity: sensor.lily_battery
+      - entity: sensor.lily_raam_battery
+      - entity: sensor.lily_remote_battery
       - entity: sensor.olivia_battery
+      - entity: sensor.olivia_raam_battery
+      - entity: sensor.olivia_remote_battery
+      - entity: sensor.slaapkamer_battery
+      - entity: sensor.slaapkamerraam_battery
+      - entity: sensor.trap1_battery
+      - entity: sensor.trap2_battery
+      - entity: sensor.trap3_battery
+      - entity: sensor.trap4_battery
+      - entity: sensor.trap_battery
+      - entity: sensor.voordeur_battery
+      - entity: sensor.woonkamer_battery
+      - entity: sensor.woonkamerraam_battery
+      - entity: sensor.zolder_battery
+      - entity: sensor.zolderraam_battery
     show_empty: false
     state_filter:
-      - operator: '<'
+      - operator: "<"
         value: 20
     type: entity-filter

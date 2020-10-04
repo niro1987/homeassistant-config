@@ -1,0 +1,9 @@
+---
+#
+#
+#
+sensor.badkamer_temperatuur:
+  name: Temperatuur
+  expose: true
+  aliases: []
+  room: Badkamer
