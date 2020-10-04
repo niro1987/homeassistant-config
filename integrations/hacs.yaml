@@ -1,7 +1,7 @@
 ---
-# 
+#
 # https://hacs.xyz/
-# 
+#
 hacs:
   token: !secret github_token
   appdaemon: true

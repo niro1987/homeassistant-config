@@ -10,73 +10,73 @@ panel: false
 cards:
   - backdrop: true
     entity: weather.metno
-    type: 'custom:simple-weather-card'
+    type: "custom:simple-weather-card"
   - backdrop: true
     entity: weather.openweathermap
-    type: 'custom:simple-weather-card'
+    type: "custom:simple-weather-card"
   - cards:
       - entity: binary_sensor.wasmachine
         name: Wasmachine
         show_name: true
         show_state: false
         state:
-          - icon: 'mdi:washing-machine'
+          - icon: "mdi:washing-machine"
             styles:
               card:
-                - background-color: 'rgb(26, 186, 255)'
+                - background-color: "rgb(26, 186, 255)"
                 - filter: grayscale(40%)
               icon:
                 - color: white
               name:
                 - font-weight: bold
                 - color: white
-            value: 'on'
-          - icon: 'mdi:washing-machine-off'
+            value: "on"
+          - icon: "mdi:washing-machine-off"
             styles:
               card:
-                - background-color: 'rgb(26, 186, 255)'
+                - background-color: "rgb(26, 186, 255)"
                 - filter: grayscale(85%)
               icon:
                 - color: white
               name:
                 - font-weight: bold
                 - color: white
-            value: 'off'
+            value: "off"
         tap_action:
           action: navigate
           navigation_path: /lovelace/wasmachine
-        type: 'custom:button-card'
+        type: "custom:button-card"
       - entity: binary_sensor.droger
         name: Droger
         show_name: true
         show_state: false
         state:
-          - icon: 'mdi:tumble-dryer'
+          - icon: "mdi:tumble-dryer"
             styles:
               card:
-                - background-color: 'rgb(255, 215, 0)'
+                - background-color: "rgb(255, 215, 0)"
                 - filter: grayscale(40%)
               icon:
                 - color: white
               name:
                 - font-weight: bold
                 - color: white
-            value: 'on'
-          - icon: 'mdi:tumble-dryer-off'
+            value: "on"
+          - icon: "mdi:tumble-dryer-off"
             styles:
               card:
-                - background-color: 'rgb(255,215,0)'
+                - background-color: "rgb(255,215,0)"
                 - filter: grayscale(85%)
               icon:
                 - color: white
               name:
                 - font-weight: bold
                 - color: white
-            value: 'off'
+            value: "off"
         tap_action:
           action: navigate
           navigation_path: /lovelace/droger
-        type: 'custom:button-card'
+        type: "custom:button-card"
       - entity: sensor.afval_hvc
         hold_action:
           action: more-info
@@ -86,7 +86,7 @@ cards:
           - name: Geen Afval
             styles:
               card:
-                - background-color: 'rgb(202, 202, 202)'
+                - background-color: "rgb(202, 202, 202)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -99,7 +99,7 @@ cards:
               entity.state ]]]
             styles:
               card:
-                - background-color: 'rgb(51, 102, 0)'
+                - background-color: "rgb(51, 102, 0)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -112,7 +112,7 @@ cards:
               entity.state ]]]
             styles:
               card:
-                - background-color: 'rgb(96, 96, 96)'
+                - background-color: "rgb(96, 96, 96)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -125,7 +125,7 @@ cards:
               entity.state ]]]
             styles:
               card:
-                - background-color: 'rgb(255, 128, 0)'
+                - background-color: "rgb(255, 128, 0)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -138,7 +138,7 @@ cards:
               entity.state ]]]
             styles:
               card:
-                - background-color: 'rgb(163,98,32)'
+                - background-color: "rgb(163,98,32)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -149,7 +149,7 @@ cards:
         tap_action:
           action: navigate
           navigation_path: /lovelace/hvc
-        type: 'custom:button-card'
+        type: "custom:button-card"
     type: horizontal-stack
   - cards:
       - cards:
@@ -162,11 +162,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/woonkamer
-            icon: 'mdi:sofa'
+            icon: "mdi:sofa"
             name: Woonkamer
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - color: auto
             color_type: card
             double_tap_action:
@@ -176,11 +176,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/eettafel
-            icon: 'mdi:silverware'
+            icon: "mdi:silverware"
             name: Eettafel
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - color: auto
             color_type: card
             double_tap_action:
@@ -190,11 +190,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/bar
-            icon: 'mdi:beer'
+            icon: "mdi:beer"
             name: Bar
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - color: auto
             color_type: card
             double_tap_action:
@@ -204,11 +204,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/keuken
-            icon: 'mdi:fridge'
+            icon: "mdi:fridge"
             name: Keuken
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - color: auto
             color_type: card
             double_tap_action:
@@ -218,11 +218,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/gang
-            icon: 'mdi:door'
+            icon: "mdi:door"
             name: Gang
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
         type: horizontal-stack
       - cards:
           - color: auto
@@ -234,11 +234,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/slaapkamer
-            icon: 'mdi:bed'
+            icon: "mdi:bed"
             name: Slaapkamer
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - color: auto
             color_type: card
             double_tap_action:
@@ -248,11 +248,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/badkamer
-            icon: 'mdi:shower-head'
+            icon: "mdi:shower-head"
             name: Badkamer
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - color: auto
             color_type: card
             double_tap_action:
@@ -262,11 +262,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/slaapkamer_lily
-            icon: 'mdi:flower'
+            icon: "mdi:flower"
             name: Lily
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - color: auto
             color_type: card
             double_tap_action:
@@ -276,11 +276,11 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/slaapkamer_olivia
-            icon: 'mdi:human-child'
+            icon: "mdi:human-child"
             name: Olivia
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - color: auto
             color_type: card
             double_tap_action:
@@ -290,16 +290,16 @@ cards:
             hold_action:
               action: navigate
               navigation_path: /lovelace/zolder
-            icon: 'mdi:home-roof'
+            icon: "mdi:home-roof"
             name: Zolder
             tap_action:
               action: toggle
-            type: 'custom:button-card'
+            type: "custom:button-card"
         type: horizontal-stack
       - entity: script.reset_wallswitches
         hold_action:
           action: more-info
-        icon: 'mdi:sync'
+        icon: "mdi:sync"
         icon_height: 20px
         name: Reset Wall Switches
         show_icon: false
@@ -319,7 +319,7 @@ cards:
         hold_action:
           action: navigate
           navigation_path: slaapkamer_lily
-        image: 'https://demo.home-assistant.io/stub_config/kitchen.png'
+        image: "https://demo.home-assistant.io/stub_config/kitchen.png"
         tap_action:
           action: navigate
           navigation_path: camera_lily
@@ -334,7 +334,7 @@ cards:
         hold_action:
           action: navigate
           navigation_path: slaapkamer_olivia
-        image: 'https://demo.home-assistant.io/stub_config/kitchen.png'
+        image: "https://demo.home-assistant.io/stub_config/kitchen.png"
         tap_action:
           action: navigate
           navigation_path: camera_olivia
@@ -348,7 +348,7 @@ cards:
     entities:
       - entity: calendar.me_you
         name: Me & You
-    eventsLimit: '3'
+    eventsLimit: "3"
     fullDayEventText: All day
     hardLimit: false
     hideDeclined: true
@@ -356,19 +356,19 @@ cards:
     hidePastEvents: false
     hideTime: false
     highlightToday: true
-    ignoreEventsByLocationExpression: ''
-    ignoreEventsExpression: ''
+    ignoreEventsByLocationExpression: ""
+    ignoreEventsExpression: ""
     maxHeight: false
-    notifyDateTimeFormat: 'DD/MM/YYYY HH:mm'
+    notifyDateTimeFormat: "DD/MM/YYYY HH:mm"
     notifyEntity: null
-    numberOfDays: '7'
+    numberOfDays: "7"
     progressBar: false
-    removeFromEventTitle: ''
+    removeFromEventTitle: ""
     showEventOrigin: false
     showLocation: false
     showLocationIcon: false
     showMultiDay: false
     startText: Start
-    timeFormat: 'HH:mm'
+    timeFormat: "HH:mm"
     title: Calendar
-    type: 'custom:calendar-card'
+    type: "custom:calendar-card"

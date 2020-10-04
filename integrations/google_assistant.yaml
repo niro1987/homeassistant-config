@@ -1,7 +1,7 @@
 ---
-# 
+#
 # https://www.home-assistant.io/integrations/google_assistant/
-# 
+#
 google_assistant:
   project_id: !secret google_assistant_project_id
   service_account: !include ../home-assistant-69a42-dba6c6ba38ce.json

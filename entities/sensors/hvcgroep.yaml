@@ -1,9 +1,9 @@
 ---
-  platform: hvcgroep
-  postcode: !secret postcode
-  huisnummer: !secret huisnummer
-  resources:
-    - gft
-    - plastic
-    - papier
-    - restafval
+platform: hvcgroep
+postcode: !secret postcode
+huisnummer: !secret huisnummer
+resources:
+  - gft
+  - plastic
+  - papier
+  - restafval

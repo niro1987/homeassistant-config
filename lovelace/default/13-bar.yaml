@@ -10,5 +10,5 @@ visible: false
 badges: []
 cards:
   - entity: light.bar
-    icon: 'mdi:beer'
+    icon: "mdi:beer"
     type: light

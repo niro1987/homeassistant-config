@@ -12,19 +12,19 @@ cards:
   - cards:
       - cards:
           - entity: sensor.hvc_groep_restafval
-            icon: 'mdi:delete-empty'
+            icon: "mdi:delete-empty"
             name: Rest
             show_name: true
             show_state: true
             state:
               - styles:
                   card:
-                    - background-color: 'rgb(96, 96, 96)'
+                    - background-color: "rgb(96, 96, 96)"
                     - filter: grayscale(0%)
                 value: Vandaag
             styles:
               card:
-                - background-color: 'rgb(96, 96, 96)'
+                - background-color: "rgb(96, 96, 96)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -34,21 +34,21 @@ cards:
               state:
                 - font-weight: bold
                 - color: white
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - entity: sensor.hvc_groep_gft
-            icon: 'mdi:food-apple-outline'
+            icon: "mdi:food-apple-outline"
             name: GFT
             show_name: true
             show_state: true
             state:
               - styles:
                   card:
-                    - background-color: 'rgb(51, 102, 0)'
+                    - background-color: "rgb(51, 102, 0)"
                     - filter: grayscale(0%)
                 value: Vandaag
             styles:
               card:
-                - background-color: 'rgb(51, 102, 0)'
+                - background-color: "rgb(51, 102, 0)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -58,23 +58,23 @@ cards:
               state:
                 - font-weight: bold
                 - color: white
-            type: 'custom:button-card'
+            type: "custom:button-card"
         type: horizontal-stack
       - cards:
           - entity: sensor.hvc_groep_plastic
-            icon: 'mdi:recycle'
+            icon: "mdi:recycle"
             name: Plastic
             show_name: true
             show_state: true
             state:
               - styles:
                   card:
-                    - background-color: 'rgb(255, 128, 0)'
+                    - background-color: "rgb(255, 128, 0)"
                     - filter: grayscale(0%)
                 value: Vandaag
             styles:
               card:
-                - background-color: 'rgb(255, 128, 0)'
+                - background-color: "rgb(255, 128, 0)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -84,21 +84,21 @@ cards:
               state:
                 - font-weight: bold
                 - color: white
-            type: 'custom:button-card'
+            type: "custom:button-card"
           - entity: sensor.hvc_groep_papier
-            icon: 'mdi:text-box-multiple-outline'
+            icon: "mdi:text-box-multiple-outline"
             name: Papier
             show_name: true
             show_state: true
             state:
               - styles:
                   card:
-                    - background-color: 'rgb(163,98,32)'
+                    - background-color: "rgb(163,98,32)"
                     - filter: grayscale(0%)
                 value: Vandaag
             styles:
               card:
-                - background-color: 'rgb(163,98,32)'
+                - background-color: "rgb(163,98,32)"
                 - filter: grayscale(0%)
               icon:
                 - color: white
@@ -108,6 +108,6 @@ cards:
               state:
                 - font-weight: bold
                 - color: white
-            type: 'custom:button-card'
+            type: "custom:button-card"
         type: horizontal-stack
     type: vertical-stack

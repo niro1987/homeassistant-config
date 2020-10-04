@@ -1,6 +1,0 @@
-# Kodi Woonkamer
-name: Kodi Woonkamer
-platform: kodi
-host: !secret kodi_woonkamer
-port: 8080
-tcp_port: 9090

@@ -1,7 +1,7 @@
 ---
-# 
+#
 # https://www.home-assistant.io/docs/installation/
-# 
+#
 homeassistant:
   # https://www.home-assistant.io/docs/authentication/providers/
   auth_providers:

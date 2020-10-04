@@ -33,7 +33,7 @@ cards:
       - entity: switch.droger
         hold_action:
           action: more-info
-        icon: 'mdi:tumble-dryer'
+        icon: "mdi:tumble-dryer"
         icon_height: 60px
         show_icon: true
         show_name: true

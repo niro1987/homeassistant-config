@@ -1,8 +1,8 @@
 ---
-# 
-# 
-# 
-# 
+#
+#
+#
+#
 light.richting_hoek:
   name: Richting Hoek
   expose: true

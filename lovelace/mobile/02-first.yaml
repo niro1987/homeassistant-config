@@ -10,7 +10,7 @@ panel: false
 cards:
   - type: vertical-stack
     cards:
-# Message
+      # Message
       # - type: markdown
       #   content: |
       #     {% if now().hour < 5 %}
@@ -36,7 +36,7 @@ cards:
       #           font-weight: 500;
       #           color: var(--app-header-text-color);
       #         }
-# Date
+      # Date
       - type: markdown
         content: |
           {% set ramen = expand(states.group.ramen) | selectattr('state', 'eq', 'on') | map(attribute='name') | list %}
@@ -62,7 +62,7 @@ cards:
                 padding-left: 10px !important;
                 border-left: 3px solid rgba(81, 134, 236);
               }
-# Trash
+      # Trash
       # - type: custom:state-switch
       #   entity: fan.afzuiging
       #   states:
@@ -75,7 +75,7 @@ cards:
       #         }
       #       entities:
       #         - entity: fan.afzuiging
-# Lights
+      # Lights
       - type: entities
         show_header_toggle: false
         style: |

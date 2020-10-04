@@ -2,4 +2,4 @@
 # Slimme meter
 platform: dsmr
 dsmr_version: 4
-port: '/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AK47F0IO-if00-port0'
+port: "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AK47F0IO-if00-port0"

@@ -1,10 +1,10 @@
 ---
-# 
+#
 # Turn on the mirror heating when someone is in the shower
-# 
-id: 'bathroom-mirror_heating'
+#
+id: "bathroom-mirror_heating"
 alias: Spiegelverwarming
-description: 'Spiegelverwarming aan bij douchen'
+description: "Spiegelverwarming aan bij douchen"
 mode: single
 trigger:
   - platform: homeassistant
@@ -13,22 +13,22 @@ trigger:
     event_type: automation_reloaded
   - platform: state
     entity_id:
-      - sensor.slaapkamer_luchtvochtigheid
+      - sensor.badkamer_luchtvochtigheid
 action:
   - choose:
-    - conditions:
-      - condition: numeric_state
-        entity_id: sensor.slaapkamer_luchtvochtigheid
-        above: 80
-      sequence:
-        - service: switch.turn_on
-          data_template:
-            entity_id: switch.badkamer_spiegelverwarming
-    - conditions:
-      - condition: numeric_state
-        entity_id: sensor.slaapkamer_luchtvochtigheid
-        below: 75
-      sequence:
-        - service: switch.turn_off
-          data_template:
-            entity_id: switch.badkamer_spiegelverwarming
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.badkamer_luchtvochtigheid
+            above: 80
+        sequence:
+          - service: switch.turn_on
+            data_template:
+              entity_id: switch.badkamer_spiegelverwarming
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.badkamer_luchtvochtigheid
+            below: 75
+        sequence:
+          - service: switch.turn_off
+            data_template:
+              entity_id: switch.badkamer_spiegelverwarming

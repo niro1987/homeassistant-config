@@ -1,7 +1,7 @@
 ---
 # The dnsip sensor will expose an IP address, fetched via DNS resolution, as its value.
 # There are two operational modes:
-# 
+#
 # 1. When you enable the sensor with minimal configuration, it will query
 # the OpenDNS nameservers with the hostname myip.opendns.com, which will resolve
 # to your external/public IP address.

@@ -1,7 +1,6 @@
 ---
 platform: template
 sensors:
-  
   droger_watts:
     friendly_name_template: "{{ state_attr('switch.droger', 'friendly_name') }} Current Consumption"
     value_template: "{{ state_attr('switch.droger', 'current_power_w') | float }}"

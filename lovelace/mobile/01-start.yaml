@@ -1,6 +1,6 @@
 ---
 #
-# 
+#
 #
 path: start
 title: Start
@@ -10,7 +10,7 @@ panel: false
 cards:
   - type: vertical-stack
     cards:
-# Message
+      # Message
       # - type: markdown
       #   content: |
       #     {% if now().hour < 5 %}
@@ -36,7 +36,7 @@ cards:
       #           font-weight: 500;
       #           color: var(--app-header-text-color);
       #         }
-# Date
+      # Date
       - type: markdown
         content: |
           {% set months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"] %}
@@ -59,7 +59,7 @@ cards:
                 padding-left: 10px !important;
                 border-left: 3px solid rgba(81, 134, 236);
               }
-# Weather
+      # Weather
       - type: custom:state-switch
         entity: weather.metno
         default: default
@@ -78,9 +78,9 @@ cards:
             tap_action:
               action: more-info
             backdrop:
-              day: 'rgba(249, 233, 181)'
+              day: "rgba(249, 233, 181)"
               text: var(--app-header-text-color)
-              night: 'rgba(76, 87, 110)'
+              night: "rgba(76, 87, 110)"
               fade: false
           default:
             type: custom:simple-weather-card
@@ -96,11 +96,11 @@ cards:
             tap_action:
               action: more-info
             backdrop:
-              day: 'rgba(159, 193, 249)'
+              day: "rgba(159, 193, 249)"
               text: var(--app-header-text-color)
-              night: 'rgba(76, 87, 110)'
+              night: "rgba(76, 87, 110)"
               fade: false
-# Trash
+      # Trash
       - type: custom:state-switch
         entity: sensor.afval_hvc
         states:
@@ -140,11 +140,11 @@ cards:
               }
             entities:
               - entity: sensor.afval_hvc
-# Calendar
+      # Calendar
       - type: conditional
         conditions:
           - entity: calendar.me_you
-            state: 'on'
+            state: "on"
         card:
           type: custom:calendar-card
           style:
@@ -161,7 +161,7 @@ cards:
           entities:
             - entity: calendar.me_you
               name: Me & You
-          eventsLimit: '3'
+          eventsLimit: "3"
           fullDayEventText: All day
           hardLimit: false
           hideDeclined: true
@@ -169,22 +169,22 @@ cards:
           hidePastEvents: true
           hideTime: false
           highlightToday: false
-          ignoreEventsByLocationExpression: ''
-          ignoreEventsExpression: ''
+          ignoreEventsByLocationExpression: ""
+          ignoreEventsExpression: ""
           maxHeight: false
-          notifyDateTimeFormat: 'DD/MM/YYYY HH:mm'
+          notifyDateTimeFormat: "DD/MM/YYYY HH:mm"
           notifyEntity: null
-          numberOfDays: '7'
+          numberOfDays: "7"
           progressBar: false
-          removeFromEventTitle: ''
+          removeFromEventTitle: ""
           showEventOrigin: false
           showLocation: false
           showLocationIcon: false
           showMultiDay: false
           startText: Start
-          timeFormat: 'HH:mm'
-          title: 'Me & You'
-# Lights
+          timeFormat: "HH:mm"
+          title: "Me & You"
+      # Lights
       - type: entities
         show_header_toggle: false
         style: |
@@ -217,11 +217,11 @@ cards:
                 icon: mdi:wall-sconce-round
               - entity: light.keukenkastjes
                 icon: mdi:wall-sconce-flat
-# Google Home
+      # Google Home
       - type: conditional
         conditions:
           - entity: media_player.woonkamer_mini
-            state_not: 'off'
+            state_not: "off"
         card:
           type: custom:mini-media-player
           entity: media_player.woonkamer_mini
@@ -235,11 +235,11 @@ cards:
           artwork: cover
           tap_action:
             action: none
-# Televisie
+      # Televisie
       - type: conditional
         conditions:
           - entity: media_player.televisie
-            state_not: 'off'
+            state_not: "off"
         card:
           type: custom:mini-media-player
           entity: media_player.televisie

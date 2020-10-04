@@ -1,48 +1,48 @@
 ---
-# 
+#
 # Notify anyone who is home that the tumble dryer is ready
 # Power-cycle the dryer to stop it from spinning,
 # the damn thing has a so called 'keep-soft' feature..
-# 
-id: 'attic-tumble_dryer'
+#
+id: "attic-tumble_dryer"
 alias: Droger
-description: 'Notificatie wanneer de droger klaar is'
+description: "Notificatie wanneer de droger klaar is"
 mode: single
 trigger:
   - platform: state
     entity_id: binary_sensor.droger
-    from: 'on'
-    to: 'off'
+    from: "on"
+    to: "off"
 action:
   - choose:
-    - conditions:
-      - condition: state
-        entity_id: person.danielle
-        state: 'home'
-      sequence:
-        - service: notify.mobile_app_j9210
-          data:
-            title: Droger
-            message: Klaar!
+      - conditions:
+          - condition: state
+            entity_id: person.danielle
+            state: "home"
+        sequence:
+          - service: notify.mobile_app_j9210
             data:
-              group: Washok
-              tag: Droger
-              timeout: 3600
+              title: Droger
+              message: Klaar!
+              data:
+                group: Washok
+                tag: Droger
+                timeout: 3600
   - choose:
-    - conditions:
-      - condition: state
-        entity_id: person.niels
-        state: 'home'
-      sequence:
-        - service: notify.mobile_app_nimbus_2000
-          data:
-            title: Droger
-            message: Klaar!
+      - conditions:
+          - condition: state
+            entity_id: person.niels
+            state: "home"
+        sequence:
+          - service: notify.mobile_app_nimbus_2000
             data:
-              apns_headers:
-                apns-collapse-id: Washok
-              push:
-                thread-id: Droger
+              title: Droger
+              message: Klaar!
+              data:
+                apns_headers:
+                  apns-collapse-id: Washok
+                push:
+                  thread-id: Droger
   - service: switch.turn_off
     entity_id:
       - switch.droger

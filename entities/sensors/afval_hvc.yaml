@@ -1,7 +1,6 @@
 ---
 platform: template
 sensors:
-  
   afval_hvc:
     friendly_name_template: >-
       {% if is_state_attr('sensor.hvc_groep_gft', 'day', 'Vandaag') %}

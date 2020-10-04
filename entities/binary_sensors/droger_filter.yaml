@@ -1,7 +1,7 @@
 ---
-# 
-# 
-# 
+#
+#
+#
 platform: template
 sensors:
   droger_filter:

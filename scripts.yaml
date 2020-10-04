@@ -1,15 +1,17 @@
 reset_wallswitches:
   alias: Reset Wallswitches
   sequence:
-  - entity_id: light.keuken_plafond
-    service_template: light.turn_ {{- states('binary_sensor.keukenplafond_switch')
-      -}}
-  - entity_id: light.keuken_kastjes
-    service_template: light.turn_ {{- states('binary_sensor.keukenkastjes_switch')
-      -}}
-  - entity_id: light.bar
-    service_template: light.turn_ {{- states('binary_sensor.bar_switch') -}}
-  - entity_id: light.eettafel
-    service_template: light.turn_ {{- states('binary_sensor.eettafel_switch') -}}
-  - entity_id: light.woonkamer
-    service_template: light.turn_ {{- states('binary_sensor.woonkamer_switch') -}}
+    - entity_id: light.keuken_plafond
+      service_template:
+        light.turn_ {{- states('binary_sensor.keukenplafond_switch')
+        -}}
+    - entity_id: light.keuken_kastjes
+      service_template:
+        light.turn_ {{- states('binary_sensor.keukenkastjes_switch')
+        -}}
+    - entity_id: light.bar
+      service_template: light.turn_ {{- states('binary_sensor.bar_switch') -}}
+    - entity_id: light.eettafel
+      service_template: light.turn_ {{- states('binary_sensor.eettafel_switch') -}}
+    - entity_id: light.woonkamer
+      service_template: light.turn_ {{- states('binary_sensor.woonkamer_switch') -}}

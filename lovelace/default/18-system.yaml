@@ -61,7 +61,7 @@ cards:
         min: 0
         name: Disk
         type: gauge
-        unit: '%'
+        unit: "%"
       - entity: sensor.speedtest_ping
         max: 50
         min: 0
@@ -80,7 +80,7 @@ cards:
           yellow: 40
         theme: Backend-selected
         type: gauge
-        unit: ' '
+        unit: " "
       - entity: sensor.speedtest_upload
         max: 50
         min: 0
@@ -91,5 +91,5 @@ cards:
           yellow: 40
         theme: Backend-selected
         type: gauge
-        unit: ' '
+        unit: " "
     type: horizontal-stack

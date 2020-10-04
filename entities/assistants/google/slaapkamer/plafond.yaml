@@ -1,8 +1,8 @@
 ---
-# 
-# 
-# 
-# 
+#
+#
+#
+#
 light.slaapkamer_plafond:
   name: Boven het bed
   expose: true

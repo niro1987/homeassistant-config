@@ -2,9 +2,9 @@
 #
 #
 #
-id: 'staircase-light'
+id: "staircase-light"
 alias: Trapverlichting
-description: 'Verlichting op de trap aan bij beweging'
+description: "Verlichting op de trap aan bij beweging"
 mode: restart
 trigger:
   - platform: homeassistant
@@ -16,21 +16,16 @@ trigger:
       - binary_sensor.trap
 action:
   - choose:
-    - conditions:
-        - condition: state
-          entity_id: binary_sensor.trap
-          state: 'on'
-        # - condition: template
-        #   value_template: '{{ state_attr("sun.sun", "elevation") < -6 }}'
-      sequence:
-        - service: light.turn_on
-          data_template:
-            entity_id: light.trap
-            brightness: 1
-            # hs_color:
-            #   - 15
-            #   - 71
-            transition: 1
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.trap
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data_template:
+              entity_id: light.trap
+              brightness: 1
+              transition: 1
     default:
       - service: light.turn_off
         data_template:

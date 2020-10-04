@@ -1,7 +1,6 @@
 ---
 platform: template
 sensors:
-  
   sun_azimuth:
     friendly_name: Sun Azimuth
     value_template: "{{ state_attr('sun.sun', 'azimuth') }}"

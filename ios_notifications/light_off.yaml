@@ -1,13 +1,13 @@
 ---
-# 
-# 
-# 
+#
+#
+#
 name: Light Off
-identifier: 'light_off'
+identifier: "light_off"
 actions:
-  - identifier: 'turn_off'
-    title: 'Uitschakelen'
-    activationMode: 'background'
+  - identifier: "turn_off"
+    title: "Uitschakelen"
+    activationMode: "background"
     authenticationRequired: false
     destructive: true
-    behavior: 'default'
+    behavior: "default"

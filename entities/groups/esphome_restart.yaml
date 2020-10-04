@@ -1,7 +1,7 @@
 ---
-# 
-# 
-# 
+#
+#
+#
 esphome_restart:
   name: Esphome Restart
   entities:

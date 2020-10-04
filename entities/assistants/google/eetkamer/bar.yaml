@@ -1,8 +1,8 @@
 ---
-# 
-# 
-# 
-# 
+#
+#
+#
+#
 light.bar:
   name: Bar
   expose: true

@@ -1,7 +1,7 @@
 ---
-# 
+#
 # https://www.home-assistant.io/integrations/ios/
-# 
+#
 ios:
   push:
     categories: !include_dir_list ../ios_notifications

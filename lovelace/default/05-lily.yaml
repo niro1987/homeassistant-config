@@ -17,7 +17,7 @@ cards:
       - entity: binary_sensor.lily_licht
     hold_action:
       action: none
-    image: 'https://demo.home-assistant.io/stub_config/kitchen.png'
+    image: "https://demo.home-assistant.io/stub_config/kitchen.png"
     tap_action:
       action: none
     title: Lily
