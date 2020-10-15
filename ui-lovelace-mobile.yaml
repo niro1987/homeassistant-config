@@ -1,6 +1,0 @@
----
-#
-#
-#
-title: Home Sweet Home
-views: !include_dir_list ./lovelace/mobile

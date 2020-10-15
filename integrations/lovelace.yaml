@@ -3,6 +3,6 @@
 # https://www.home-assistant.io/lovelace/
 #
 lovelace:
-  mode: yaml
+  mode: storage
   resources: !include_dir_list ../lovelace/resources
   dashboards: !include_dir_named ../lovelace/dashboards
