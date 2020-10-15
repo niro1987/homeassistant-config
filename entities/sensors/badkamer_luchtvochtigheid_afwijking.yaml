@@ -1,0 +1,18 @@
+---
+platform: template
+sensors:
+  badkamer_luchtvochtigheid_afwijking:
+    friendly_name: "Badkamer Luchtvochtigheid Afwijking"
+    value_template: >-
+      {% 
+        set sensors = [
+          states('sensor.badkamer_luchtvochtigheid')|float,
+          states('sensor.lily_luchtvochtigheid')|float,
+          states('sensor.olivia_luchtvochtigheid')|float,
+          states('sensor.slaapkamer_luchtvochtigheid')|float,
+        ]
+      %}
+      {{
+        (sensors[0] - (sensors|sum - sensors[0]) / (sensors|count - 1)) | round(1)
+      }}
+    unit_of_measurement: "%"

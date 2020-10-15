@@ -12,7 +12,7 @@ badges:
   - entity: sensor.olivia_luchtvochtigheid
   - entity: sensor.badkamer_luchtvochtigheid
   - entity: sensor.slaapkamer_luchtvochtigheid
-  - entity: sensor.1f_gem_luchtvochtigheid
+  - entity: sensor.badkamer_luchtvochtigheid_afwijking
 cards:
   - cards:
       - entity: light.badkamer_plafond
@@ -40,11 +40,11 @@ cards:
         type: button
     type: horizontal-stack
   - entities:
-      - entity: fan.afzuiging
-      - entity: switch.badkamer_spiegelverwarming
+      - entity: sensor.lily_luchtvochtigheid
+      - entity: sensor.olivia_luchtvochtigheid
       - entity: sensor.badkamer_luchtvochtigheid
-      - entity: sensor.badkamer_luchtvochtigheid_5min
-      - entity: sensor.badkamer_luchtvochtigheid_5min_variance
+      - entity: sensor.slaapkamer_luchtvochtigheid
+      - entity: sensor.badkamer_luchtvochtigheid_afwijking
     hours_to_show: 2
     refresh_interval: 60
     type: history-graph
