@@ -341,34 +341,34 @@ cards:
         title: Olivia
         type: picture-glance
     type: horizontal-stack
-  - dateBottomFormat: ddd
-    dateTopFormat: DD
-    disableLinks: true
-    endText: End
-    entities:
-      - entity: calendar.me_you
-        name: Me & You
-    eventsLimit: "3"
-    fullDayEventText: All day
-    hardLimit: false
-    hideDeclined: true
-    hideHeader: false
-    hidePastEvents: false
-    hideTime: false
-    highlightToday: true
-    ignoreEventsByLocationExpression: ""
-    ignoreEventsExpression: ""
-    maxHeight: false
-    notifyDateTimeFormat: "DD/MM/YYYY HH:mm"
-    notifyEntity: null
-    numberOfDays: "7"
-    progressBar: false
-    removeFromEventTitle: ""
-    showEventOrigin: false
-    showLocation: false
-    showLocationIcon: false
-    showMultiDay: false
-    startText: Start
-    timeFormat: "HH:mm"
-    title: Calendar
-    type: "custom:calendar-card"
+  # - dateBottomFormat: ddd
+  #   dateTopFormat: DD
+  #   disableLinks: true
+  #   endText: End
+  #   entities:
+  #     - entity: calendar.me_you
+  #       name: Me & You
+  #   eventsLimit: "3"
+  #   fullDayEventText: All day
+  #   hardLimit: false
+  #   hideDeclined: true
+  #   hideHeader: false
+  #   hidePastEvents: false
+  #   hideTime: false
+  #   highlightToday: true
+  #   ignoreEventsByLocationExpression: ""
+  #   ignoreEventsExpression: ""
+  #   maxHeight: false
+  #   notifyDateTimeFormat: "DD/MM/YYYY HH:mm"
+  #   notifyEntity: null
+  #   numberOfDays: "7"
+  #   progressBar: false
+  #   removeFromEventTitle: ""
+  #   showEventOrigin: false
+  #   showLocation: false
+  #   showLocationIcon: false
+  #   showMultiDay: false
+  #   startText: Start
+  #   timeFormat: "HH:mm"
+  #   title: Calendar
+  #   type: "custom:calendar-card"
