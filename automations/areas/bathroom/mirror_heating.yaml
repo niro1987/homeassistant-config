@@ -13,21 +13,21 @@ trigger:
     event_type: automation_reloaded
   - platform: state
     entity_id:
-      - sensor.badkamer_luchtvochtigheid
+      - sensor.badkamer_luchtvochtigheid_afwijking
 action:
   - choose:
       - conditions:
           - condition: numeric_state
-            entity_id: sensor.badkamer_luchtvochtigheid
-            above: 80
+            entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+            above: 20
         sequence:
           - service: switch.turn_on
             data_template:
               entity_id: switch.badkamer_spiegelverwarming
       - conditions:
           - condition: numeric_state
-            entity_id: sensor.badkamer_luchtvochtigheid
-            below: 75
+            entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+            below: 15
         sequence:
           - service: switch.turn_off
             data_template:
