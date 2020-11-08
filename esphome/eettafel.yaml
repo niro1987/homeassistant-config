@@ -10,11 +10,6 @@ esphome:
 
 <<: !include common.txt
 
-# status_led:
-#   pin:
-#     number: GPIO13
-#     inverted: true
-
 output:
   - platform: gpio
     id: output_1
@@ -25,40 +20,28 @@ binary_sensor:
     name: '${friendlyname} Status'
 
   - platform: gpio
-    pin:
-      number: GPIO4
-      mode: INPUT_PULLUP
-      inverted: True
+    pin: GPIO4
+      # number: GPIO4
+      # mode: INPUT_PULLUP
+      # inverted: True
     id: binary_1
-    name: 'Eettafel Switch'
+    name: '${friendlyname} Switch'
     on_state:
       then:
         - light.toggle: light_1
     
   - platform: gpio
-    pin:
-      number: GPIO16
-      mode: INPUT_PULLUP
-      inverted: True
+    pin: GPIO16
+      # number: GPIO16
+      # mode: INPUT_PULLUP
+      # inverted: True
     id: binary_2
     name: 'Woonkamer Switch'
-    on_state:
-      if:
-        condition:
-          not:
-            api.connected:
-        then:
-          - light.toggle: light_1
-          - light.toggle: light_1
-          - light.toggle: light_1
-          - light.toggle: light_1
-          - switch.turn_on: id_restart
-              
 
 light:
   - platform: binary
     id: light_1
-    name: 'Eettafel'
+    name: '${friendlyname}'
     output: output_1
 
 sensor:
