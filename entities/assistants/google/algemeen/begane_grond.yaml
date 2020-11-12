@@ -1,0 +1,15 @@
+---
+#
+#
+#
+#
+light.begane_grond:
+  name: Beneden
+  expose: true
+  aliases:
+    - Begane Grond
+    - Beneden Verlichting
+    - Verlichting Beneden
+    - Lampen Beneden
+    - Beneden Lampen
+  room: Algemeen
