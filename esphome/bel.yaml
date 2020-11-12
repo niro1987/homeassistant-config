@@ -1,14 +1,10 @@
 ---
 substitutions:
   devicename: bel
-  friendlyname: Bel
 
-esphome:
-  name: ${devicename}
-  platform: ESP8266
-  board: esp01_1m
-
-<<: !include common.txt
+packages:
+  device: !include common/devices/sonoff_mini.yaml
+  base: !include common/default_base.yaml
 
 output:
   - platform: gpio
@@ -16,28 +12,19 @@ output:
     pin: GPIO12
 
 binary_sensor:
-  - platform: status
-    name: '${friendlyname} Status'
-
   - platform: gpio
-    pin: GPIO4
-      # number: GPIO4
-      # mode: INPUT_PULLUP
-      # inverted: True
     id: binary_1
     name: 'Deurbel'
-
-sensor:
-  - platform: wifi_signal
-    id: 'wifisignal'
-    update_interval: 60s
-    name: '${friendlyname} Signal'
+    pin:
+      number: GPIO4
+      mode: INPUT_PULLUP
+      inverted: True
+    filters:
+      - delayed_on: 10ms
+      - delayed_off: 10ms
 
 switch:
-  - platform: restart
-    name: '${friendlyname} Restart'
-
   - platform: output
     name: 'Bel'
-    output: 'output_1'
     icon: 'mdi:alarm-bell'
+    output: 'output_1'

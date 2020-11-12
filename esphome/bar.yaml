@@ -1,14 +1,10 @@
 ---
 substitutions:
   devicename: bar
-  friendlyname: Bar
 
-esphome:
-  name: ${devicename}
-  platform: ESP8266
-  board: esp01_1m
-
-<<: !include common.txt
+packages:
+  device: !include common/devices/sonoff_mini.yaml
+  base: !include common/default_base.yaml
 
 output:
   - platform: gpio
@@ -16,16 +12,13 @@ output:
     pin: GPIO12
 
 binary_sensor:
-  - platform: status
-    name: '${friendlyname} Status'
-
   - platform: gpio
-    pin: GPIO4
-      # number: GPIO4
-      # mode: INPUT_PULLUP
-      # inverted: True
     id: binary_1
-    name: '${friendlyname} Switch'
+    name: 'Bar Switch'
+    pin:
+      number: GPIO4
+      mode: INPUT_PULLUP
+      inverted: True
     on_state:
       then:
         - light.toggle: light_1
@@ -33,15 +26,5 @@ binary_sensor:
 light:
   - platform: binary
     id: light_1
-    name: '${friendlyname}'
+    name: 'Bar'
     output: output_1
-
-sensor:
-  - platform: wifi_signal
-    id: 'wifisignal'
-    update_interval: 60s
-    name: '${friendlyname} Signal'
-
-switch:
-  - platform: restart
-    name: '${friendlyname} Restart'

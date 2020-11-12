@@ -6,6 +6,8 @@
 !*.yaml
 !.gitignore
 !common.txt
+!common**
+!common/devices**
 
 ## Failsafe
 secrets.yaml

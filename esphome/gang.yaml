@@ -1,14 +1,10 @@
 ---
 substitutions:
   devicename: gang
-  friendlyname: Gang
 
-esphome:
-  name: ${devicename}
-  platform: ESP8266
-  board: esp01_1m
-
-<<: !include common.txt
+packages:
+  device: !include common/devices/sonoff_mini.yaml
+  base: !include common/default_base.yaml
 
 output:
   - platform: gpio
@@ -16,27 +12,23 @@ output:
     pin: GPIO12
 
 binary_sensor:
-  - platform: status
-    name: '${friendlyname} Status'
-
   - platform: gpio
-    pin: GPIO4
-      # number: GPIO4
-      # mode: INPUT_PULLUP
-      # inverted: True
     id: binary_1
     name: 'Gang Voorkant'
+    pin:
+      number: GPIO4
+      mode: INPUT_PULLUP
+      inverted: True
     on_state:
       then:
         - light.toggle: light_1
-    
   - platform: gpio
-    pin: GPIO16
-      # number: GPIO16
-      # mode: INPUT_PULLUP
-      # inverted: True
     id: binary_2
     name: 'Gang Trapkant'
+    pin:
+      number: GPIO16
+      mode: INPUT_PULLUP
+      inverted: True
     on_state:
       then:
         - light.toggle: light_1
@@ -46,13 +38,3 @@ light:
     id: light_1
     name: 'Gang'
     output: output_1
-
-sensor:
-  - platform: wifi_signal
-    id: 'wifisignal'
-    update_interval: 60s
-    name: '${friendlyname} Signal'
-
-switch:
-  - platform: restart
-    name: '${friendlyname} Restart'

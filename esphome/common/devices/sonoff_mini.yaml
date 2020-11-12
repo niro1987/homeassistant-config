@@ -1,0 +1,19 @@
+---
+esphome:
+  name: ${devicename}
+  platform: ESP8266
+  board: esp01_1m
+
+binary_sensor:
+  - platform: status
+    name: "${devicename} Status"
+
+sensor:
+  - platform: wifi_signal
+    id: "wifisignal"
+    update_interval: 60s
+    name: "${devicename} Signal"
+
+switch:
+  - platform: restart
+    name: "${devicename} Restart"

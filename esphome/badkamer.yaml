@@ -1,14 +1,10 @@
 ---
 substitutions:
   devicename: badkamer
-  friendlyname: Badkamer
 
-esphome:
-  name: ${devicename}
-  platform: ESP32
-  board: esp32doit-devkit-v1
-
-<<: !include common.txt
+packages:
+  device: !include common/devices/esp32.yaml
+  base: !include common/default_base.yaml
 
 output:
   - platform: gpio
@@ -20,45 +16,31 @@ output:
     id: 'output_3'
 
 binary_sensor:
-  - platform: status
-    name: '${friendlyname} Status'
-
   - platform: gpio
+    id: 'binary_1'
+    name: 'Badkamer Plafond Switch'
     pin:
       number: GPIO16
       mode: INPUT_PULLDOWN
-    name: '${friendlyname} Plafond Switch'
-    id: 'binary_1'
-
   - platform: gpio
+    id: 'binary_2'
+    name: 'Badkamer Spiegel Switch'
     pin: 
       number: GPIO17
       mode: INPUT_PULLDOWN
-    name: '${friendlyname} Spiegel Switch'
-    id: 'binary_2'
     on_state:
       then:
         - light.toggle: light_2
 
 light:
-
   - platform: binary
-    name: '${friendlyname} Spiegel'
+    name: 'Badkamer Spiegel'
     output: 'output_2'
     id: 'light_2'
 
-sensor:
-  - platform: wifi_signal
-    id: 'wifisignal'
-    update_interval: 60s
-    name: '${friendlyname} Signal'
-
 switch:
-  - platform: restart
-    name: '${friendlyname} Restart'
-
   - platform: output
-    name: '${friendlyname} Spiegelverwarming'
+    name: 'Badkamer Spiegelverwarming'
     output: 'output_3'
     id: 'switch_1'
     icon: 'mdi:waves'
