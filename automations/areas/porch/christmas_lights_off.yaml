@@ -1,0 +1,15 @@
+---
+id: christmas_lights_off
+alias: Turn off Christmas Lights
+description: Turn off Christmas Light at midnight
+
+trigger:
+  - platform: sun
+    event: sunrise
+  - platform: time
+    at: "00:00:00"
+
+action:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.ikea_outlet

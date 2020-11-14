@@ -1,0 +1,14 @@
+---
+id: christmas_lights_on
+alias: Turn on Christmas Lights
+description: Turn on Christmas Light just before sunset
+
+trigger:
+  - platform: sun
+    event: sunset
+    offset: "-01:00:00"
+
+action:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.ikea_outlet
