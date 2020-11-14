@@ -1,6 +1,6 @@
 ---
 id: christmas_lights_off
-alias: Turn off Christmas Lights
+alias: Christmas Lights Off
 description: Turn off Christmas Light at midnight
 
 trigger:

@@ -1,6 +1,6 @@
 ---
 id: christmas_lights_on
-alias: Turn on Christmas Lights
+alias: Christmas Lights On
 description: Turn on Christmas Light just before sunset
 
 trigger:
