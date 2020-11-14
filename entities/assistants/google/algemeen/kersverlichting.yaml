@@ -1,0 +1,10 @@
+---
+#
+#
+#
+#
+switch.ikea_outlet:
+  name: Kerstverlichting
+  expose: true
+  aliases: []
+  room: Algemeen
