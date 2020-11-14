@@ -7,6 +7,10 @@ trigger:
   - platform: sun
     event: sunset
     offset: "-01:00:00"
+  # - platform: event
+  #   event_type: zha_event
+  #   event_data:
+  #     device_ieee: ""
 
 action:
   - service: switch.turn_on
