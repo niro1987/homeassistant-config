@@ -1,0 +1,10 @@
+---
+#
+#
+#
+#
+light.kerstboom:
+  name: Kerstboom
+  expose: true
+  aliases: []
+  room: Woonkamer

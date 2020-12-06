@@ -6,6 +6,7 @@ description: Turn off Christmas Light at midnight
 trigger:
   - platform: sun
     event: sunrise
+    offset: "01:00:00"
   - platform: time
     at: "00:00:00"
 
@@ -13,3 +14,6 @@ action:
   - service: switch.turn_off
     data:
       entity_id: switch.ikea_outlet
+  - service: light.turn_off
+    data:
+      entity_id: light.kerstboom

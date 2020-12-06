@@ -7,12 +7,13 @@ trigger:
   - platform: sun
     event: sunset
     offset: "-01:00:00"
-  # - platform: event
-  #   event_type: zha_event
-  #   event_data:
-  #     device_ieee: ""
+  - platform: time
+    at: "06:00:00"
 
 action:
   - service: switch.turn_on
     data:
       entity_id: switch.ikea_outlet
+  - service: light.turn_on
+    data:
+      entity_id: light.kerstboom
