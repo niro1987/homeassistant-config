@@ -1,2 +1,42 @@
----
-[]
+- id: televisie_kijken
+  name: Televisie Kijken
+  entities:
+    switch.circadian_lighting_woonkamer:
+      hs_color:
+        - 28.681
+        - 71.373
+      brightness: 14.345919420477935
+      friendly_name: Woonkamer
+      icon: mdi:theme-light-dark
+      state: "on"
+    switch.woonkamer_flux:
+      friendly_name: Woonkamer Flux
+      state: "off"
+    light.keuken_plafond:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+        - colorloop
+      off_brightness:
+      friendly_name: Keuken Plafond
+      supported_features: 63
+      state: "off"
+    light.keukenkastjes:
+      brightness: 252
+      off_brightness:
+      friendly_name: Keukenkastjes
+      supported_features: 41
+      state: "on"
+    light.gang:
+      friendly_name: Gang
+      supported_features: 8
+      state: "off"
+    light.bar:
+      friendly_name: Bar
+      supported_features: 8
+      state: "off"
+    light.eettafel:
+      friendly_name: Eettafel
+      supported_features: 8
+      state: "off"
+  icon: mdi:television
