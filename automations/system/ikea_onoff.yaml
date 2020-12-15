@@ -1,0 +1,21 @@
+---
+#
+# https://gist.github.com/niro1987/e7be4b6173d819af3b55f1d4ec114df4
+#
+id: ikea_dimmer
+alias: IKEA Dimmer
+mode: single
+
+trigger:
+  - platform: event
+    event_type: zha_event
+
+condition:
+  - condition: template
+    value_template: '{{ trigger.event.data.device_ieee == "00:0d:6f:ff:fe:a0:54:37" }}'
+
+action:
+  - service: light.turn_off
+    data_template:
+      entity_id: all
+      transition: 2
