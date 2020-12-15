@@ -1,8 +1,0 @@
----
-platform: ping
-hosts:
-  niels_telefoon_ping: !secret niels_telefoon
-  danielle_telefoon_ping: !secret danielle_telefoon
-  yvonne_telefoon_ping: !secret yvonne_telefoon
-  yvonne_watch_ping: !secret yvonne_watch
-  edwin_telefoon_ping: !secret edwin_telefoon
