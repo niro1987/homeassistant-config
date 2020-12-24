@@ -1,0 +1,10 @@
+---
+#
+# https://www.home-assistant.io/integrations/foscam/
+#
+name: Woonkamer
+platform: foscam
+ip: !secret camera_woonkamer_address
+username: !secret camera_woonkamer_username
+password: !secret camera_woonkamer_password
+port: !secret camera_woonkamer_port
