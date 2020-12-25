@@ -15,7 +15,42 @@ condition:
     value_template: '{{ trigger.event.data.device_ieee == "00:0d:6f:ff:fe:a0:54:37" }}'
 
 action:
-  - service: light.turn_off
-    data_template:
-      entity_id: all
-      transition: 2
+  - choose:
+      # Short-Press the on button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "on" }}'
+        sequence:
+          - service: light.turn_off
+            data_template:
+              entity_id: all
+              transition: 2
+      # Short-Press the off button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "off" }}'
+        sequence:
+          - service: light.turn_off
+            data_template:
+              entity_id: all
+              transition: 2
+      # Long-Press the on button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+        sequence:
+          - service: light.turn_off
+            data_template:
+              entity_id: all
+              transition: 2
+      # Long-Press the off button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "move" }}'
+        sequence:
+          - service: light.turn_off
+            data_template:
+              entity_id: all
+              transition: 2
+    # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
+    default: []

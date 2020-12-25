@@ -26,8 +26,8 @@ action:
           - choose:
               - conditions:
                   - condition: time
-                    before: "11:00"
-                    after: "17:00"
+                    before: "10:00"
+                    after: "21:00"
                 sequence:
                   - service: light.turn_on
                     entity_id: light.bed
