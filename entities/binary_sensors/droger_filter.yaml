@@ -6,7 +6,6 @@ platform: template
 sensors:
   droger_filter:
     friendly_name: "Droger Filter"
-    entity_id: switch.droger
     value_template: '{{  (state_attr("switch.droger", "current_power_w")|float > 170) and (state_attr("switch.droger", "current_power_w")|float < 210) }}'
     delay_off:
       minutes: 20
