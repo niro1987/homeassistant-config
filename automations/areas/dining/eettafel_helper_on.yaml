@@ -1,0 +1,14 @@
+id: eettafel_helper_on
+alias: Eettafel Helper On
+description: ""
+trigger:
+  - platform: state
+    entity_id: light.eettafel
+    from: "off"
+    to: "on"
+condition: []
+action:
+  - service: input_boolean.turn_on
+    data: {}
+    entity_id: input_boolean.eettafel
+mode: single

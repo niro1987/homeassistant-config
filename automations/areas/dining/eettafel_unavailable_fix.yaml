@@ -1,0 +1,17 @@
+id: eettafel_unavailable_fix
+alias: Eettafel Unavailable Fix
+description: ""
+trigger:
+  - platform: state
+    entity_id: light.eettafel
+    from: unavailable
+    to: "off"
+condition:
+  - condition: state
+    entity_id: input_boolean.eettafel
+    state: "on"
+action:
+  - service: light.turn_on
+    data: {}
+    entity_id: light.eettafel
+mode: single
