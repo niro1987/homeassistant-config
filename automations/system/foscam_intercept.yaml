@@ -1,0 +1,21 @@
+#
+#
+#
+
+id: foscam_intercept
+alias: Foscam Intercept
+description: Convert the foscam_intercept events into MQTT topics.
+
+trigger:
+  - platform: event
+    event_type: foscam_intercept
+
+condition: []
+
+action:
+  - service: mqtt.publish
+    data_template:
+      topic: >-
+        foscam_intercept/{{ trigger.event.data.senderTag }}
+      payload: >-
+        {{ trigger.event.data.msgType }}

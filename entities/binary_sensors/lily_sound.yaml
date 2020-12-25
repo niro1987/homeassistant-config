@@ -4,10 +4,10 @@
 # https://community.home-assistant.io/t/foscam-motion-sound-detection-and-ir-led-status-in-ha-v2-push-method/68190/6
 #
 platform: mqtt
-state_topic: "foscam/00626E67ED01"
+state_topic: "foscam_intercept/00626EE9C3F5"
 name: Lily Geluid
 qos: 0
 payload_on: "2"
 payload_off: "0"
 device_class: sound
-off_delay: 5
+off_delay: 10
