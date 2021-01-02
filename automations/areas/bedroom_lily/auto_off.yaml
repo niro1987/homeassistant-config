@@ -1,0 +1,23 @@
+---
+#
+# This automation turns off the lights in my kids bedroom when no motion has
+# been detected for a period of time by the Foscam C2 Camera.
+#
+id: "bedroom_lily-auto_off"
+alias: Lily Lights Off
+description: ""
+
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lily_beweging
+    to: "off"
+    for: "01:00:00"
+
+condition: []
+
+action:
+  - service: light.turn_off
+    data:
+      entity_id: light.lily_plafond
