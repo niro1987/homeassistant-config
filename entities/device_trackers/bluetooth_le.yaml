@@ -1,4 +1,0 @@
----
-platform: bluetooth_le_tracker
-track_new_devices: true
-track_battery: true

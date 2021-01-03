@@ -1,3 +1,0 @@
----
-platform: bluetooth_tracker
-request_rssi: true
