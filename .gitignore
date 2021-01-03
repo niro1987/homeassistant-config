@@ -4,6 +4,7 @@
 
 ## Allow folders
 !/automations**
+!/scripts**
 !/entities**
 !/esphome**
 !/integrations**
