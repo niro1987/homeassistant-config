@@ -13,9 +13,12 @@ trigger:
     event: start
   - platform: event
     event_type: automation_reloaded
-  - platform: state
-    entity_id:
-      - sensor.badkamer_luchtvochtigheid_afwijking
+  - platform: numeric_state
+    entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+    above: 12
+  - platform: numeric_state
+    entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+    below: 10
 action:
   - choose:
       - conditions:
