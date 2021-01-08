@@ -4,6 +4,6 @@
 #
 name: Trap
 platform: circadian_lighting
-initial_transition: 1
+initial_transition: 0
 lights_xy:
   - light.trap
