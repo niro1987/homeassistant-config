@@ -6,9 +6,14 @@ packages:
   device: !include common/devices/sonoff_mini.yaml
   base: !include common/default_base.yaml
 
-output:
+esphome:
+  on_boot:
+    then:
+      - switch.turn_on: relay_1
+
+switch:
   - platform: gpio
-    id: output_1
+    id: relay_1
     pin: GPIO12
 
 binary_sensor:
@@ -19,12 +24,3 @@ binary_sensor:
       number: GPIO4
       mode: INPUT_PULLUP
       inverted: True
-    on_state:
-      then:
-        - light.toggle: light_1
-
-light:
-  - platform: binary
-    id: light_1
-    name: 'Overloop'
-    output: output_1
