@@ -4,12 +4,13 @@
 
 ## Allow folders
 !/automations**
-!/scripts**
+!/blueprints**
 !/entities**
 !/esphome**
 !/integrations**
 !/lovelace**
-!/ios_notifications**
+!/python_scripts**
+!/scripts**
 
 ## Allow files
 !/automations.yaml

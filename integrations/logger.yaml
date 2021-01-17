@@ -1,0 +1,8 @@
+---
+#
+#
+#
+logger:
+  default: info
+  logs:
+    homeassistant.components.mqtt: debug
