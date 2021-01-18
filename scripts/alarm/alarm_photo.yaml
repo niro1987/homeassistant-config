@@ -1,0 +1,42 @@
+---
+#
+# Take a lot of pictures from the cameras.
+#
+alarm_photo:
+  alias: Alarm - Photo
+  mode: restart
+
+  variables: {}
+
+  fields:
+    timestamp:
+      description: "The timestamp of the alarm."
+
+  sequence:
+    - repeat:
+        while:
+          # - condition: template
+          #   value_template: >-
+          #     {{ states('alarm_control_panel.alarm') == 'triggered' }}
+          - condition: template
+            value_template: "{{ repeat.index <= 600 }}"
+        sequence:
+          - service: script.turn_on
+            entity_id: script.system_cameras_snapshot
+            data:
+              variables:
+                prefix: >-
+                  {% set pre = '' %}
+                  {% if timestamp %}
+                    {% set pre = as_timestamp(now()) |
+                      timestamp_custom('%y%m%d-%H%M%S') + '_'
+                    %}
+                  {% else %}
+                    {% set pre = as_timestamp(now()) |
+                      timestamp_custom('%y%m%d-%H%M%S') + '_'
+                    %}
+                  {% endif %}
+                  {% set pre = pre + ('00' + repeat.index|string)[-3:] %}
+                  {{ pre }}
+                timeout: 0
+          - delay: 00:00:01

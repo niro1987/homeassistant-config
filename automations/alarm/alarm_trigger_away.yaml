@@ -1,0 +1,48 @@
+---
+#
+#
+#
+id: alarm_trigger_away
+alias: Alarm Triggered while Away
+description: Alarm triggered while Away.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.test
+      - binary_sensor.woonkamerraam
+      - binary_sensor.achterdeur
+      - binary_sensor.keukenraam
+      - binary_sensor.voordeur
+      - binary_sensor.meterkast
+      - binary_sensor.slaapkamerraam
+      - binary_sensor.lily_raam
+      - binary_sensor.olivia_raam
+      - binary_sensor.badkamerraam
+      - binary_sensor.zolderraam
+      - binary_sensor.woonkamer_switch
+      - binary_sensor.eettafel_switch
+      - binary_sensor.bar_switch
+      - binary_sensor.keukenkastjes_switch
+      - binary_sensor.keukenplafond_switch
+      - binary_sensor.gang_voorkant
+      - binary_sensor.gang_trapkant
+      - binary_sensor.slaapkamer_switch
+      - binary_sensor.slaapkamer_lily_switch
+      - binary_sensor.slaapkamer_olivia_switch
+      - binary_sensor.badkamer_plafond_switch
+      - binary_sensor.badkamer_spiegel_switch
+      - binary_sensor.zolder_switch
+
+condition:
+  - condition: state
+    entity_id: alarm_control_panel.alarm
+    state: armed_away
+
+action:
+  - service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.alarm

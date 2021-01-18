@@ -1,0 +1,106 @@
+---
+#
+# Keep sounding the alarm!
+#
+alarm_sound_repeat:
+  alias: Sound the alarm!
+  mode: queued
+  max: 100
+  max_exceeded: silent
+
+  variables:
+    alarm_sound: !secret alarm_sound
+    alarm_volume: 0.1
+
+  fields: {}
+
+  sequence:
+    - variables:
+        media_player: media_player.woonkamer_mini
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: >-
+                {{
+                  states(media_player) != 'playing' or
+                  state_attr(media_player, 'volume_level')
+                    |float|round(1) != alarm_volume|float|round(1) or
+                  state_attr(media_player, 'media_content_id')
+                    != alarm_sound or
+                  state_attr(media_player, 'is_volume_muted')
+                    != false
+                }}
+          sequence:
+            - service: media_player.volume_mute
+              data:
+                entity_id: "{{ media_player }}"
+                is_volume_muted: false
+            - service: media_player.volume_set
+              data:
+                entity_id: "{{ media_player }}"
+                volume_level: "{{ alarm_volume|float|round(1) }}"
+            - service: media_player.play_media
+              data:
+                entity_id: "{{ media_player }}"
+                media_content_type: music
+                media_content_id: "{{ alarm_sound }}"
+
+    # - variables:
+    #     media_player: media_player.slaapkamer_mini
+    # - choose:
+    #     - conditions:
+    #         - condition: template
+    #           value_template: >-
+    #             {{
+    #               states(media_player) != 'playing' or
+    #               state_attr(media_player, 'volume_level')
+    #                 |float|round(1) != alarm_volume|float|round(1) or
+    #               state_attr(media_player, 'media_content_id')
+    #                 != alarm_sound or
+    #               state_attr(media_player, 'is_volume_muted')
+    #                 != false
+    #             }}
+    #       sequence:
+    #         - service: media_player.volume_mute
+    #           data:
+    #             entity_id: "{{ media_player }}"
+    #             is_volume_muted: false
+    #         - service: media_player.volume_set
+    #           data:
+    #             entity_id: "{{ media_player }}"
+    #             volume_level: "{{ alarm_volume|float|round(1) }}"
+    #         - service: media_player.play_media
+    #           data:
+    #             entity_id: "{{ media_player }}"
+    #             media_content_type: music
+    #             media_content_id: "{{ alarm_sound }}"
+
+    # - variables:
+    #     media_player: media_player.zolder_mini
+    # - choose:
+    #     - conditions:
+    #         - condition: template
+    #           value_template: >-
+    #             {{
+    #               states(media_player) != 'playing' or
+    #               state_attr(media_player, 'volume_level')
+    #                 |float|round(1) != alarm_volume|float|round(1) or
+    #               state_attr(media_player, 'media_content_id')
+    #                 != alarm_sound or
+    #               state_attr(media_player, 'is_volume_muted')
+    #                 != false
+    #             }}
+    #       sequence:
+    #         - service: media_player.volume_mute
+    #           data:
+    #             entity_id: "{{ media_player }}"
+    #             is_volume_muted: false
+    #         - service: media_player.volume_set
+    #           data:
+    #             entity_id: "{{ media_player }}"
+    #             volume_level: "{{ alarm_volume|float|round(1) }}"
+    #         - service: media_player.play_media
+    #           data:
+    #             entity_id: "{{ media_player }}"
+    #             media_content_type: music
+    #             media_content_id: "{{ alarm_sound }}"

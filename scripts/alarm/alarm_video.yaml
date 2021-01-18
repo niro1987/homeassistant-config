@@ -1,0 +1,42 @@
+---
+#
+# Record the cameras.
+#
+alarm_video:
+  alias: Alarm - Video
+  mode: restart
+
+  # variables: {}
+
+  fields:
+    timestamp:
+      description: "The timestamp of the alarm."
+
+  sequence:
+    - repeat:
+        while:
+          # - condition: template
+          #   value_template: >-
+          #     {{ states('alarm_control_panel.alarm') == 'triggered' }}
+          - condition: template
+            value_template: "{{ repeat.index <= 200 }}"
+        sequence:
+          - service: script.turn_on
+            entity_id: script.cameras_record
+            data:
+              variables:
+                prefix: >-
+                  {% set pre = '' %}
+                  {% if timestamp %}
+                    {% set pre = as_timestamp(now()) |
+                      timestamp_custom('%y%m%d-%H%M%S') + '_'
+                    %}
+                  {% else %}
+                    {% set pre = as_timestamp(now()) |
+                      timestamp_custom('%y%m%d-%H%M%S') + '_'
+                    %}
+                  {% endif %}
+                  {% set pre = pre + ('00' + repeat.index|string)[-3:] %}
+                  {{ pre }}
+                duration: 60
+          - delay: 00:00:03

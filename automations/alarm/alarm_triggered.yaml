@@ -1,0 +1,18 @@
+---
+#
+#
+#
+id: alarm_triggered
+alias: Alarm Triggered
+description: Alarm Triggered.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarm
+    to: triggered
+
+action: []

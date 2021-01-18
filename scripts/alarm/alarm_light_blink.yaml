@@ -1,0 +1,20 @@
+---
+#
+# Blink some lights
+#
+alarm_light_blink:
+  alias: Alarm - Light Blink
+  mode: queued
+  max: 9999
+  max_exceeded: silent
+
+  variables: {}
+
+  fields:
+    lights:
+      description: "The light(s) to blink."
+    speed:
+      description: "The time in milliseconds for the lights to blink."
+      example: "500 = half a second. Default: 1000."
+
+  sequence: []

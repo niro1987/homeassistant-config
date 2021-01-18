@@ -1,0 +1,22 @@
+---
+#
+#
+#
+id: alarm_disarm
+alias: Alarm Disarmed
+description: Alarm disarmed.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarm
+    to: disarmed
+
+action:
+  - service: notify.mobile_app_nimbus_2000
+    data:
+      message: "Disarmed"
+      title: "Alarm"

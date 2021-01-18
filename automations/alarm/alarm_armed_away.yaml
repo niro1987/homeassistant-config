@@ -1,0 +1,22 @@
+---
+#
+#
+#
+id: alarm_armed_away
+alias: Alarm Armed Away
+description: Alarm armed on Away mode.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarm
+    to: armed_away
+
+action:
+  - service: notify.mobile_app_nimbus_2000
+    data:
+      message: "Armed Away"
+      title: "Alarm"

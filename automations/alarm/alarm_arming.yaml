@@ -1,0 +1,22 @@
+---
+#
+#
+#
+id: alarm_arming
+alias: Alarm Arming
+description: Alarm is arming.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarm
+    to: arming
+
+action:
+  - service: notify.mobile_app_nimbus_2000
+    data:
+      message: "Arming"
+      title: "Alarm"

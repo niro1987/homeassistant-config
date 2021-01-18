@@ -1,0 +1,64 @@
+---
+#
+#
+#
+id: alarm_trigger_home
+alias: Alarm Triggered while Home
+description: Alarm Triggered while Home.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.test
+#       - binary_sensor.woonkamerraam
+#       - binary_sensor.achterdeur
+#       - binary_sensor.keukenraam
+#       - binary_sensor.voordeur
+#       - binary_sensor.meterkast
+#       - binary_sensor.slaapkamerraam
+#       - binary_sensor.lily_raam
+#       - binary_sensor.olivia_raam
+#       - binary_sensor.badkamerraam
+#       - binary_sensor.zolderraam
+
+# condition:
+#   - condition: state
+#     entity_id: alarm_control_panel.alarm
+#     state: armed_home
+
+action:
+  # Trigger
+  - service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.alarm
+
+  # Notify
+  - service: script.turn_on
+    entity_id: script.alarm_notify
+    data:
+      variables:
+        device: "{{ trigger.to_state.name }}"
+        timestamp: "{{ trigger.to_state.last_updated }}"
+
+  # Record
+  - service: script.turn_on
+    entity_id: script.alarm_photo
+    data:
+      variables:
+        timestamp: "{{ trigger.to_state.last_updated }}"
+  - service: script.turn_on
+    entity_id: script.alarm_video
+    data:
+      variables:
+        timestamp: "{{ trigger.to_state.last_updated }}"
+
+  # Sound
+  - service: script.turn_on
+    entity_id: script.alarm_sound
+
+  # Light
+  - service: script.turn_on
+    entity_id: script.alarm_light

@@ -1,0 +1,73 @@
+---
+#
+# Snapshot the cameras.
+#
+system_cameras_snapshot:
+  alias: Cameras - Snapshot
+  mode: queued
+  max: 9999
+  max_exceeded: silent
+
+  variables:
+    path: "/config/www/snapshots/"
+
+  fields:
+    prefix:
+      description: "A string to be prepended to the filename with an underscore."
+    suffix:
+      description: "A string to be appended to the filename with an underscore."
+    timeout:
+      description: "The delay time in seconds between snapshots. Default: 0."
+      example: "0"
+
+  sequence:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.woonkamer
+        filename: >-
+          {% set filename = path %}
+          {% if prefix %}
+            {% set filename = filename + prefix + '_' %}
+          {% endif %}
+          {% set filename = filename + 'woonkamer' %}
+          {% if suffix %}
+            {% set filename = filename + '_' + suffix %}
+          {% endif %}
+          {% set filename = filename + '.jpg' %}
+          {{ filename }}
+    - service: camera.snapshot
+      data:
+        entity_id: camera.lily
+        filename: >-
+          {% set filename = path %}
+          {% if prefix %}
+            {% set filename = filename + prefix + '_' %}
+          {% endif %}
+          {% set filename = filename + 'lily' %}
+          {% if suffix %}
+            {% set filename = filename + '_' + suffix %}
+          {% endif %}
+          {% set filename = filename + '.jpg' %}
+          {{ filename }}
+    - service: camera.snapshot
+      data:
+        entity_id: camera.olivia
+        filename: >-
+          {% set filename = path %}
+          {% if prefix %}
+            {% set filename = filename + prefix + '_' %}
+          {% endif %}
+          {% set filename = filename + 'olivia' %}
+          {% if suffix %}
+            {% set filename = filename + '_' + suffix %}
+          {% endif %}
+          {% set filename = filename + '.jpg' %}
+          {{ filename }}
+    - delay:
+        seconds: >-
+          {% if timeout %}{% set timeout = timeout|int %}{% endif %}
+          {% if timeout %}
+            {{ timeout }}
+          {% else %}
+            0
+          {% endif %}

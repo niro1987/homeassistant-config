@@ -1,0 +1,24 @@
+---
+#
+# Sound the alarm!
+#
+alarm_sound:
+  alias: Alarm - Sound
+  mode: restart
+
+  variables: {}
+
+  fields: {}
+
+  sequence:
+    - repeat:
+        while:
+          # - condition: template
+          #   value_template: >-
+          #     {{ states('alarm_control_panel.alarm') == 'triggered' }}
+          - condition: template
+            value_template: "{{ repeat.index <= 600 }}"
+        sequence:
+          - service: script.turn_on
+            entity_id: script.alarm_sound_repeat
+          - delay: 00:00:01

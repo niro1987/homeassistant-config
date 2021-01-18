@@ -1,0 +1,85 @@
+---
+#
+# Notify peeps when the alarm is triggered
+#
+alarm_notify:
+  alias: Alarm - Notify
+  mode: restart
+
+  variables: {}
+
+  fields:
+    device:
+      description: "The name of the entity that caused the alarm."
+    timestamp:
+      description: "The timestamp of the alarm."
+
+  sequence:
+    - repeat:
+        while:
+          # - condition: template # Repeat while not disarmed.
+          #   value_template: >-
+          #     {{ states('alarm_control_panel.alarm') == 'triggered' }}
+          - condition: template
+            value_template: "{{ repeat.index <= 3 }}"
+        sequence:
+          # Notify Niels
+          - service: notify.mobile_app_nimbus_2000
+            data:
+              title: "ALARM!"
+              message: >
+                {% set text = 'The alarm was triggered' %}
+                {% if device %}
+                  {% set text = text + ' by ' + device %}
+                {% endif %}
+                {% if timestamp %}
+                  {% set text = text + ' at ' %}
+                  {%
+                    set text = text + 
+                    (
+                      as_timestamp(timestamp) | timestamp_custom('%H:%M')
+                    )
+                  %}
+                {% endif %}
+                {% set text = text + '!' %}
+                {{ text }}
+              data:
+                entity_id: camera.woonkamer # Live camera feed.
+                url: "/lovelace/cameras" # Open the cameras tab on click.
+                apns_headers:
+                  apns-collapse-id: alarm_notify # Replace previous notification.
+                push:
+                  thread-id: alarm_notify # Replace previous notification.
+                  category: camera # Required for camera feed.
+                  sound:
+                    name: alarm.caf # Play a sound that is not the default.
+                    critical: 1 # Play sound even when in Do-Not-Disturb.
+                    volume: 1.0 # Sound volume 100%.
+          # Notify Danielle
+          # - service: notify.mobile_app_j9210
+          #   data:
+          #     title: "ALARM!"
+          #     message: >-
+          #       {% set text = 'The alarm was triggered' %}
+          #       {% if device %}
+          #         {% set text = text + ' by ' + device %}
+          #       {% endif %}
+          #       {% if timestamp %}
+          #         {% set text = text + ' at ' %}
+          #         {%
+          #           set text = text +
+          #           (
+          #             as_timestamp(timestamp) | timestamp_custom('%H:%M')
+          #           )
+          #         %}
+          #       {% endif %}
+          #       {% set text = text + '!' %}
+          #       {{ text }}
+          #     data:
+          #       image: /api/camera_proxy/camera.woonkamer # Camera snapshot.
+          #       clickAction: "/lovelace/cameras" # Open the cameras tab on click.
+          #       channel: "alarm_stream_max" # Not sure if this does anything.
+          #       tag: "alarm_notify" # Replace previous notification.
+          # Repeat
+          - delay:
+              seconds: 5

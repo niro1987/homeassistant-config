@@ -1,0 +1,52 @@
+---
+#
+# Save the state of- and then turn on a bunch of lights.
+# Also reset the lights back to the saved state.
+#
+alarm_light:
+  alias: Alarm - Light
+  mode: restart
+
+  variables:
+    all_lights:
+      - light.richting_hoek
+      - light.richting_televisie
+      - light.richting_trap
+      - light.eettafel
+      - light.bar
+      - light.keukenkastjes
+      - light.keuken_plafond
+      - light.gang
+      - light.slaapkamer_plafond
+      - light.slaapkamer_niels
+      - light.slaapkamer_danielle
+      - light.badkamer_plafond
+      - light.badkamer_spiegel
+      - light.zolder
+      # - light.lily_plafond
+      # - light.olivia_plafond
+
+  fields: {}
+
+  sequence:
+    - service: scene.create
+      data:
+        scene_id: pre_alarm_lights
+        snapshot_entities: "{{ all_lights }}"
+    - service: light.turn_on
+      data:
+        entity_id: "{{ all_lights }}"
+        brightness: 255
+        rgb_color: [255, 255, 255]
+    # - service: script.turn_on
+    #   data:
+    #     entity_id: script.alarm_light_blink
+    #     variables:
+    #       lights: "{{ lights }}"
+    # - service: script.turn_on
+    #   data:
+    #     entity_id: script.lights_flash
+    #     variables:
+    #       lights:
+    #         - light.woonkamer
+    #       rgb_color: [255, 255, 255]
