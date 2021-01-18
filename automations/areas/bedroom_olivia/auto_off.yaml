@@ -3,19 +3,19 @@
 # This automation turns off the lights in my kids bedroom when no motion has
 # been detected for a period of time by the Foscam C2 Camera.
 #
-id: "bedroom_olivia-auto_off"
+id: bedroom_olivia-auto_off
 alias: Olivia Lights Off
-description: ""
+description: Turn the lights off when there is no motion.
 
-mode: single
+mode: queued
+max: 1
+max_exceeded: silent
 
 trigger:
   - platform: state
     entity_id: binary_sensor.olivia_beweging
     to: "off"
     for: "01:00:00"
-
-condition: []
 
 action:
   - service: light.turn_off

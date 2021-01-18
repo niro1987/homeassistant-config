@@ -4,10 +4,14 @@
 # an ESP8266 and a 0-10v PWM-to-Voltage module. The unit has a 0-10v port
 # to set the speed and a 15v port to power the ESP and the module.
 #
-id: "attic-ventilation"
+id: attic-ventilation
 alias: Afzuiging
-description: "Afzuiging aan bij douchen"
-mode: single
+description: Afzuiging aan bij douchen.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: homeassistant
     event: start

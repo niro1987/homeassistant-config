@@ -1,17 +1,27 @@
+---
+#
+#
+#
 id: eettafel_unavailable_fix
 alias: Eettafel Unavailable Fix
-description: ""
+description: Turn the light back on when the sonoff reboots (crashed).
+
+mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: light.eettafel
     from: unavailable
     to: "off"
+
 condition:
   - condition: state
     entity_id: input_boolean.eettafel
     state: "on"
+
 action:
   - service: light.turn_on
-    data: {}
-    entity_id: light.eettafel
-mode: single
+    data:
+      entity_id: light.eettafel

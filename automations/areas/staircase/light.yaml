@@ -2,10 +2,14 @@
 #
 #
 #
-id: "staircase-light"
+id: staircase-light
 alias: Trapverlichting
-description: "Verlichting op de trap aan bij beweging"
-mode: restart
+description: Verlichting op de trap aan bij beweging.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: homeassistant
     event: start
@@ -14,6 +18,7 @@ trigger:
   - platform: state
     entity_id:
       - binary_sensor.trap
+
 action:
   - choose:
       - conditions:

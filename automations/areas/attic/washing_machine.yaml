@@ -2,15 +2,20 @@
 #
 # Notify anyone who is home that the waching machine is ready.
 #
-id: "attic-wachine_machine"
+id: attic-wachine_machine
 alias: Wasmachine
-description: "Notificatie wanneer de wasmachine klaar is"
-mode: single
+description: Notificatie wanneer de wasmachine klaar is.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.wasmachine
     from: "on"
     to: "off"
+
 action:
   - choose:
       - conditions:

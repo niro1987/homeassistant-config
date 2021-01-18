@@ -2,18 +2,19 @@
 #
 # Turn on the mirror heating when someone is in the shower
 #
-id: "bathroom-mirror_heating"
+id: bathroom-mirror_heating
 alias: Spiegelverwarming
-description: "Spiegelverwarming aan bij douchen"
-mode: single
+description: Spiegelverwarming aan bij douchen.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
-  - platform: homeassistant
-    event: start
-  - platform: event
-    event_type: automation_reloaded
   - platform: state
     entity_id:
       - sensor.badkamer_luchtvochtigheid_afwijking
+
 action:
   - choose:
       - conditions:

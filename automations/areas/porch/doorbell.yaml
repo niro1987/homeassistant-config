@@ -6,15 +6,20 @@
 # a Big-Ben sound) because the hallway chime wakes up the kids. Plus we
 # get notifications on our phones.
 #
-id: "porch-doorbell"
+id: porch-doorbell
 alias: Deurbel Notificatie
-description: "Ding Dong"
-mode: single
+description: Ding Dong!
+
+mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.deurbel
     from: "off"
     to: "on"
+
 action:
   - service: media_player.play_media
     data:

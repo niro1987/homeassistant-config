@@ -1,14 +1,22 @@
+---
+#
+#
+#
 id: eettafel_helper_on
 alias: Eettafel Helper On
-description: ""
+description: Turn the helper on when the light is turned on.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: light.eettafel
     from: "off"
     to: "on"
-condition: []
+
 action:
   - service: input_boolean.turn_on
-    data: {}
-    entity_id: input_boolean.eettafel
-mode: single
+    data:
+      entity_id: input_boolean.eettafel

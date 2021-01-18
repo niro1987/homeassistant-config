@@ -1,7 +1,14 @@
 ---
+#
+#
+#
 id: christmas_lights_on
 alias: Christmas Lights On
-description: Turn on Christmas Light just before sunset
+description: Turn on Christmas Light just before sunset.
+
+mode: queued
+max: 1
+max_exceeded: silent
 
 trigger:
   - platform: sun
@@ -14,6 +21,3 @@ action:
   - service: switch.turn_on
     data:
       entity_id: switch.ikea_outlet
-  - service: light.turn_on
-    data:
-      entity_id: light.kerstboom

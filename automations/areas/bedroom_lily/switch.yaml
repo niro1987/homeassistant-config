@@ -4,10 +4,14 @@
 # and a Sonoff Mini to make sure I can still toggle the hue light
 # when the switch is in the off position.
 #
-id: "bedroom_lily-switch"
+id: bedroom_lily-switch
 alias: Schakelaar Lily
-description: "Bedient de verlichting"
+description: Bedient de verlichting.
+
 mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.slaapkamer_lily_switch
@@ -17,6 +21,7 @@ trigger:
     entity_id: binary_sensor.slaapkamer_lily_switch
     from: "off"
     to: "on"
+
 action:
   - service: light.toggle
     entity_id: light.lily_plafond

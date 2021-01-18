@@ -2,15 +2,20 @@
 #
 # This routine resets the speaker volume for the Google Home Mini
 #
-id: "routines-reset_volume_google_home"
+id: routines-reset_volume_google_home
 alias: Google Home Mini Volume
-description: "Herstel volume van de Google Home"
-mode: single
+description: Herstel volume van de Google Home.
+
+mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: time
     at: "09:00:00"
   - platform: time
     at: "21:00:00"
+
 action:
   - choose:
       - conditions:

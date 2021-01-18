@@ -3,10 +3,14 @@
 # Ì've modified my existing Busch-Jaeger light switch with ESPHome and a Sonoff Mini
 # to make sure I can still toggle the hue light when the switch is in the off position.
 #
-id: "landing_first-switch"
+id: landing_first-switch
 alias: Schakelaar Overloop
-description: "Bedient de verlichting"
+description: Bedient de verlichting.
+
 mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.overloop_switch
@@ -16,6 +20,7 @@ trigger:
     entity_id: binary_sensor.overloop_switch
     from: "off"
     to: "on"
+
 action:
   - service: light.toggle
     entity_id: light.overloop

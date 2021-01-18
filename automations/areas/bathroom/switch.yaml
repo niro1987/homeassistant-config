@@ -4,10 +4,14 @@
 # and an ESP8266 board to make sure I can still toggle the hue light
 # remotly when the switch is in the off position.
 #
-id: "bathroom-switch"
+id: bathroom-switch
 alias: Schakelaar Badkamer
-description: "Bedient de verlichting"
+description: Bedient de verlichting.
+
 mode: queued
+max: 1
+max_exceeded: silent
+
 trigger:
   - platform: state
     entity_id: binary_sensor.badkamer_plafond_switch
@@ -17,6 +21,7 @@ trigger:
     entity_id: binary_sensor.badkamer_plafond_switch
     from: "off"
     to: "on"
+
 action:
   - service: light.toggle
     entity_id: light.badkamer_plafond
