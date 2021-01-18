@@ -2,9 +2,9 @@
 #
 # https://www.home-assistant.io/integrations/flux/
 #
-name: Flux Trap
+name: Flux Overloop
 platform: flux
 transition: 1
 interval: 1
 lights:
-  - light.trap
+  - light.overloop
