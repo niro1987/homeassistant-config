@@ -8,8 +8,7 @@ id: bedroom_olivia-ikea_remote
 alias: Olivia IKEA Remote
 description: Control the behaviour of the IKEA Remote.
 
-mode: single
-max_exceeded: silent
+mode: restart
 
 trigger:
   - platform: event
