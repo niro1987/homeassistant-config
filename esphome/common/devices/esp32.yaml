@@ -16,4 +16,5 @@ sensor:
 
 switch:
   - platform: restart
-    name: "${devicename} Restart"
+    name: "${devicename} Reboot"
+    id: "reboot"
