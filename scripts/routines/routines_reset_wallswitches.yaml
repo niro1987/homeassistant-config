@@ -1,5 +1,8 @@
 ---
-reset_wallswitches:
+#
+# Reset the lights to the position of the switch.
+#
+routines_reset_wallswitches:
   alias: Switches - Reset
   mode: single
 
