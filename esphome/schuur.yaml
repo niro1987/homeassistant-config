@@ -17,6 +17,45 @@ output:
     pin:
       number: 12
       inverted: true
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: 15
+      mode: INPUT_PULLDOWN
+      inverted: true
+    name: "Werkbank"
+    on_press:
+      - if:
+          condition:
+            and:
+              - light.is_off: light_20
+              - light.is_off: light_100
+          then:
+            - light.turn_on: light_20
+          else:
+            - if:
+                condition:
+                  and:
+                    - light.is_on: light_20
+                    - light.is_off: light_100
+                then:
+                  - light.turn_on: light_100
+                else:
+                  - if:
+                      condition:
+                        and:
+                          - light.is_on: light_20
+                          - light.is_on: light_100
+                      then:
+                        - light.turn_off: light_20
+  - platform: gpio
+    pin:
+      number: 0
+    id: "boot"
+    on_press:
+      then:
+        - switch.turn_on: reboot
       
 light:
   - platform: binary

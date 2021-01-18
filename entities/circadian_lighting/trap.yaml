@@ -1,9 +1,0 @@
----
-#
-# https://github.com/claytonjn/hass-circadian_lighting
-#
-name: Trap
-platform: circadian_lighting
-initial_transition: 0
-lights_xy:
-  - light.trap

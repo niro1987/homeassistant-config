@@ -2,8 +2,10 @@
 #
 # https://www.home-assistant.io/integrations/flux/
 #
-name: Woonkamer Flux
+name: Flux Woonkamer
 platform: flux
+transition: 30
+interval: 30
 lights:
   - light.richting_hoek
   - light.richting_televisie
