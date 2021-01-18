@@ -6,8 +6,7 @@ id: christmas_lights_on
 alias: Christmas Lights On
 description: Turn on Christmas Light just before sunset.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

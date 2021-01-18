@@ -6,8 +6,7 @@ id: routines-reset_volume_google_home
 alias: Google Home Mini Volume
 description: Herstel volume van de Google Home.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

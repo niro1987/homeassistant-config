@@ -7,8 +7,7 @@ id: landing_first-switch
 alias: Schakelaar Overloop
 description: Bedient de verlichting.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

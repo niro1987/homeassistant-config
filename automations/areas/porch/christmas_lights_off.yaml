@@ -6,8 +6,7 @@ id: christmas_lights_off
 alias: Christmas Lights Off
 description: Turn off Christmas Light at midnight
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

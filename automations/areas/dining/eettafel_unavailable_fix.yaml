@@ -6,8 +6,7 @@ id: eettafel_unavailable_fix
 alias: Eettafel Unavailable Fix
 description: Turn the light back on when the sonoff reboots (crashed).
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

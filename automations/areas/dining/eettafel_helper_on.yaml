@@ -6,8 +6,7 @@ id: eettafel_helper_on
 alias: Eettafel Helper On
 description: Turn the helper on when the light is turned on.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

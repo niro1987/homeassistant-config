@@ -7,8 +7,7 @@ id: bedroom_olivia-auto_off
 alias: Olivia Lights Off
 description: Turn the lights off when there is no motion.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

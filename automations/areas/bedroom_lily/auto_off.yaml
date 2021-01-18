@@ -7,8 +7,7 @@ id: bedroom_lily-auto_off
 alias: Lily Lights Off
 description: Turn the lights off when there is no motion.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

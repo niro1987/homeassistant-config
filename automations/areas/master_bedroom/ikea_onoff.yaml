@@ -6,8 +6,7 @@ id: ikea_dimmer
 alias: IKEA Dimmer
 description: Control the behaviour of the IKEA Dimmer.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

@@ -8,8 +8,7 @@ id: bathroom-switch
 alias: Schakelaar Badkamer
 description: Bedient de verlichting.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:
