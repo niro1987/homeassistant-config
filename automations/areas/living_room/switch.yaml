@@ -7,8 +7,7 @@ id: living_room-switch
 alias: Schakelaar Woonkamer Plafond
 description: Bedient de verlichting.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

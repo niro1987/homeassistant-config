@@ -7,8 +7,7 @@ id: kitch-switch_cupboards
 alias: Schakelaar Keukenkastjes
 description: Bedient de verlichting.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

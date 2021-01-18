@@ -6,8 +6,7 @@ id: bathroom-mirror_heating
 alias: Spiegelverwarming
 description: Spiegelverwarming aan bij douchen.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

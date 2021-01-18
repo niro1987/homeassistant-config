@@ -8,8 +8,7 @@ id: attic-tumble_dryer
 alias: Droger
 description: Notificatie wanneer de droger klaar is.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

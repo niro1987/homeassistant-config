@@ -10,8 +10,7 @@ id: porch-doorbell
 alias: Deurbel Notificatie
 description: Ding Dong!
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

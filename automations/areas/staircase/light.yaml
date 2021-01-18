@@ -6,8 +6,7 @@ id: staircase-light
 alias: Trapverlichting
 description: Verlichting op de trap aan bij beweging.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

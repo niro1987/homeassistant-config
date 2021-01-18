@@ -6,8 +6,7 @@ id: foscam_intercept
 alias: Foscam Intercept
 description: Convert the foscam_intercept events into MQTT topics.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

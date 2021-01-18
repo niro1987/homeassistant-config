@@ -6,8 +6,7 @@ id: attic-wachine_machine
 alias: Wasmachine
 description: Notificatie wanneer de wasmachine klaar is.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

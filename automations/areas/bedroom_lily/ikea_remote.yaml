@@ -8,8 +8,7 @@ id: bedroom_lily-ikea_remote
 alias: Lily IKEA Remote
 description: Control the behaviour of the IKEA Remote.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:

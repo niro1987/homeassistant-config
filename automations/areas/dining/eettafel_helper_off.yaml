@@ -6,8 +6,7 @@ id: eettafel_helper_off
 alias: Eettafel Helper Off
 description: Turn the helper off when the light is turned off.
 
-mode: queued
-max: 1
+mode: single
 max_exceeded: silent
 
 trigger:
