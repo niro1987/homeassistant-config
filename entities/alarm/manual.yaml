@@ -2,18 +2,16 @@
 #
 # https://www.home-assistant.io/integrations/manual/
 #
-name: home
+name: Alarm
 platform: manual
-# code: !secret alarm_code
-code_template: >-
-  {% if is_state('alarm_control_panel.home', 'armed_away') %}
-    !secret alarm_code
-  {% elif is_state('alarm_control_panel.home', 'armed_home') %}
-    !secret alarm_code
-  {% elif is_state('alarm_control_panel.home', 'armed_night') %}
-    !secret alarm_code
-  {% endif %}
-code_arm_required: false
-delay_time: 15
-arming_time: 15
-trigger_time: 60
+code: !secret alarm_code
+code_arm_required: true
+disarm_after_trigger: false
+arming_time: 30
+delay_time: 20
+trigger_time: 4
+disarmed:
+  trigger_time: 0
+armed_home:
+  arming_time: 0
+  delay_time: 0
