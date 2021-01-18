@@ -3,6 +3,6 @@
 #
 #
 logger:
-  default: info
+  default: warning
   logs:
     homeassistant.components.mqtt: debug
