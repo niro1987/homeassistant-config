@@ -23,32 +23,41 @@ binary_sensor:
     pin:
       number: 15
       mode: INPUT_PULLDOWN
-      inverted: true
-    name: "Werkbank"
-    on_press:
-      - if:
-          condition:
-            and:
-              - light.is_off: light_20
-              - light.is_off: light_100
-          then:
-            - light.turn_on: light_20
-          else:
-            - if:
-                condition:
-                  and:
-                    - light.is_on: light_20
-                    - light.is_off: light_100
-                then:
-                  - light.turn_on: light_100
-                else:
-                  - if:
-                      condition:
-                        and:
-                          - light.is_on: light_20
-                          - light.is_on: light_100
-                      then:
-                        - light.turn_off: light_20
+    filters:
+      - invert:
+    name: Werkbank
+    on_click:
+      - min_length: 50ms
+        max_length: 500ms
+        then:
+          - if:
+              condition:
+                and:
+                  - light.is_off: light_20
+                  - light.is_off: light_100
+              then:
+                - light.turn_on: light_20
+              else:
+                - if:
+                    condition:
+                      and:
+                        - light.is_on: light_20
+                        - light.is_off: light_100
+                    then:
+                      - light.turn_on: light_100
+                    else:
+                      - if:
+                          condition:
+                            and:
+                              - light.is_on: light_20
+                              - light.is_on: light_100
+                          then:
+                            - light.turn_off: light_20
+      - min_length: 500ms
+        max_length: 1000ms
+        then:
+          - light.turn_off: light_20
+          
   - platform: gpio
     pin:
       number: 0
@@ -60,14 +69,14 @@ binary_sensor:
 light:
   - platform: binary
     id: light_20
-    name: 'Werkbank'
+    name: Werkbank Dim
     output: r1
     on_turn_off:
       then:
         - light.turn_off: light_100
   - platform: binary
     id: light_100
-    name: 'Werkbank Vel'
+    name: Werkbank Vel
     output: r2
     on_turn_on:
       then:
