@@ -4,7 +4,13 @@
 # for 10 seconds and then turn it back on again.
 #
 routines_stairs_motion_off:
-  alias: "Routines - Stairs Motion Off 10 seconds"
+  alias: Stairs Motion Off 10 seconds
+  description: Turn of the stairs motion automation for 10 (up to 30) seconds.
+
+  mode: queued
+  max: 3
+  max_exceeded: silent
+
   sequence:
     - service: light.turn_off
       data:
