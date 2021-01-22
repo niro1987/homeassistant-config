@@ -25,7 +25,7 @@ action:
         sequence:
           - service: light.turn_off
             data_template:
-              entity_id: all
+              entity_id: light.eerste_verdieping
               transition: 2
       # Short-Press the off button
       - conditions:
@@ -34,7 +34,7 @@ action:
         sequence:
           - service: light.turn_off
             data_template:
-              entity_id: all
+              entity_id: light.eerste_verdieping
               transition: 2
       # Long-Press the on button
       - conditions:
@@ -43,7 +43,7 @@ action:
         sequence:
           - service: light.turn_off
             data_template:
-              entity_id: all
+              entity_id: light.eerste_verdieping
               transition: 2
       # Long-Press the off button
       - conditions:
@@ -52,7 +52,7 @@ action:
         sequence:
           - service: light.turn_off
             data_template:
-              entity_id: all
+              entity_id: light.eerste_verdieping
               transition: 2
     # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
     default: []
