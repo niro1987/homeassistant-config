@@ -13,6 +13,7 @@ trigger:
     entity_id: binary_sensor.toilet
     from: "off"
     to: "on"
+    for: "00:00:01"
   - platform: state
     entity_id: binary_sensor.toilet
     from: "on"
