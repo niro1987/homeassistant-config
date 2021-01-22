@@ -1,9 +1,0 @@
----
-#
-#
-#
-sensor.woonkamer_temperatuur:
-  name: Temperatuur
-  expose: true
-  aliases: []
-  room: Woonkamer
