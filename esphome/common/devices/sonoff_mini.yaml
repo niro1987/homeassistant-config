@@ -18,3 +18,10 @@ switch:
   - platform: restart
     name: "${devicename} Reboot"
     id: "reboot"
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: "${devicename} IP"
+    mac_address:
+      name: "${devicename} MAC"
