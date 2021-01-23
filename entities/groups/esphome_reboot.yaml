@@ -1,0 +1,20 @@
+---
+#
+#
+#
+name: ESPHome Reboot
+entities:
+  - switch.eettafel_reboot
+  - switch.bar_reboot
+  - switch.keuken_reboot
+  - switch.gang_reboot
+  - switch.toilet_reboot
+  - switch.bel_reboot
+  - switch.schuur_reboot
+  - switch.overloop_reboot
+  - switch.badkamer_reboot
+  - switch.slaapkamer_reboot
+  - switch.slaapkamer_lily_reboot
+  - switch.slaapkamer_olivia_reboot
+  - switch.afzuiging_reboot
+  - switch.zolder_reboot

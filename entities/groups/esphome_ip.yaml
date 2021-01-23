@@ -1,0 +1,20 @@
+---
+#
+#
+#
+name: ESPHome IP
+entities:
+  - sensor.eettafel_ip
+  - sensor.bar_ip
+  - sensor.keuken_ip
+  - sensor.gang_ip
+  - sensor.toilet_ip
+  - sensor.bel_ip
+  - sensor.schuur_ip
+  - sensor.overloop_ip
+  - sensor.badkamer_ip
+  - sensor.slaapkamer_ip
+  - sensor.slaapkamer_lily_ip
+  - sensor.slaapkamer_olivia_ip
+  - sensor.afzuiging_ip
+  - sensor.zolder_ip

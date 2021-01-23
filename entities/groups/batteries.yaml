@@ -1,0 +1,33 @@
+---
+#
+#
+#
+name: Batteries
+entities:
+  - sensor.achterdeur_battery
+  - sensor.woonkamerraam_battery
+  - sensor.woonkamer_battery
+  - sensor.keukenraam_battery
+  - sensor.toilet_battery
+  - sensor.meterkast_battery
+  - sensor.gang_battery
+  - sensor.voordeur_battery
+  - sensor.trap_battery
+  - sensor.badkamer_battery
+  - sensor.badkamerraam_battery
+  - sensor.slaapkamer_battery
+  - sensor.slaapkamerraam_battery
+  - sensor.slaapkamer_remote_battery
+  - sensor.lily_battery
+  - sensor.lily_raam_battery
+  - sensor.lily_remote_battery
+  - sensor.olivia_battery
+  - sensor.olivia_raam_battery
+  - sensor.olivia_remote_battery
+  - sensor.zolder_battery
+  - sensor.zolderraam_battery
+  - sensor.trap1_battery
+  - sensor.trap2_battery
+  - sensor.trap3_battery
+  - sensor.trap4_battery
+  - sensor.aqara_cube_battery
