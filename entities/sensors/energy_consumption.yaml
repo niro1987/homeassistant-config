@@ -1,0 +1,14 @@
+---
+#
+# https://www.home-assistant.io/integrations/statistics/
+#
+platform: template
+sensors:
+  energy_consumption:
+    friendly_name: Energy Consumption
+    unit_of_measurement: kWh
+    value_template: >-
+      {{
+        states('sensor.energy_consumption_low_tarif')|float + 
+        states('sensor.energy_consumption_normal_tarif')|float 
+      }}
