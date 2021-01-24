@@ -4,8 +4,6 @@
 #
 name: Alarm
 platform: manual
-code: !secret alarm_code
-code_arm_required: true
 disarm_after_trigger: false
 arming_time: 30
 delay_time: 20
