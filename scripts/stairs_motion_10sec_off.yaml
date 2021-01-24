@@ -3,7 +3,7 @@
 # Turn off the motion based light automation on the stairs
 # for 10 seconds and then turn it back on again.
 #
-routines_stairs_motion_off:
+stairs_motion_10sec_off:
   alias: Stairs Motion Off 10 seconds
   description: Turn of the stairs motion automation for 10 (up to 30) seconds.
 

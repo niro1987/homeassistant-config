@@ -2,7 +2,7 @@
 #
 # Reset the lights to the position of the switch.
 #
-routines_reset_wallswitches:
+reset_wallswitches:
   alias: Switches - Reset
   description: Reset the lights to the state of the switches.
 
