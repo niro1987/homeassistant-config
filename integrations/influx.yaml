@@ -1,0 +1,10 @@
+---
+#
+# https://www.home-assistant.io/integrations/influxdb/
+#
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  max_retries: 3
+  default_measurement: state
+  include: !include_dir_merge_named ../entities/influxdb
