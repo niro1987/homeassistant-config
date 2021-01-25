@@ -13,12 +13,12 @@ max_exceeded: silent
 trigger:
   - platform: state
     entity_id: binary_sensor.keukenplafond_switch
-    from: "on"
-    to: "off"
-  - platform: state
-    entity_id: binary_sensor.keukenplafond_switch
-    from: "off"
-    to: "on"
+    from:
+      - "on"
+      - "off"
+    to:
+      - "off"
+      - "on"
 
 action:
   - service: light.toggle

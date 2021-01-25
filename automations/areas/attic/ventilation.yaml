@@ -12,10 +12,6 @@ mode: single
 max_exceeded: silent
 
 trigger:
-  - platform: homeassistant
-    event: start
-  - platform: event
-    event_type: automation_reloaded
   - platform: numeric_state
     entity_id: sensor.badkamer_luchtvochtigheid_afwijking
     above: 12
