@@ -15,5 +15,3 @@ homeassistant:
   auth_mfa_modules:
     - name: Two-Factor Authentication
       type: totp
-  # https://www.home-assistant.io/docs/configuration/customizing-devices/#manual-customization
-  customize: !include ../customize.yaml
