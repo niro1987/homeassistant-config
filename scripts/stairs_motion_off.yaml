@@ -14,7 +14,7 @@ stairs_motion_off:
   fields:
     time_off:
       description: The time in seconds for the motion automation to turn off.
-      example: 30
+      example: "30"
 
   sequence:
     - service: light.turn_off
