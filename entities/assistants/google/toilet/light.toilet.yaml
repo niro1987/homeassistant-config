@@ -1,9 +1,0 @@
----
-#
-#
-#
-name: Toilet
-expose: true
-aliases:
-  - W.C.
-room: Toilet
