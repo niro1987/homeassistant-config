@@ -1,0 +1,13 @@
+---
+#
+#
+#
+name: Ramen
+entities:
+  - binary_sensor.woonkamerraam
+  - binary_sensor.keukenraam
+  - binary_sensor.badkamerraam
+  - binary_sensor.slaapkamerraam
+  - binary_sensor.lily_raam
+  - binary_sensor.olivia_raam
+  - binary_sensor.zolderraam
