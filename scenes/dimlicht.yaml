@@ -5,9 +5,14 @@
 id: dimlicht
 name: Dimlicht
 entities:
+  switch.flux_woonkamer:
+    state: "off"
   light.woonkamer:
     state: "on"
     brightness: 100
+    hs_color:
+      - 38.222
+      - 52.941
   light.eettafel:
     state: "off"
   light.bar:

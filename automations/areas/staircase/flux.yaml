@@ -1,0 +1,21 @@
+---
+#
+#
+#
+id: staircase-flux
+alias: Flux Reset Trap
+description: Turn off the Flux switch when the light is turned off.
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: light.trap
+    from: "on"
+    to: "off"
+
+action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.flux_trap
