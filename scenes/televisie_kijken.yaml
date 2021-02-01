@@ -1,0 +1,22 @@
+---
+#
+#
+#
+id: televisie_kijken
+name: Televisie Kijken
+entities:
+  media_player.televisie:
+    state: "on"
+  light.woonkamer:
+    state: "on"
+    brightness: 100
+  light.eettafel:
+    state: "off"
+  light.bar:
+    state: "off"
+  light.keuken_plafond:
+    state: "off"
+  light.keukenkastjes:
+    state: "on"
+    brightness: 100
+icon: mdi:television
