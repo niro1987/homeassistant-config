@@ -1,0 +1,9 @@
+---
+#
+#
+#
+name: Deuren
+entities:
+  - binary_sensor.achterdeur
+  - binary_sensor.voordeur
+  - binary_sensor.meterkast

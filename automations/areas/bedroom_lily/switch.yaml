@@ -14,12 +14,12 @@ max_exceeded: silent
 trigger:
   - platform: state
     entity_id: binary_sensor.slaapkamer_lily_switch
-    from: "on"
-    to: "off"
-  - platform: state
-    entity_id: binary_sensor.slaapkamer_lily_switch
-    from: "off"
-    to: "on"
+    from:
+      - "on"
+      - "off"
+    to:
+      - "off"
+      - "on"
 
 action:
   - service: light.toggle

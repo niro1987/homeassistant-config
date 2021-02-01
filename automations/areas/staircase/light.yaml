@@ -6,14 +6,9 @@ id: staircase-light
 alias: Trapverlichting
 description: Verlichting op de trap aan bij beweging.
 
-mode: single
-max_exceeded: silent
+mode: restart
 
 trigger:
-  - platform: homeassistant
-    event: start
-  - platform: event
-    event_type: automation_reloaded
   - platform: state
     entity_id:
       - binary_sensor.trap
@@ -21,17 +16,17 @@ trigger:
 action:
   - choose:
       - conditions:
-          - condition: state
-            entity_id: binary_sensor.trap
-            state: "on"
+          - condition: template
+            value_template: "{{ trigger.to_state.state == 'on' }}"
         sequence:
           - service: light.turn_on
-            data_template:
+            data:
               entity_id: light.trap
-              brightness: 1
-              transition: 1
+          - delay: "00:03:30"
+          - service: light.turn_off
+            data:
+              entity_id: light.trap
     default:
       - service: light.turn_off
-        data_template:
+        data:
           entity_id: light.trap
-          transition: 1

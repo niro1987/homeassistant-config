@@ -1,0 +1,35 @@
+---
+#
+#
+#
+id: toilet-light
+alias: Toiletverlichting
+description: Verlichting in het toilet aan bij beweging.
+
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.toilet
+    from:
+      - "on"
+      - "off"
+    to:
+      - "off"
+      - "on"
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.toilet
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.toilet
+    default:
+      - service: light.turn_off
+        data:
+          entity_id: light.toilet
