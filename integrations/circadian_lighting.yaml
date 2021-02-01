@@ -1,8 +1,0 @@
----
-#
-# https://github.com/claytonjn/hass-circadian_lighting
-#
-circadian_lighting:
-  interval: 600
-  transition: 15
-switch: !include_dir_list ../entities/circadian_lighting
