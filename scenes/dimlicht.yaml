@@ -2,11 +2,9 @@
 #
 #
 #
-id: televisie_kijken
-name: Televisie Kijken
+id: dimlicht
+name: Dimlicht
 entities:
-  media_player.televisie:
-    state: "on"
   light.woonkamer:
     state: "on"
     brightness: 100
@@ -19,4 +17,4 @@ entities:
   light.keukenkastjes:
     state: "on"
     brightness: 100
-icon: mdi:television
+icon: mdi:brightness-4

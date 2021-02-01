@@ -19,10 +19,13 @@ reset_wallswitches:
             - service: light.turn_on
               data:
                 entity_id: light.keuken_plafond
+                transition: 1
       default:
         - service: light.turn_off
           data:
             entity_id: light.keuken_plafond
+            transition: 1
+
     - choose:
         - conditions:
             - condition: state
@@ -32,10 +35,13 @@ reset_wallswitches:
             - service: light.turn_on
               data:
                 entity_id: light.keukenkastjes
+                transition: 1
       default:
         - service: light.turn_off
           data:
             entity_id: light.keukenkastjes
+            transition: 1
+
     - choose:
         - conditions:
             - condition: state
@@ -49,6 +55,7 @@ reset_wallswitches:
         - service: light.turn_off
           data:
             entity_id: light.bar
+
     - choose:
         - conditions:
             - condition: state
@@ -62,6 +69,7 @@ reset_wallswitches:
         - service: light.turn_off
           data:
             entity_id: light.eettafel
+
     - choose:
         - conditions:
             - condition: state
@@ -71,7 +79,9 @@ reset_wallswitches:
             - service: light.turn_on
               data:
                 entity_id: light.woonkamer
+                transition: 1
       default:
         - service: light.turn_off
           data:
             entity_id: light.woonkamer
+            transition: 1

@@ -2,8 +2,8 @@
 #
 #
 #
-wakeup_light:
-  alias: Wakeuplight BG
+morning_lights:
+  alias: Morning Lights
   description: Slowly turn on light(s)
   icon: mdi:weather-sunset-up
 
