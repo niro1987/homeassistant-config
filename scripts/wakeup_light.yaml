@@ -2,7 +2,7 @@
 #
 #
 #
-wakeuplight_bg:
+wakeup_light:
   alias: Wakeuplight BG
   description: Slowly turn on light(s)
   icon: mdi:weather-sunset-up
@@ -21,9 +21,9 @@ wakeuplight_bg:
         hs_color:
           - 38.222
           - 52.941
-        transition: 120
+        transition: 60
     - delay:
-        seconds: 120
+        seconds: 60
     - service: light.turn_on
       data:
         entity_id:
