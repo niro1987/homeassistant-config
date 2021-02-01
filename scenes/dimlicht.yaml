@@ -1,0 +1,20 @@
+---
+#
+#
+#
+id: dimlicht
+name: Dimlicht
+entities:
+  light.woonkamer:
+    state: "on"
+    brightness: 100
+  light.eettafel:
+    state: "off"
+  light.bar:
+    state: "off"
+  light.keuken_plafond:
+    state: "off"
+  light.keukenkastjes:
+    state: "on"
+    brightness: 100
+icon: mdi:brightness-4

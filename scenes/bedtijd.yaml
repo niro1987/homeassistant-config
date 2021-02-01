@@ -1,0 +1,26 @@
+---
+#
+#
+#
+id: bedtijd
+name: Bedtijd
+entities:
+  light.woonkamer:
+    state: "off"
+  light.eettafel:
+    state: "off"
+  light.bar:
+    state: "off"
+  light.keuken:
+    state: "off"
+  light.badkamer_plafond:
+    state: "on"
+    brightness: 50
+  light.slaapkamer_plafond:
+    state: "off"
+  light.slaapkamer_niels:
+    state: "on"
+    brightness: 50
+  light.slaapkamer_danielle:
+    state: "on"
+    brightness: 50

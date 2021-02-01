@@ -1,0 +1,24 @@
+---
+#
+#
+#
+id: avond
+name: Avond
+entities:
+  light.woonkamer:
+    state: "on"
+    brightness: 254
+    hs_color:
+      - 38.222
+      - 52.941
+  light.eettafel:
+    state: "on"
+  light.bar:
+    state: "on"
+  light.keuken:
+    state: "on"
+    brightness: 254
+    hs_color:
+      - 38.222
+      - 52.941
+icon: mdi:weather-night
