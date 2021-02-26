@@ -3,7 +3,7 @@
 # connected through ZHA.
 
 blueprint:
-  name: IKEA TRADFRI 5 Button Remote with custom actions
+  name: ZHA - IKEA TRADFRI - 5 Button Remote - Custom Actions
 
   description: >-
     This automation simulates the use of the IKEA TRADFRI Remote control

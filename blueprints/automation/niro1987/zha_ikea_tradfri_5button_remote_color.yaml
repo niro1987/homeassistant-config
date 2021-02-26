@@ -11,7 +11,7 @@
 # | Left     | Change saturation   |
 
 blueprint:
-  name: IKEA TRADFRI 5 Button Remote with brightness, color and saturation
+  name: ZHA - IKEA TRADFRI - 5 Button Remote - Color Lights
 
   description: >-
     This automation simulates the use of the IKEA TRADFRI Remote control

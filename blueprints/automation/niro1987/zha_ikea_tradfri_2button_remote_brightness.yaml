@@ -10,7 +10,7 @@
 # | off (long)  | Decrease brightness |
 
 blueprint:
-  name: IKEA TRADFRI 2 Button Dimmer with brightness
+  name: ZHA - IKEA TRADFRI - 2 Button Remote - OnOff and Brightness
 
   description: >-
     This automation simulates the use of the IKEA TRADFRI Dimmer
