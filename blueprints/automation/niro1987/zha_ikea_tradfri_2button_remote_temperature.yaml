@@ -10,6 +10,8 @@
 # | off (long)  | Decrease temperature |
 
 blueprint:
+  source_url: https://gist.github.com/niro1987/eb20ded3d1b955e2547bafb3bb134b79
+
   name: ZHA - IKEA TRADFRI - 2 Button Remote - OnOff and Temperature
 
   description: >-
@@ -57,7 +59,7 @@ action:
             value_template: '{{ trigger.event.data.command == "on" }}'
         sequence:
           - service: light.turn_on
-            data_template:
+            data:
               entity_id: !input light_entity
               hs_color:
                 - 38.222
@@ -69,7 +71,7 @@ action:
             value_template: '{{ trigger.event.data.command == "off" }}'
         sequence:
           - service: light.turn_off
-            data_template:
+            data:
               entity_id: !input light_entity
               transition: 1
       # Long-Press the on button
@@ -81,7 +83,7 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
-                  data_template:
+                  data:
                     entity_id: !input light_entity
                     color_temp: >-
                       {% if state_attr(var_light_entity, "color_temp") + 18 > 500 %}
@@ -101,7 +103,7 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
-                  data_template:
+                  data:
                     entity_id: !input light_entity
                     color_temp: >-
                       {% if state_attr(var_light_entity, "color_temp") - 18 < 153 %}

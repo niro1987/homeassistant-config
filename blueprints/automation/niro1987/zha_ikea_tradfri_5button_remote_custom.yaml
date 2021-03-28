@@ -3,6 +3,8 @@
 # connected through ZHA.
 
 blueprint:
+  source_url: https://gist.github.com/niro1987/90a3d8ffa169b4114e7d43a5276a1f0f
+
   name: ZHA - IKEA TRADFRI - 5 Button Remote - Custom Actions
 
   description: >-

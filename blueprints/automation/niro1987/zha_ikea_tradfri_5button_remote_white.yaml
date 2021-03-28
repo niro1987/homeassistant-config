@@ -11,6 +11,8 @@
 # | Left     | Decrease temperature |
 
 blueprint:
+  source_url: https://gist.github.com/niro1987/3c1934129f41ffe646832c3a30caee13
+  
   name: ZHA - IKEA TRADFRI - 5 Button Remote - Warm White Lights
 
   description: >-

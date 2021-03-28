@@ -10,6 +10,8 @@
 # | off (long)  | Decrease brightness |
 
 blueprint:
+  source_url: https://gist.github.com/niro1987/4e49117075cd4b66975e0ecfe3ad72b5
+
   name: ZHA - IKEA TRADFRI - 2 Button Remote - OnOff and Brightness
 
   description: >-
@@ -56,7 +58,7 @@ action:
             value_template: '{{ trigger.event.data.command == "on" }}'
         sequence:
           - service: light.turn_on
-            data_template:
+            data:
               entity_id: !input light_entity
               brightness: 254
               hs_color:
@@ -69,7 +71,7 @@ action:
             value_template: '{{ trigger.event.data.command == "off" }}'
         sequence:
           - service: light.turn_off
-            data_template:
+            data:
               entity_id: !input light_entity
               transition: 1
       # Long-Press the on button
@@ -81,7 +83,7 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
-                  data_template:
+                  data:
                     entity_id: !input light_entity
                     brightness_step_pct: 10
                     transition: 0.5
@@ -96,7 +98,7 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
-                  data_template:
+                  data:
                     entity_id: !input light_entity
                     brightness_step_pct: -10
                     transition: 0.5

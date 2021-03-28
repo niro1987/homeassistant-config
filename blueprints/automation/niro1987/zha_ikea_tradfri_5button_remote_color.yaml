@@ -11,6 +11,8 @@
 # | Left     | Change saturation   |
 
 blueprint:
+  source_url: https://gist.github.com/niro1987/ec1eecf6340cfd8f31a2b34e1e094c1e
+
   name: ZHA - IKEA TRADFRI - 5 Button Remote - Color Lights
 
   description: >-
