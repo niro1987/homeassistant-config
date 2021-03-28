@@ -7,21 +7,8 @@ id: landing_first-switch
 alias: Schakelaar Overloop
 description: Bedient de verlichting.
 
-mode: single
-max_exceeded: silent
-
-trigger:
-  - platform: state
-    entity_id: binary_sensor.overloop_switch
-    from:
-      - "on"
-      - "off"
-    to:
-      - "off"
-      - "on"
-
-action:
-  - service: light.toggle
-    entity_id: light.overloop
-    data:
-      brightness: 254
+use_blueprint:
+  path: niro1987/binary_sensor_light_toggle.yaml
+  input:
+    switch_entity: binary_sensor.overloop_switch
+    light_entity: light.overloop

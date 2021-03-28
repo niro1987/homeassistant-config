@@ -7,24 +7,8 @@ id: kitchen-switch_ceiling
 alias: Schakelaar Keuken Plafond
 description: Bedient de verlichting.
 
-mode: single
-max_exceeded: silent
-
-trigger:
-  - platform: state
-    entity_id: binary_sensor.keukenplafond_switch
-    from:
-      - "on"
-      - "off"
-    to:
-      - "off"
-      - "on"
-
-action:
-  - service: light.toggle
-    entity_id: light.keuken_plafond
-    data:
-      brightness: 254
-      hs_color:
-        - 38.222
-        - 52.941
+use_blueprint:
+  path: niro1987/binary_sensor_light_toggle.yaml
+  input:
+    switch_entity: binary_sensor.keukenplafond_switch
+    light_entity: light.keuken_plafond

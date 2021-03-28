@@ -7,21 +7,8 @@ id: kitch-switch_cupboards
 alias: Schakelaar Keukenkastjes
 description: Bedient de verlichting.
 
-mode: single
-max_exceeded: silent
-
-trigger:
-  - platform: state
-    entity_id: binary_sensor.keukenkastjes_switch
-    from:
-      - "on"
-      - "off"
-    to:
-      - "off"
-      - "on"
-
-action:
-  - service: light.toggle
-    entity_id: light.keukenkastjes
-    data:
-      brightness: 254
+use_blueprint:
+  path: niro1987/binary_sensor_light_toggle.yaml
+  input:
+    switch_entity: binary_sensor.keukenkastjes_switch
+    light_entity: light.keukenkastjes

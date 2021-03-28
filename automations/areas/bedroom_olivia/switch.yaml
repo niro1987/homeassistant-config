@@ -8,24 +8,8 @@ id: bedroom_olivia-switch
 alias: Schakelaar Olivia
 description: Bedient de verlichting.
 
-mode: single
-max_exceeded: silent
-
-trigger:
-  - platform: state
-    entity_id: binary_sensor.slaapkamer_olivia_switch
-    from:
-      - "on"
-      - "off"
-    to:
-      - "off"
-      - "on"
-
-action:
-  - service: light.toggle
-    entity_id: light.olivia_plafond
-    data:
-      brightness: 254
-      hs_color:
-        - 38.222
-        - 52.941
+use_blueprint:
+  path: niro1987/binary_sensor_light_toggle.yaml
+  input:
+    switch_entity: binary_sensor.slaapkamer_olivia_switch
+    light_entity: light.olivia

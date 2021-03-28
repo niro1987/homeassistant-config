@@ -7,24 +7,8 @@ id: living_room-switch
 alias: Schakelaar Woonkamer Plafond
 description: Bedient de verlichting.
 
-mode: single
-max_exceeded: silent
-
-trigger:
-  - platform: state
-    entity_id: binary_sensor.woonkamer_switch
-    from:
-      - "on"
-      - "off"
-    to:
-      - "off"
-      - "on"
-
-action:
-  - service: light.toggle
-    entity_id: light.woonkamer
-    data:
-      brightness: 254
-      hs_color:
-        - 38.222
-        - 52.941
+use_blueprint:
+  path: niro1987/binary_sensor_light_toggle.yaml
+  input:
+    switch_entity: binary_sensor.woonkamer_switch
+    light_entity: light.woonkamer

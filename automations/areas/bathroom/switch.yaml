@@ -8,21 +8,8 @@ id: bathroom-switch
 alias: Schakelaar Badkamer
 description: Bedient de verlichting.
 
-mode: single
-max_exceeded: silent
-
-trigger:
-  - platform: state
-    entity_id: binary_sensor.badkamer_plafond_switch
-    from:
-      - "on"
-      - "off"
-    to:
-      - "off"
-      - "on"
-
-action:
-  - service: light.toggle
-    entity_id: light.badkamer_plafond
-    data:
-      brightness: 254
+use_blueprint:
+  path: niro1987/binary_sensor_light_toggle.yaml
+  input:
+    switch_entity: binary_sensor.badkamer_plafond_switch
+    light_entity: light.badkamer_plafond
