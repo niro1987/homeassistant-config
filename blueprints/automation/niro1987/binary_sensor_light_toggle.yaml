@@ -1,0 +1,50 @@
+---
+# This automation takes a binary_sensor to toggle a light.
+
+blueprint:
+  source_url: https://gist.github.com/niro1987/8e9e5b32ec0b4381d6f767d3556e270b
+
+  name: Toggle a light with a binary sensor
+
+  description: >-
+    This automation takes a binary_sensor to toggle a light.
+
+  domain: automation
+
+  input:
+    switch_entity:
+      name: Binary Sensor
+      description: The binary_sensor that should toggle the light.
+      selector:
+        entity:
+          domain: binary_sensor
+      default: binary_sensor.living_room
+    light_entity:
+      name: Light
+      description: The light that should be toggled by the binary_sensor.
+      selector:
+        entity:
+          domain: light
+      default: light.living_room
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: !input switch_entity
+    from:
+      - "on"
+      - "off"
+    to:
+      - "off"
+      - "on"
+
+action:
+  - service: light.toggle
+    data:
+      entity_id: !input light_entity
+      brightness: 254
+      hs_color:
+        - 38.222
+        - 52.941

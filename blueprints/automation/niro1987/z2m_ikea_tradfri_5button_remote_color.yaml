@@ -1,0 +1,215 @@
+---
+# This automation simulates the use of the IKEA TRADFRI Remote control
+# connected through Zigbee2MQTT.
+
+# | Button   | Action              |
+# | -------- | ------------------- |
+# | Power    | Toggle the light    |
+# | Dim-Up   | Increase brightness |
+# | Dim-Down | Decrease brightness |
+# | Right    | Change color        |
+# | Left     | Change saturation   |
+
+blueprint:
+  source_url: https://gist.github.com/niro1987/81649657c118c1739de1c305a5015342
+
+  name: Zigbee2MQTT - IKEA TRADFRI - 5 Button Remote - Color Lights
+
+  description: >-
+    This automation simulates the use of the IKEA TRADFRI Remote control
+    connected through Zigbee2MQTT.
+
+  domain: automation
+
+  input:
+    remote_entity:
+      name: Remote Sensor Entity
+      description: The sensor entity created by Zigbee2MQTT
+      selector:
+        entity:
+          domain: sensor
+      default: sensor.ikea_tradfri_action
+    light_entity:
+      name: Light
+      description: The light entity to control.
+      selector:
+        entity:
+          domain: light
+      default: light.living_room
+
+mode: restart
+
+variables:
+  target_light: !input light_entity
+
+trigger:
+  - platform: state
+    entity_id: !input remote_entity
+    to:
+      - "toggle"
+      - "toggle_hold"
+      - "brightness_up_click"
+      - "brightness_down_click"
+      - "arrow_left_click"
+      - "arrow_right_click"
+      - "brightness_up_hold"
+      - "brightness_down_hold"
+      - "arrow_left_hold"
+      - "arrow_right_hold"
+      - "brightness_up_release"
+      - "brightness_down_release"
+      - "arrow_left_release"
+      - "arrow_right_release"
+
+action:
+  - choose:
+      # Short-Press on the power button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "toggle" }}'
+        sequence:
+          - service: light.toggle
+            data:
+              entity_id: "{{ target_light }}"
+      # Short-Press on the dim-up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "brightness_up_click" }}'
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ target_light }}"
+              brightness_step_pct: 20
+              transition: 0.5
+      # Short-Press on the dim-down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "brightness_down_click" }}'
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ target_light }}"
+              brightness_step_pct: -20
+              transition: 0.5
+      # Short-Press on the color-up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "arrow_left_click" }}'
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ target_light }}"
+              hs_color:
+                - >-
+                  {% if state_attr(target_light, "hs_color")[0] + 18 > 360 %}
+                    {{ state_attr(target_light, "hs_color")[0] + 18 - 360 }}
+                  {% else %}
+                    {{ state_attr(target_light, "hs_color")[0] + 18 }}
+                  {% endif %}
+                - '{{ state_attr(target_light, "hs_color")[1] }}'
+              transition: 0.5
+      # Short-Press on the color-down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "arrow_right_click" }}'
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ target_light }}"
+              hs_color:
+                - '{{ state_attr(target_light, "hs_color")[0] }}'
+                - >-
+                  {% if state_attr(target_light, "hs_color")[1] - 20 < 0 %}
+                    {{ state_attr(target_light, "hs_color")[1] - 20 + 100 }}
+                  {% else %}
+                    {{ state_attr(target_light, "hs_color")[1] - 20 }}
+                  {% endif %}
+              transition: 0.5
+      # Long-Press on the power button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "toggle_hold" }}'
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: "{{ target_light }}"
+              brightness: 254
+              hs_color:
+                - 38.222
+                - 52.941
+      # Long-Press on the color-up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "arrow_left_hold" }}'
+        sequence:
+          - repeat:
+              while: []
+              sequence:
+                - service: light.turn_on
+                  data:
+                    entity_id: "{{ target_light }}"
+                    hs_color:
+                      - >-
+                        {% if state_attr(target_light, "hs_color")[0] + 18 > 360 %}
+                          {{ state_attr(target_light, "hs_color")[0] + 18 - 360 }}
+                        {% else %}
+                          {{ state_attr(target_light, "hs_color")[0] + 18 }}
+                        {% endif %}
+                      - '{{ state_attr(target_light, "hs_color")[1] }}'
+                    transition: 0.5
+                - delay:
+                    milliseconds: 500
+      # Long-Press on the color-down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "arrow_right_hold" }}'
+        sequence:
+          - repeat:
+              while: []
+              sequence:
+                - service: light.turn_on
+                  data:
+                    entity_id: "{{ target_light }}"
+                    hs_color:
+                      - '{{ state_attr(target_light, "hs_color")[0] }}'
+                      - >-
+                        {% if state_attr(target_light, "hs_color")[1] - 10 < 0 %}
+                          {{ state_attr(target_light, "hs_color")[1] - 10 + 100 }}
+                        {% else %}
+                          {{ state_attr(target_light, "hs_color")[1] - 10 }}
+                        {% endif %}
+                    transition: 0.5
+                - delay:
+                    milliseconds: 500
+      # Long-Press on the dim-up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "brightness_up_hold" }}'
+        sequence:
+          - repeat:
+              while: []
+              sequence:
+                - service: light.turn_on
+                  data:
+                    entity_id: "{{ target_light }}"
+                    brightness_step_pct: 10
+                    transition: 0.5
+                - delay:
+                    milliseconds: 500
+      # Long-Press on the dim-down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "brightness_down_hold" }}'
+        sequence:
+          - repeat:
+              while: []
+              sequence:
+                - service: light.turn_on
+                  data:
+                    entity_id: "{{ target_light }}"
+                    brightness_step_pct: -10
+                    transition: 0.5
+                - delay:
+                    milliseconds: 500
+    # Any other event will cancel the repeat loops.
+    default: []
