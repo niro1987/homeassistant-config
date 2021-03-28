@@ -2,7 +2,7 @@
 #
 # https://gist.github.com/niro1987/e7be4b6173d819af3b55f1d4ec114df4
 #
-id: ikea_dimmer
+id: bedroom-ikea_remote
 alias: IKEA Dimmer
 description: Control the behaviour of the IKEA Dimmer.
 
@@ -16,53 +16,59 @@ variables:
     - light.badkamer_plafond
     - light.badkamer_spiegel
     - light.overloop
-    - light.trap
+    - light.trapverlichting
     - light.gang
-    - light.lily_plafond
-    - light.olivia_plafond
+    - light.lily
+    - light.olivia
     - light.zolder
 
 trigger:
-  - platform: event
-    event_type: zha_event
+  - platform: state
+    entity_id: sensor.slaapkamer_remote_action
+    to:
+      - "on"
+      - "off"
+      - "brightness_move_up"
+      - "brightness_move_down"
+      - "brightness_stop"
 
-condition:
-  - condition: template
-    value_template: '{{ trigger.event.data.device_ieee == "00:0d:6f:ff:fe:a0:54:37" }}'
+# condition:
+#   - condition: template
+#     value_template: '{{ trigger.event.data.device_ieee == "00:0d:6f:ff:fe:a0:54:37" }}'
 
 action:
   - choose:
       # Short-Press the on button
       - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.command == "on" }}'
+            value_template: '{{ trigger.to_state.state == "on" }}'
         sequence:
           - service: light.turn_off
-            data_template:
+            data:
               entity_id: "{{ entities }}"
       # Short-Press the off button
       - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.command == "off" }}'
+            value_template: '{{ trigger.to_state.state == "off" }}'
         sequence:
           - service: light.turn_off
-            data_template:
+            data:
               entity_id: "{{ entities }}"
       # Long-Press the on button
       - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+            value_template: '{{ trigger.to_state.state == "brightness_move_up" }}'
         sequence:
           - service: light.turn_off
-            data_template:
+            data:
               entity_id: "{{ entities }}"
       # Long-Press the off button
       - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.command == "move" }}'
+            value_template: '{{ trigger.to_state.state == "brightness_move_down" }}'
         sequence:
           - service: light.turn_off
-            data_template:
+            data:
               entity_id: "{{ entities }}"
     # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
     default: []

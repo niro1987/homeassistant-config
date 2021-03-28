@@ -9,6 +9,12 @@ description: Herstel volume van de Google Home.
 mode: single
 max_exceeded: silent
 
+variables:
+  entities:
+    - media_player.woonkamer_mini
+    - media_player.slaapkamer_mini
+    - media_player.zolder_mini
+
 trigger:
   - platform: time
     at: "09:00:00"
@@ -24,16 +30,10 @@ action:
         sequence:
           - service: media_player.volume_set
             data:
-              entity_id:
-                - media_player.woonkamer_mini
-                - media_player.slaapkamer_mini
-                - media_player.zolder_mini
+              entity_id: "{{ entities }}"
               volume_level: 0.1
     default:
       - service: media_player.volume_set
         data:
-          entity_id:
-            - media_player.woonkamer_mini
-            - media_player.slaapkamer_mini
-            - media_player.zolder_mini
+          entity_id: "{{ entities }}"
           volume_level: 0.3
