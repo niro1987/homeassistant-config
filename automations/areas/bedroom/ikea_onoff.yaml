@@ -16,32 +16,26 @@ variables:
     - light.badkamer_plafond
     - light.badkamer_spiegel
     - light.overloop
-    - light.trapverlichting
+    - light.trap
     - light.gang
-    - light.lily
-    - light.olivia
+    - light.lily_plafond
+    - light.olivia_plafond
     - light.zolder
 
 trigger:
-  - platform: state
-    entity_id: sensor.slaapkamer_remote_action
-    to:
-      - "on"
-      - "off"
-      - "brightness_move_up"
-      - "brightness_move_down"
-      - "brightness_stop"
+  - platform: event
+    event_type: zha_event
 
-# condition:
-#   - condition: template
-#     value_template: '{{ trigger.event.data.device_ieee == "00:0d:6f:ff:fe:a0:54:37" }}'
+condition:
+  - condition: template
+    value_template: '{{ trigger.event.data.device_ieee == "00:0d:6f:ff:fe:a0:54:37" }}'
 
 action:
   - choose:
       # Short-Press the on button
       - conditions:
           - condition: template
-            value_template: '{{ trigger.to_state.state == "on" }}'
+            value_template: '{{ trigger.event.data.command == "on" }}'
         sequence:
           - service: light.turn_off
             data:
@@ -49,7 +43,7 @@ action:
       # Short-Press the off button
       - conditions:
           - condition: template
-            value_template: '{{ trigger.to_state.state == "off" }}'
+            value_template: '{{ trigger.event.data.command == "off" }}'
         sequence:
           - service: light.turn_off
             data:
@@ -57,7 +51,7 @@ action:
       # Long-Press the on button
       - conditions:
           - condition: template
-            value_template: '{{ trigger.to_state.state == "brightness_move_up" }}'
+            value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
         sequence:
           - service: light.turn_off
             data:
@@ -65,7 +59,7 @@ action:
       # Long-Press the off button
       - conditions:
           - condition: template
-            value_template: '{{ trigger.to_state.state == "brightness_move_down" }}'
+            value_template: '{{ trigger.event.data.command == "move" }}'
         sequence:
           - service: light.turn_off
             data:

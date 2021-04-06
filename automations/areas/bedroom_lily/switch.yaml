@@ -12,4 +12,4 @@ use_blueprint:
   path: niro1987/binary_sensor_light_toggle.yaml
   input:
     switch_entity: binary_sensor.slaapkamer_lily_switch
-    light_entity: light.lily
+    light_entity: light.lily_plafond

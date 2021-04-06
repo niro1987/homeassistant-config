@@ -9,7 +9,7 @@ alias: Lily IKEA Remote
 description: Control the behaviour of the IKEA Remote.
 
 use_blueprint:
-  path: niro1987/z2m_ikea_tradfri_5button_remote_color.yaml
+  path: niro1987/zha_ikea_tradfri_5button_remote_color.yaml
   input:
-    remote_entity: sensor.lily_remote_action
-    light_entity: light.lily
+    remote_ieee: 14:b4:57:ff:fe:50:4c:58
+    light_entity: light.lily_plafond
