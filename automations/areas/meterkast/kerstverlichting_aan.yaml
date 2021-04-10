@@ -1,0 +1,23 @@
+---
+#
+#
+#
+id: meterkast-kerstverlichting_aan
+alias: Meterkast Kerstverlichting Aan
+description: >-
+  Zet de kerstverlichting 's ochtends en bij zonsondergang aan.
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: sun
+    event: sunset
+    offset: "-01:00:00"
+  - platform: time
+    at: "06:00:00"
+
+action:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.ikea_outlet

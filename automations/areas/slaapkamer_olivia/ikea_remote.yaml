@@ -1,0 +1,16 @@
+---
+#
+# This automation simulates the use of the IKEA TRADFRI Remote control
+# connected through zha but should also work for other type of events.
+# Requires Home Assistant 0.113 or higher.
+#
+id: slaapkamer_olivia-ikea_remote
+alias: Slaapkamer Olivia IKEA Remote
+description: >-
+  Bedien de verlichting met de IKEA Remote.
+
+use_blueprint:
+  path: niro1987/zha_ikea_tradfri_5button_remote_color.yaml
+  input:
+    remote_ieee: 14:b4:57:ff:fe:76:1d:27
+    light_entity: light.olivia_plafond

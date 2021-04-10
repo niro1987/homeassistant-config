@@ -1,0 +1,17 @@
+---
+#
+# Ì've modified my existing Busch-Jaeger light switch with ESPHome
+# and a Sonoff Mini to make sure I can still toggle the hue light
+# when the switch is in the off position.
+#
+id: slaapkamer_lily-schakelaar
+alias: Slaapkamer Lily Schakelaar
+description: >-
+  Zet het licht in de slaapkamer van Lily aan/uit wanneer de schakelaar
+  wordt geschakeld.
+
+use_blueprint:
+  path: niro1987/binary_sensor_toggle_light.yaml
+  input:
+    switch_entity: binary_sensor.slaapkamer_lily_switch
+    light_entity: light.lily_plafond

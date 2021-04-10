@@ -1,0 +1,22 @@
+---
+#
+#
+#
+id: trap-flux
+alias: Trap Flux
+description: >-
+  Zet de flux functie uit wanneer het licht uit wordt gezet.
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: light.trap
+    from: "on"
+    to: "off"
+
+action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.flux_trap

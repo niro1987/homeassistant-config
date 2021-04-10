@@ -1,0 +1,17 @@
+---
+#
+# Ì've modified my existing Busch-Jaeger light switch with ESPHome
+# and a Sonoff Mini to make sure I can still toggle the hue light
+# when the switch is in the off position.
+#
+id: slaapkamer_olivia-schakelaar
+alias: Slaapkamer Olivia Schakelaar
+description: >-
+  Zet het licht in de slaapkamer van Olivia aan/uit wanneer de schakelaar
+  wordt geschakeld.
+
+use_blueprint:
+  path: niro1987/binary_sensor_toggle_light.yaml
+  input:
+    switch_entity: binary_sensor.slaapkamer_olivia_switch
+    light_entity: light.olivia_plafond

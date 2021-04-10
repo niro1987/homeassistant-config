@@ -4,7 +4,9 @@
 #
 id: foscam_intercept
 alias: Foscam Intercept
-description: Convert the foscam_intercept events into MQTT topics.
+description: >-
+  Zet 'foscam_intercept' events om in mqtt berichten zodat deze als
+  binary_sensors kunnen worden gebruikt.
 
 mode: single
 max_exceeded: silent
@@ -12,8 +14,6 @@ max_exceeded: silent
 trigger:
   - platform: event
     event_type: foscam_intercept
-
-condition: []
 
 action:
   - service: mqtt.publish

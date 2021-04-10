@@ -1,0 +1,40 @@
+---
+#
+# This routine resets the speaker volume for the Google Home Mini
+#
+id: google_home_mini_volume
+alias: Google Home Mini Volume
+description: >-
+  Stel het volume van de Google Home speakers in op gezette tijden.
+
+mode: single
+max_exceeded: silent
+
+variables:
+  entities:
+    - media_player.woonkamer_mini
+    - media_player.slaapkamer_mini
+    - media_player.zolder_mini
+
+trigger:
+  - platform: time
+    at: "09:00:00"
+  - platform: time
+    at: "21:00:00"
+
+action:
+  - choose:
+      - conditions:
+          - condition: time
+            before: "09:00:00"
+            after: "21:00:00"
+        sequence:
+          - service: media_player.volume_set
+            data:
+              entity_id: "{{ entities }}"
+              volume_level: 0.1
+    default:
+      - service: media_player.volume_set
+        data:
+          entity_id: "{{ entities }}"
+          volume_level: 0.3

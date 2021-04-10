@@ -1,0 +1,43 @@
+---
+#
+# I've modified the existing Buva Q-Stream ventilation unit with ESPHome,
+# an ESP8266 and a 0-10v PWM-to-Voltage module. The unit has a 0-10v port
+# to set the speed and a 15v port to power the ESP and the module.
+#
+id: badkamer-afzuiging
+alias: Badkamer Afzuiging
+description: >-
+  Zet de afzuiging aan/uit op basis van het verschil in luchtvochtigheid
+  tussen de badkamer en de rest van de verdieping.
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+    above: 12
+  - platform: numeric_state
+    entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+    below: 10
+
+action:
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+            above: 12
+        sequence:
+          - service: fan.turn_on
+            target:
+              entity_id: fan.afzuiging
+            data:
+              percentage: 100
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+            below: 10
+        sequence:
+          - service: fan.turn_off
+            target:
+              entity_id: fan.afzuiging

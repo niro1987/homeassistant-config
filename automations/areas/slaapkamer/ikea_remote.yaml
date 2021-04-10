@@ -1,0 +1,69 @@
+---
+#
+# https://gist.github.com/niro1987/e7be4b6173d819af3b55f1d4ec114df4
+#
+id: slaapkamer-ikea_remote
+alias: Slaapkamer IKEA Remote
+description: >-
+  Zet alle verlichting uit met de druk van elke knop op de IKEA Remote.
+
+mode: restart
+
+variables:
+  entities:
+    - light.slaapkamer_plafond
+    - light.slaapkamer_niels
+    - light.slaapkamer_danielle
+    - light.badkamer_plafond
+    - light.badkamer_spiegel
+    - light.overloop
+    - light.trap
+    - light.gang
+    - light.lily_plafond
+    - light.olivia_plafond
+    - light.zolder
+
+trigger:
+  - platform: event
+    event_type: zha_event
+
+condition:
+  - condition: template
+    value_template: '{{ trigger.event.data.device_ieee == "00:0d:6f:ff:fe:a0:54:37" }}'
+
+action:
+  - choose:
+      # Short-Press the on button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "on" }}'
+        sequence:
+          - service: light.turn_off
+            data:
+              entity_id: "{{ entities }}"
+      # Short-Press the off button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "off" }}'
+        sequence:
+          - service: light.turn_off
+            data:
+              entity_id: "{{ entities }}"
+      # Long-Press the on button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+        sequence:
+          - service: light.turn_off
+            data:
+              entity_id: "{{ entities }}"
+      # Long-Press the off button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "move" }}'
+        sequence:
+          - service: light.turn_off
+            data:
+              entity_id: "{{ entities }}"
+    # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
+    default: []
