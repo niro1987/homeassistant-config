@@ -11,4 +11,4 @@ use_blueprint:
   path: niro1987/binary_sensor_sync_light.yaml
   input:
     switch_entity: binary_sensor.trap_beweging
-    light_entity: light.trapverlichting
+    light_entity: light.trap
