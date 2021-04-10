@@ -8,7 +8,7 @@ description: >-
   Zet de trap verlichting aan/uit wanneer er beweging wordt gedetecteerd.
 
 use_blueprint:
-  path: niro1987/binary_sensor_light_sync.yaml
+  path: niro1987/binary_sensor_sync_light.yaml
   input:
     switch_entity: binary_sensor.trap_beweging
     light_entity: light.trapverlichting
