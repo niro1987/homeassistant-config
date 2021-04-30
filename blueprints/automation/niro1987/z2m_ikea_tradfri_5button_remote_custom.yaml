@@ -1,0 +1,152 @@
+---
+# This automation simulates the use of the IKEA TRADFRI Remote control
+# connected through Zigbee2MQTT.
+
+blueprint:
+  source_url: https://gist.github.com/niro1987/f60ab7ec01facdc7d9cab861f4a4abe5
+
+  name: Zigbee2MQTT - IKEA TRADFRI - 5 Button Remote - Custom Actions
+
+  description: >-
+    This automation simulates the use of the IKEA TRADFRI Remote control
+    connected through Zigbee2MQTT.
+
+  domain: automation
+
+  input:
+    remote_entity:
+      name: Remote Sensor Entity
+      description: The sensor entity created by Zigbee2MQTT
+      selector:
+        entity:
+          domain: sensor
+      default: sensor.ikea_tradfri_action
+    power_short:
+      name: Short Press - Power Button
+      description: The action to perform on Short Press of the Power Button
+      selector:
+        action:
+    dimup_short:
+      name: Short Press - Dim Up Button
+      description: The action to perform on Short Press of the Dim Up Button
+      selector:
+        action:
+    dimdown_short:
+      name: Short Press - Dim Down Button
+      description: The action to perform on Short Press of the Dim Down Button
+      selector:
+        action:
+    colorup_short:
+      name: Short Press - Color Up Button
+      description: The action to perform on Short Press of the Color Up Button
+      selector:
+        action:
+    colordown_short:
+      name: Short Press - Color Down Button
+      description: The action to perform on Short Press of the Color Down Button
+      selector:
+        action:
+    power_long:
+      name: Long Press - Power Button
+      description: The action to perform on Long Press of the Power Button
+      selector:
+        action:
+    dimup_long:
+      name: Long Press - Dim Up Button
+      description: The action to perform on Long Press of the Dim Up Button
+      selector:
+        action:
+    dimdown_long:
+      name: Long Press - Dim Down Button
+      description: The action to perform on Long Press of the Dim Down Button
+      selector:
+        action:
+    colorup_long:
+      name: Long Press - Color Up Button
+      description: The action to perform on Long Press of the Color Up Button
+      selector:
+        action:
+    colordown_long:
+      name: Long Press - Color Down Button
+      description: The action to perform on Long Press of the Color Down Button
+      selector:
+        action:
+
+mode: restart
+
+variables:
+  target_light: !input light_entity
+
+trigger:
+  - platform: state
+    entity_id: !input remote_entity
+    to:
+      - "toggle"
+      - "toggle_hold"
+      - "brightness_up_click"
+      - "brightness_down_click"
+      - "arrow_left_click"
+      - "arrow_right_click"
+      - "brightness_up_hold"
+      - "brightness_down_hold"
+      - "arrow_left_hold"
+      - "arrow_right_hold"
+      - "brightness_up_release"
+      - "brightness_down_release"
+      - "arrow_left_release"
+      - "arrow_right_release"
+
+action:
+  - choose:
+      # Short-Press on the power button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "toggle" }}'
+        sequence: !input power_short
+      # Short-Press on the dim-up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "brightness_up_click" }}'
+        sequence: !input dimup_short
+      # Short-Press on the dim-down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "brightness_down_click" }}'
+        sequence: !input dimdown_short
+      # Short-Press on the color-up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "arrow_left_click" }}'
+        sequence: !input colorup_short
+      # Short-Press on the color-down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "arrow_right_click" }}'
+        sequence: !input colordown_short
+      # Long-Press on the power button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "toggle_hold" }}'
+        sequence: !input power_long
+      # Long-Press on the color-up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "arrow_left_hold" }}'
+        sequence: !input colorup_long
+      # Long-Press on the color-down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "arrow_right_hold" }}'
+        sequence: !input colordown_long
+      # Long-Press on the dim-up button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "brightness_up_hold" }}'
+        sequence: !input dimup_long
+      # Long-Press on the dim-down button.
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "brightness_down_hold" }}'
+        sequence: !input dimdown_long
+    # Any other event will cancel the repeat loops.
+    default: []
