@@ -74,9 +74,6 @@ blueprint:
 
 mode: restart
 
-variables:
-  target_light: !input light_entity
-
 trigger:
   - platform: state
     entity_id: !input remote_entity
