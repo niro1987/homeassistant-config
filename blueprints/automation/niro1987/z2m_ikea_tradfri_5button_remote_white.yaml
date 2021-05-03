@@ -28,7 +28,6 @@ blueprint:
       selector:
         entity:
           domain: sensor
-      default: sensor.ikea_tradfri_action
     light_entity:
       name: Light
       description: The light entity to control.
@@ -36,7 +35,6 @@ blueprint:
         target:
           entity:
             domain: light
-      default: light.living_room
 
 mode: restart
 
