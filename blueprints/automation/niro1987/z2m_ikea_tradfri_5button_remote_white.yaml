@@ -33,14 +33,15 @@ blueprint:
       name: Light
       description: The light entity to control.
       selector:
-        entity:
-          domain: light
+        target:
+          entity:
+            domain: light
       default: light.living_room
 
 mode: restart
 
 variables:
-  var_light_entity: !input light_entity
+  var_light_entities: !input light_entity
 
 trigger:
   - platform: state
@@ -69,16 +70,15 @@ action:
             value_template: '{{ trigger.to_state.state == "toggle" }}'
         sequence:
           - service: light.toggle
-            data:
-              entity_id: !input light_entity
+            target: !input light_entity
       # Short-Press on the dim-up button.
       - conditions:
           - condition: template
             value_template: '{{ trigger.to_state.state == "brightness_up_click" }}'
         sequence:
           - service: light.turn_on
+            target: !input light_entity
             data:
-              entity_id: !input light_entity
               brightness_step_pct: 20
               transition: 0.5
       # Short-Press on the dim-down button.
@@ -87,8 +87,8 @@ action:
             value_template: '{{ trigger.to_state.state == "brightness_down_click" }}'
         sequence:
           - service: light.turn_on
+            target: !input light_entity
             data:
-              entity_id: !input light_entity
               brightness_step_pct: -20
               transition: 0.5
       # Short-Press on the color-up button.
@@ -97,13 +97,13 @@ action:
             value_template: '{{ trigger.to_state.state == "arrow_left_click" }}'
         sequence:
           - service: light.turn_on
+            target: !input light_entity
             data:
-              entity_id: !input light_entity
               color_temp: >-
-                {% if state_attr(var_light_entity, "color_temp") + 18 > 500 %}
+                {% if state_attr(var_light_entities.entity_id[0], "color_temp") + 18 > 500 %}
                   {{ 500 }}
                 {% else %}
-                  {{ state_attr(var_light_entity, "color_temp") + 18 }}
+                  {{ state_attr(var_light_entities.entity_id[0], "color_temp") + 18 }}
                 {% endif %}
               transition: 0.5
       # Short-Press on the color-down button.
@@ -112,13 +112,13 @@ action:
             value_template: '{{ trigger.to_state.state == "arrow_right_click" }}'
         sequence:
           - service: light.turn_on
+            target: !input light_entity
             data:
-              entity_id: !input light_entity
               color_temp: >-
-                {% if state_attr(var_light_entity, "color_temp") - 18 < 153 %}
+                {% if state_attr(var_light_entities.entity_id[0], "color_temp") - 18 < 153 %}
                   {{ 153 }}
                 {% else %}
-                  {{ state_attr(var_light_entity, "color_temp") - 18 }}
+                  {{ state_attr(var_light_entities.entity_id[0], "color_temp") - 18 }}
                 {% endif %}
               transition: 0.5
       # Long-Press on the power button.
@@ -127,8 +127,8 @@ action:
             value_template: '{{ trigger.to_state.state == "toggle_hold" }}'
         sequence:
           - service: light.turn_on
+            target: !input light_entity
             data:
-              entity_id: !input light_entity
               brightness: 254
               color_temp: 400
       # Long-Press on the dim-up button.
@@ -140,8 +140,8 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
+                  target: !input light_entity
                   data:
-                    entity_id: !input light_entity
                     brightness_step_pct: 10
                     transition: 0.5
                 - delay:
@@ -155,8 +155,8 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
+                  target: !input light_entity
                   data:
-                    entity_id: !input light_entity
                     brightness_step_pct: -10
                     transition: 0.5
                 - delay:
@@ -170,13 +170,13 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
+                  target: !input light_entity
                   data:
-                    entity_id: !input light_entity
                     color_temp: >-
-                      {% if state_attr(var_light_entity, "color_temp") + 18 > 500 %}
+                      {% if state_attr(var_light_entities.entity_id[0], "color_temp") + 18 > 500 %}
                         {{ 500 }}
                       {% else %}
-                        {{ state_attr(var_light_entity, "color_temp") + 18 }}
+                        {{ state_attr(var_light_entities.entity_id[0], "color_temp") + 18 }}
                       {% endif %}
                     transition: 0.5
                 - delay:
@@ -190,13 +190,13 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
+                  target: !input light_entity
                   data:
-                    entity_id: !input light_entity
                     color_temp: >-
-                      {% if state_attr(var_light_entity, "color_temp") - 18 < 153 %}
+                      {% if state_attr(var_light_entities.entity_id[0], "color_temp") - 18 < 153 %}
                         {{ 153 }}
                       {% else %}
-                        {{ state_attr(var_light_entity, "color_temp") - 18 }}
+                        {{ state_attr(var_light_entities.entity_id[0], "color_temp") - 18 }}
                       {% endif %}
                     transition: 0.5
                 - delay:
