@@ -12,5 +12,5 @@ description: >-
 use_blueprint:
   path: niro1987/zha_ikea_tradfri_5button_remote_color.yaml
   input:
-    remote_ieee: 14:b4:57:ff:fe:76:1d:27
-    light_entity: light.olivia_plafond
+    remote: d2bc21bc89904851a76366dc3f2653ae
+    light: light.olivia_plafond

@@ -12,5 +12,5 @@ description: >-
 use_blueprint:
   path: niro1987/zha_ikea_tradfri_5button_remote_color.yaml
   input:
-    remote_ieee: 14:b4:57:ff:fe:50:4c:58
-    light_entity: light.lily_plafond
+    remote: 10059a40954f471f8c4328ce1ec10c44
+    light: light.lily_plafond
