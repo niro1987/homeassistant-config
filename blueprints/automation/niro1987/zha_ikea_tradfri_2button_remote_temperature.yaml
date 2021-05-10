@@ -10,7 +10,7 @@
 # | off (long)  | Decrease temperature |
 
 blueprint:
-  source_url: https://gist.github.com/niro1987/eb20ded3d1b955e2547bafb3bb134b79
+  source_url: https://github.com/niro1987/homeassistant-config/blob/master/blueprints/automation/niro1987/zha_ikea_tradfri_2button_remote_temperature.yaml
 
   name: ZHA - IKEA TRADFRI - 2 Button Remote - OnOff and Temperature
 

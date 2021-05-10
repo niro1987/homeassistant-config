@@ -11,7 +11,7 @@
 # | Left     | Decrease temperature |
 
 blueprint:
-  source_url: https://gist.github.com/niro1987/f6e84c27b304f0bf3be16a8f439e8efd
+  source_url: https://github.com/niro1987/homeassistant-config/blob/master/blueprints/automation/niro1987/z2m_ikea_tradfri_5button_remote_white.yaml
 
   name: Zigbee2MQTT - IKEA TRADFRI - 5 Button Remote - Warm White Lights
 
