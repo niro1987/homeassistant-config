@@ -1,0 +1,68 @@
+---
+# This automation simulates the use of the IKEA TRADFRI Dimmer control
+# connected through ZHA.
+
+blueprint:
+  source_url: https://github.com/niro1987/homeassistant-config/blob/master/blueprints/automation/niro1987/zha_ikea_tradfri_1button_remote_custom.yaml
+
+  name: ZHA - IKEA TRADFRI - 1 Button Remote - OnOff and Brightness
+
+  description: >-
+    This automation simulates the use of the IKEA TRADFRI SHORTCUT Button
+    connected through ZHA.
+
+  domain: automation
+
+  input:
+    remote:
+      name: IKEA TRADFRI remote control
+      description: Select the remote control you wish to use.
+      selector:
+        device:
+          integration: zha
+          manufacturer: IKEA of Sweden
+          model: TRADFRI SHORTCUT Button
+    light:
+      name: Light
+      description: Select the light entity you wish to control.
+      selector:
+        entity:
+          domain: light
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+
+action:
+  - choose:
+      # Short-Press
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "on" }}'
+        sequence:
+          - service: light.toggle
+            target: !input light
+            data:
+              brightness: 254
+              hs_color:
+                - 38.222
+                - 52.941
+          - delay:
+              milliseconds: 200
+
+      # Long-Press
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+        sequence:
+          - service: notify.mobile_app_nimbus_2000
+            data:
+              message: "Long-Press"
+
+    # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
+    default: []
