@@ -15,40 +15,35 @@ blueprint:
   name: ZHA - IKEA TRADFRI - 2 Button Remote - OnOff and Brightness
 
   description: >-
-    This automation simulates the use of the IKEA TRADFRI Dimmer
+    This automation simulates the use of the IKEA TRADFRI on/off switch
     connected through ZHA.
 
   domain: automation
 
   input:
-    remote_ieee:
-      name: Remote IEEE
-      description: Lookup on the device page.
+    remote:
+      name: IKEA TRADFRI remote control
+      description: Select the remote control you wish to use.
       selector:
-        text:
-          multiline: false
-      default: 01:a2:34:bc:de:56:7f:89
-    light_entity:
+        device:
+          integration: zha
+          manufacturer: IKEA of Sweden
+          model: TRADFRI on/off switch
+    light:
       name: Light
-      description: The light entity to control.
+      description: Select the light entity you wish to control.
       selector:
         entity:
           domain: light
-      default: light.living_room
 
 mode: restart
 max_exceeded: silent
 
-variables:
-  var_remote_ieee: !input remote_ieee
-
 trigger:
   - platform: event
     event_type: zha_event
-
-condition:
-  - condition: template
-    value_template: "{{ trigger.event.data.device_ieee == var_remote_ieee }}"
+    event_data:
+      device_id: !input remote
 
 action:
   - choose:
@@ -58,22 +53,15 @@ action:
             value_template: '{{ trigger.event.data.command == "on" }}'
         sequence:
           - service: light.turn_on
+            target:
+              entity_id: !input light
             data:
-              entity_id: !input light_entity
               brightness: 254
               hs_color:
                 - 38.222
                 - 52.941
               transition: 1
-      # Short-Press the off button
-      - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.command == "off" }}'
-        sequence:
-          - service: light.turn_off
-            data:
-              entity_id: !input light_entity
-              transition: 1
+
       # Long-Press the on button
       - conditions:
           - condition: template
@@ -83,12 +71,25 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
+                  target:
+                    entity_id: !input light
                   data:
-                    entity_id: !input light_entity
                     brightness_step_pct: 10
                     transition: 0.5
                 - delay:
                     milliseconds: 500
+
+      # Short-Press the off button
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "off" }}'
+        sequence:
+          - service: light.turn_off
+            target:
+              entity_id: !input light
+            data:
+              transition: 1
+
       # Long-Press the off button
       - conditions:
           - condition: template
@@ -98,11 +99,13 @@ action:
               while: []
               sequence:
                 - service: light.turn_on
+                  target:
+                    entity_id: !input light
                   data:
-                    entity_id: !input light_entity
                     brightness_step_pct: -10
                     transition: 0.5
                 - delay:
                     milliseconds: 500
+
     # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
     default: []

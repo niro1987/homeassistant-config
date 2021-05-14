@@ -16,15 +16,15 @@ blueprint:
   name: ZHA - IKEA TRADFRI - 5 Button Remote - Color Lights
 
   description: >-
-    This automation simulates the use of the IKEA TRADFRI Remote control
+    This automation simulates the use of the IKEA TRADFRI remote control
     connected through ZHA.
 
   domain: automation
 
   input:
     remote:
-      name: Remote IEEE
-      description: Lookup on the device page.
+      name: IKEA TRADFRI remote control
+      description: Select the remote control you wish to use.
       selector:
         device:
           integration: zha
@@ -32,7 +32,7 @@ blueprint:
           model: TRADFRI remote control
     light:
       name: Light
-      description: The light entity to control.
+      description: Select the light entity you wish to control.
       selector:
         entity:
           domain: light
@@ -41,7 +41,6 @@ mode: restart
 max_exceeded: silent
 
 variables:
-  var_remote: !input remote
   var_light: !input light
 
 trigger:
@@ -60,6 +59,7 @@ action:
           - service: light.toggle
             target:
               entity_id: !input light
+
       # Long-Press on the power button.
       - conditions:
           - condition: template
@@ -85,6 +85,7 @@ action:
             data:
               brightness_step_pct: 20
               transition: 0.5
+
       # Long-Press on the dim-up button.
       - conditions:
           - condition: template
@@ -113,6 +114,7 @@ action:
             data:
               brightness_step_pct: -20
               transition: 0.5
+
       # Long-Press on the dim-down button.
       - conditions:
           - condition: template
@@ -150,6 +152,7 @@ action:
                   {% endif %}
                 - '{{ state_attr(var_light, "hs_color")[1] }}'
               transition: 0.5
+
       # Long-Press on the color-up button.
       - conditions:
           - condition: template
@@ -196,6 +199,7 @@ action:
                     {{ state_attr(var_light, "hs_color")[1] - 20 }}
                   {% endif %}
               transition: 0.5
+
       # Long-Press on the color-down button.
       - conditions:
           - condition: template
