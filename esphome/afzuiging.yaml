@@ -16,7 +16,3 @@ fan:
   - platform: speed
     name: 'Afzuiging'
     output: pwm_output
-    speed:
-      low: 0.33
-      medium: 0.66
-      high: 1
