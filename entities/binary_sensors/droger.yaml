@@ -3,8 +3,8 @@ platform: template
 sensors:
   droger:
     friendly_name: Droger
-    value_template: "{{ state_attr('switch.droger', 'current_power_w')|float > 2.5 }}"
-    availability_template: "{{ state_attr('switch.droger', 'current_power_w')|string != 'None' }}"
+    value_template: "{{ states('sensor.droger_current_consumption')|float > 2.5 }}"
+    availability_template: "{{ states('sensor.droger_current_consumption')|string != 'None' }}"
     delay_off:
       seconds: 35
     delay_on:
