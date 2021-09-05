@@ -4,15 +4,20 @@ sensors:
   badkamer_luchtvochtigheid_afwijking:
     friendly_name: "Badkamer Luchtvochtigheid Afwijking"
     value_template: >-
-      {% 
-        set sensors = [
-          states('sensor.badkamer_luchtvochtigheid')|float,
-          states('sensor.lily_luchtvochtigheid')|float,
-          states('sensor.olivia_luchtvochtigheid')|float,
-          states('sensor.slaapkamer_luchtvochtigheid')|float,
+      {% set TARGET = states('sensor.badkamer_luchtvochtigheid')|float %}
+      {% set SENSORS =
+        [
+          'sensor.lily_luchtvochtigheid',
+          'sensor.olivia_luchtvochtigheid',
+          'sensor.slaapkamer_luchtvochtigheid',
         ]
       %}
-      {{
-        (sensors[0] - (sensors|sum - sensors[0]) / (sensors|count - 1)) | round(1)
-      }}
+      {% set VALUES = states
+        |selectattr('entity_id','in', SENSORS )
+        |selectattr('state','ne','unknown')
+        |map(attribute='state')
+        |map('float')
+        |list
+      %}
+      {{ (TARGET - VALUES|sum / VALUES|count) | round(2) }}
     unit_of_measurement: "%"
