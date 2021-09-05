@@ -1,0 +1,24 @@
+---
+id: slaapkamer_lily-lights-off
+alias: Slaapkamer Lily Lights Off
+description: >-
+  Turn off the lights in Lily's room when they have been kept on for too long.
+
+trigger:
+  - platform: state
+    entity_id: light.lily_plafond
+    to: "on"
+    for:
+      minutes: 15
+
+condition:
+  - alias: "Between 8:00 and 20:00"
+    condition: time
+    after: "08:00:00"
+    before: "20:00:00"
+
+action:
+  - alias: "Turn the light off"
+    service: light.turn_off
+    target:
+      entity_id: light.lily_plafond
