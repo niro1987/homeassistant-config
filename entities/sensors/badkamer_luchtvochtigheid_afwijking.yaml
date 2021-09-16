@@ -14,7 +14,7 @@ sensors:
       %}
       {% set VALUES = states
         |selectattr('entity_id','in', SENSORS )
-        |selectattr('state','ne','unknown')
+        |selectattr('state','ne','unavailable')
         |map(attribute='state')
         |map('float')
         |list
