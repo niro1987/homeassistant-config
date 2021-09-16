@@ -1,0 +1,36 @@
+---
+#
+# This routine send a notification with all open windows
+#
+id: open_dakraam_notificatie
+alias: Open Dakraam Notificatie
+description: >-
+  Stuur een notificatie als we naar bed gaan eh het dakraam staat nog open.
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: light.slaapkamer
+    from: "off"
+    to: "on"
+
+condition:
+  - alias: "Alleen na 22:00 uur"
+    condition: time
+    after: "22:00:00"
+  - alias: "Alleen als het dakraam open staat"
+    condition: state
+    entity_id: binary_sensor.zolder_raam
+    state: "on"
+
+action:
+  - alias: "Stuur een melding naar Danielle"
+    service: notify.mobile_app_j9210
+    data:
+      message: "Het dakraam staat nog open"
+  - alias: "Stuur een melding naar Niels"
+    service: notify.mobile_app_nimbus_2000
+    data:
+      message: "Het dakraam staat nog open"
