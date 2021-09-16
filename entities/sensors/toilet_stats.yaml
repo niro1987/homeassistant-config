@@ -4,7 +4,7 @@
 #
 platform: history_stats
 name: Toilet Stats
-entity_id: binary_sensor.toilet
+entity_id: binary_sensor.toilet_beweging
 state: "on"
 type: count
 start: "{{ now().replace(hour=0, minute=0, second=0) }}"
