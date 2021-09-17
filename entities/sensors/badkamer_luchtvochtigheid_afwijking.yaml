@@ -7,9 +7,12 @@ sensors:
       {% set TARGET = states('sensor.badkamer_luchtvochtigheid')|float %}
       {% set SENSORS =
         [
+          'sensor.woonkamer_luchtvochtigheid',
+          'sensor.gang_luchtvochtigheid',
           'sensor.lily_luchtvochtigheid',
           'sensor.olivia_luchtvochtigheid',
           'sensor.slaapkamer_luchtvochtigheid',
+          'sensor.zolder_luchtvochtigheid'
         ]
       %}
       {% set VALUES = states
