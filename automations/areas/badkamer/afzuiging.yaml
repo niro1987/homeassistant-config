@@ -32,7 +32,20 @@ action:
             target:
               entity_id: fan.afzuiging
             data:
-              percentage: 100
+              percentage: 90
+          - delay:
+              seconds: 2
+          - service: fan.turn_off
+            target:
+              entity_id: fan.afzuiging
+          - delay:
+              seconds: 2
+          - service: fan.turn_on
+            target:
+              entity_id: fan.afzuiging
+            data:
+              percentage: 90
+
       - conditions:
           - condition: numeric_state
             entity_id: sensor.badkamer_luchtvochtigheid_afwijking
