@@ -12,10 +12,11 @@ trigger:
       minutes: 15
 
 condition:
-  - alias: "Between 8:00 and 20:00"
-    condition: time
-    after: "08:00:00"
-    before: "20:00:00"
+  - condition: sun
+    after: sunrise
+    after_offset: "00:30:00"
+    before: sunset
+    before_offset: "-00:30:00"
 
 action:
   - alias: "Turn the light off"
