@@ -27,7 +27,7 @@ binary_sensor:
     name: 'Gang Trapkant'
     pin:
       number: GPIO16
-      mode: INPUT_PULLUP
+      # mode: INPUT_PULLUP
       inverted: True
     on_state:
       then:

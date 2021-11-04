@@ -28,7 +28,7 @@ binary_sensor:
     name: 'Woonkamer Switch'
     pin:
       number: GPIO16
-      mode: INPUT_PULLUP
+      # mode: INPUT_PULLUP
       inverted: True
 
 light:
