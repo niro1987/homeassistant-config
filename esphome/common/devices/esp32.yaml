@@ -17,10 +17,8 @@ sensor:
 switch:
   - platform: restart
     name: "${devicename} Restart"
-    id: "restart"
   - platform: safe_mode
     name: "${devicename} Restart (Safe Mode)"
-    id: "safe_restart"
 
 text_sensor:
   - platform: wifi_info
