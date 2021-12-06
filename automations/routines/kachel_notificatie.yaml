@@ -1,0 +1,26 @@
+---
+id: kachel_notificatie
+alias: Kachel Notificatie
+description: >-
+  Stuurt een bericht naar de telefoon van Danielle om haar eraan te herrineren
+  dat de kachel nog aan staat.
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: time
+    at: "22:00"
+
+condition:
+  - condition: state
+    entity_id: person.danielle
+    state: "home"
+
+action:
+  - service: notify.mobile_app_j9210
+    data:
+      title: Kachel
+      message: >-
+        Het enige 'slimme' aan deze melding is het feit dat je hem alleen krijgt
+        als je thuis bent.
