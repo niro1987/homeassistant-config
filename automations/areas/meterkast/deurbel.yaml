@@ -17,7 +17,7 @@ max_exceeded: silent
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.deurbel
+    entity_id: binary_sensor.voordeur_ding
     from: "off"
     to: "on"
 
