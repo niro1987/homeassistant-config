@@ -58,13 +58,13 @@ binary_sensor:
         then:
           - light.turn_off: light_20
           
-  - platform: gpio
-    pin:
-      number: 0
-    id: "boot"
-    on_press:
-      then:
-        - switch.turn_on: reboot
+  # - platform: gpio
+  #   pin:
+  #     number: 0
+  #   id: "boot"
+  #   on_press:
+  #     then:
+  #       - switch.turn_on: reboot
       
 light:
   - platform: binary
