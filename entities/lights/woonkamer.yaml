@@ -1,7 +1,0 @@
----
-name: Woonkamer
-platform: group
-entities:
-  - light.richting_trap
-  - light.richting_hoek
-  - light.richting_televisie

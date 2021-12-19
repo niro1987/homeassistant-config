@@ -1,7 +1,0 @@
----
-name: Slaapkamer
-platform: group
-entities:
-  - light.slaapkamer_plafond
-  - light.slaapkamer_danielle
-  - light.slaapkamer_niels
