@@ -1,0 +1,54 @@
+---
+# This automation lowers the volume if it exceeds the allowed limit.
+
+blueprint:
+  source_url: https://github.com/niro1987/homeassistant-config/blob/master/blueprints/automation/niro1987/media_player_volume_limit.yaml
+
+  name: Set a volume limit for any Media Player entity.
+
+  description: >-
+    This automation lowers the volume if it exceeds the allowed limit.
+
+  domain: automation
+
+  input:
+    player:
+      name: Media Player
+      description: The media_player entity to apply the limit to.
+      selector:
+        entity:
+          domain: media_player
+    limit:
+      name: Volume Limit
+      description: The volume limit
+      selector:
+        number:
+          min: 0
+          max: 1
+          step: 0.01
+          unit_of_measurement: "%"
+          mode: box
+      default: 0.5
+
+mode: restart
+max_exceeded: silent
+
+variables:
+  player_var: !input player
+  limit_var: !input limit
+
+trigger:
+  - platform: state
+    entity_id: !input player
+    attribute: volume_level
+
+condition:
+  - condition: template
+    value_template: >-
+      {{ trigger.to_state.attributes.volume_level|float > limit_var|float }}
+
+action:
+  - service: media_player.volume_set
+    data:
+      entity_id: !input player
+      volume_level: !input limit
