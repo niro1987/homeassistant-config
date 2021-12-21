@@ -29,8 +29,8 @@ blueprint:
       description: The time in milliseconds between light changes.
       selector:
         number:
-          min: 1
-          max: 1000
+          min: 100
+          max: 5000
           mode: box
           unit_of_measurement: milliseconds
 
@@ -54,7 +54,8 @@ action:
           state: "on"
       sequence:
         - service: light.turn_on
-          target: !input light
+          target:
+            entity_id: !input light
           data:
             rgb_color:
               [
@@ -66,6 +67,8 @@ action:
             transition: 0.1
         - delay:
             milliseconds: !input speed
+  - delay:
+      milliseconds: !input speed
   - service: scene.turn_on
-    data:
+    target:
       entity_id: scene.party_lights_pre_state

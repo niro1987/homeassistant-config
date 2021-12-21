@@ -6,4 +6,4 @@ use_blueprint:
   input:
     light: light.woonkamer
     switch: input_boolean.party_mode
-    speed: 400
+    speed: 1000
