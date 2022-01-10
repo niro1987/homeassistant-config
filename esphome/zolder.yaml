@@ -14,10 +14,20 @@ output:
 binary_sensor:
   - platform: gpio
     id: binary_1
-    name: 'Zolder Switch'
+    name: 'Zolder Boven'
     pin:
       number: GPIO4
       mode: INPUT_PULLUP
+      inverted: True
+    on_state:
+      then:
+        - light.toggle: light_1
+  - platform: gpio
+    id: binary_2
+    name: 'Zolder Beneden'
+    pin:
+      number: GPIO16
+      # mode: INPUT_PULLUP
       inverted: True
     on_state:
       then:
