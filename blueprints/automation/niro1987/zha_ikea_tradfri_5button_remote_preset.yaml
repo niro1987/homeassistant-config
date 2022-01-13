@@ -37,14 +37,22 @@ blueprint:
         entity:
           domain: light
     preset:
-      name: Light
-      description: Select the helper entity you wish to control.
+      name: Helper
+      description: >-
+        Select the helper entity that holds the hs_color presets. Example:
+          - (360, 100) # red
+          - (120, 100) # green
+          - (225, 100) # blue
+          - (38, 53) # default
       selector:
         entity:
           domain: input_select
 
 mode: restart
 max_exceeded: silent
+
+variables:
+  var_preset: !input preset
 
 trigger:
   - platform: event
@@ -63,6 +71,7 @@ action:
           - service: input_select.select_last
             data:
               entity_id: !input preset
+
   - choose:
       # Short-Press on the power button.
       - conditions:
@@ -112,9 +121,9 @@ action:
                     entity_id: !input light
                   data:
                     brightness_step_pct: 10
-                    transition: 0.5
+                    transition: 0.25
                 - delay:
-                    milliseconds: 500
+                    milliseconds: 250
 
       # Short-Press on the dim-down button.
       - conditions:
@@ -141,9 +150,9 @@ action:
                     entity_id: !input light
                   data:
                     brightness_step_pct: -10
-                    transition: 0.5
+                    transition: 0.25
                 - delay:
-                    milliseconds: 500
+                    milliseconds: 250
 
       # Short-Press on the color-up button.
       - conditions:
@@ -160,7 +169,7 @@ action:
             data:
               entity_id: !input light
               transition: 0.5
-              hs_color: "{{ states('input_select.color_preset') }}"
+              hs_color: "{{ states(var_preset) }}"
 
       # Long-Press on the color-up button.
       - conditions:
@@ -179,10 +188,10 @@ action:
                 - service: light.turn_on
                   data:
                     entity_id: !input light
-                    transition: 0.5
-                    hs_color: "{{ states('input_select.color_preset') }}"
+                    transition: 0.25
+                    hs_color: "{{ states(var_preset) }}"
                 - delay:
-                    milliseconds: 500
+                    milliseconds: 250
 
       # Short-Press on the color-down button.
       - conditions:
@@ -199,7 +208,7 @@ action:
             data:
               entity_id: !input light
               transition: 0.5
-              hs_color: "{{ states('input_select.color_preset') }}"
+              hs_color: "{{ states(var_preset) }}"
 
       # Long-Press on the color-down button.
       - conditions:
@@ -218,10 +227,10 @@ action:
                 - service: light.turn_on
                   data:
                     entity_id: !input light
-                    transition: 0.5
-                    hs_color: "{{ states('input_select.color_preset') }}"
+                    transition: 0.25
+                    hs_color: "{{ states(var_preset) }}"
                 - delay:
-                    milliseconds: 500
+                    milliseconds: 250
 
     # Any other event will cancel the repeat loops.
     default: []

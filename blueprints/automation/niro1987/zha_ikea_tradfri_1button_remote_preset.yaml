@@ -1,0 +1,94 @@
+---
+# This automation simulates the use of the IKEA TRADFRI Dimmer control
+# connected through ZHA.
+
+blueprint:
+  source_url: https://github.com/niro1987/homeassistant-config/blob/main/blueprints/automation/niro1987/zha_ikea_tradfri_1button_remote_preset.yaml
+
+  name: ZHA - IKEA TRADFRI - 1 Button Remote - Color Preset
+
+  description: >-
+    This automation simulates the use of the IKEA TRADFRI SHORTCUT Button
+    connected through ZHA.
+
+  domain: automation
+
+  input:
+    remote:
+      name: IKEA TRADFRI remote control
+      description: Select the remote control you wish to use.
+      selector:
+        device:
+          integration: zha
+          manufacturer: IKEA of Sweden
+          model: TRADFRI SHORTCUT Button
+    light:
+      name: Light
+      description: Select the light entity you wish to control.
+      selector:
+        entity:
+          domain: light
+    preset:
+      name: Helper
+      description: >-
+        Select the helper entity that holds the hs_color presets. Example:
+          - (360, 100) # red
+          - (120, 100) # green
+          - (225, 100) # blue
+          - (38, 53) # default
+      selector:
+        entity:
+          domain: input_select
+
+mode: single
+max_exceeded: silent
+
+variables:
+  var_input: !input preset
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input remote
+
+action:
+  - choose:
+      # Short-Press
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "on" }}'
+        sequence:
+          - service: light.toggle
+            target:
+              entity_id: !input light
+
+      # Long-Press
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+        sequence:
+          # Select last option if state is 'unknown'
+          - choose:
+              - conditions:
+                  - condition: state
+                    entity_id: !input preset
+                    state: "unknown"
+                sequence:
+                  - service: input_select.select_last
+                    data:
+                      entity_id: !input preset
+          # Select next option
+          - service: input_select.select_next
+            data:
+              cycle: true
+              entity_id: !input preset
+          # Set the light to the selected option
+          - service: light.turn_on
+            data:
+              hs_color: "{{ states(var_input) }}"
+              transition: 0.5
+              entity_id: !input light
+
+    # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
+    default: []
