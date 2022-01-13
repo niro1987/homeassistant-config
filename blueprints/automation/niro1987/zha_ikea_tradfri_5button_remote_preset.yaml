@@ -10,12 +10,13 @@
 # | Right    | Next preset         |
 # | Left     | Previous preset     |
 
-# Create an input_select helper and add hs_color preset options. You can copy/paste the hs_color value from the Developer Tools.
+# Create an input_select (Dropdown) helper and add hs_color preset options.
+# You can copy/paste the hs_color value from the Developer Tools > States.
 # For example, on the States tab you see "hs_color: 38.222, 52.941", then
 # you can add "(38.222, 52.941)" as an option to the input_select Helper.
-# You can also add a comment (i.e. name of the preset) like
+# You can also add a comment (i.e. name of the preset) like this
 # "(38.222, 52.941) # default" to help you remember what the values mean.
-# Example presets:</br>
+# Example presets:
 #   - (360, 100) # red
 #   - (120, 100) # green
 #   - (225, 100) # blue
