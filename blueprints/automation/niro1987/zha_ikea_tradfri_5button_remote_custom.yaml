@@ -3,7 +3,7 @@
 # connected through ZHA.
 
 blueprint:
-  source_url: https://github.com/niro1987/homeassistant-config/blob/master/blueprints/automation/niro1987/zha_ikea_tradfri_5button_remote_custom.yaml
+  source_url: https://github.com/niro1987/homeassistant-config/blob/main/blueprints/automation/niro1987/zha_ikea_tradfri_5button_remote_custom.yaml
 
   name: ZHA - IKEA TRADFRI - 5 Button Remote - Custom Actions
 
