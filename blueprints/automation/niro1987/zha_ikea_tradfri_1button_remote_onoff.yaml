@@ -3,9 +3,9 @@
 # connected through ZHA.
 
 blueprint:
-  source_url: https://github.com/niro1987/homeassistant-config/blob/main/blueprints/automation/niro1987/zha_ikea_tradfri_1button_remote_preset.yaml
+  source_url: https://github.com/niro1987/homeassistant-config/blob/main/blueprints/automation/niro1987/zha_ikea_tradfri_1button_remote_onoff.yaml
 
-  name: ZHA - IKEA TRADFRI - 1 Button Remote - Color Preset
+  name: ZHA - IKEA TRADFRI - 1 Button Remote - OnOff and Brightness
 
   description: >-
     This automation simulates the use of the IKEA TRADFRI SHORTCUT Button
@@ -28,23 +28,9 @@ blueprint:
       selector:
         entity:
           domain: light
-    preset:
-      name: Helper
-      description: >-
-        Select the helper entity that holds the hs_color presets. Example:
-          - (360, 100) # red
-          - (120, 100) # green
-          - (225, 100) # blue
-          - (38, 53) # default
-      selector:
-        entity:
-          domain: input_select
 
 mode: single
 max_exceeded: silent
-
-variables:
-  var_input: !input preset
 
 trigger:
   - platform: event
@@ -60,8 +46,12 @@ action:
             value_template: '{{ trigger.event.data.command == "on" }}'
         sequence:
           - service: light.toggle
-            target:
-              entity_id: !input light
+            target: !input light
+            data:
+              brightness: 254
+              hs_color:
+                - 38.222
+                - 52.941
           - delay:
               milliseconds: 200
 
@@ -70,27 +60,13 @@ action:
           - condition: template
             value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
         sequence:
-          # Select last option if state is 'unknown'
-          - choose:
-              - conditions:
-                  - condition: state
-                    entity_id: !input preset
-                    state: "unknown"
-                sequence:
-                  - service: input_select.select_last
-                    data:
-                      entity_id: !input preset
-          # Select next option
-          - service: input_select.select_next
+          - service: light.toggle
+            target: !input light
             data:
-              cycle: true
-              entity_id: !input preset
-          # Set the light to the selected option
-          - service: light.turn_on
-            data:
-              hs_color: "{{ states(var_input) }}"
-              transition: 0.5
-              entity_id: !input light
+              brightness: 254
+              hs_color:
+                - 38.222
+                - 52.941
           - delay:
               milliseconds: 200
 
