@@ -14,3 +14,4 @@ use_blueprint:
   input:
     remote: 10059a40954f471f8c4328ce1ec10c44
     light: light.lily_plafond
+    speed: 300

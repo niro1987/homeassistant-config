@@ -35,12 +35,24 @@ blueprint:
       selector:
         entity:
           domain: light
+    speed:
+      name: Speed
+      description: The speed in which to update the light when the button is held.
+      selector:
+        number:
+          min: 100
+          max: 1000
+          step: 100
+          unit_of_measurement: milliseconds
+          mode: slider
+      default: 500
 
 mode: restart
 max_exceeded: silent
 
 variables:
   var_light: !input light
+  var_speed: !input speed
 
 trigger:
   - platform: event
@@ -62,7 +74,7 @@ action:
               hs_color:
                 - 38.222
                 - 52.941
-              transition: 1
+              transition: "{{ (var_speed / 1000)|float }}"
 
       # Long-Press the on button
       - conditions:
@@ -82,9 +94,9 @@ action:
                       {% else %}
                         {{ state_attr(var_light, "color_temp") + 18 }}
                       {% endif %}
-                    transition: 0.5
+                    transition: "{{ (var_speed / 1000)|float }}"
                 - delay:
-                    milliseconds: 500
+                    milliseconds: !input speed
 
       # Short-Press the off button
       - conditions:
@@ -95,7 +107,7 @@ action:
             target:
               entity_id: !input light
             data:
-              transition: 1
+              transition: "{{ (var_speed / 1000)|float }}"
 
       # Long-Press the off button
       - conditions:
@@ -115,9 +127,9 @@ action:
                       {% else %}
                         {{ state_attr(var_light, "color_temp") - 18 }}
                       {% endif %}
-                    transition: 0.5
+                    transition: "{{ (var_speed / 1000)|float }}"
                 - delay:
-                    milliseconds: 500
+                    milliseconds: !input speed
 
     # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
     default: []

@@ -48,6 +48,17 @@ blueprint:
       selector:
         entity:
           domain: light
+    speed:
+      name: Speed
+      description: The speed in which to update the light when the button is held.
+      selector:
+        number:
+          min: 100
+          max: 1000
+          step: 100
+          unit_of_measurement: milliseconds
+          mode: slider
+      default: 500
     preset:
       name: Helper
       description: Select the helper entity with you pre defined settings.
@@ -60,6 +71,7 @@ max_exceeded: silent
 
 variables:
   var_preset: !input preset
+  var_speed: !input speed
 
 trigger:
   - platform: event
@@ -113,7 +125,7 @@ action:
               entity_id: !input light
             data:
               brightness_step_pct: 20
-              transition: 0.5
+              transition: "{{ (var_speed / 1000)|float }}"
 
       # Long-Press on the dim-up button.
       - conditions:
@@ -128,9 +140,9 @@ action:
                     entity_id: !input light
                   data:
                     brightness_step_pct: 10
-                    transition: 0.25
+                    transition: "{{ (var_speed / 1000)|float }}"
                 - delay:
-                    milliseconds: 250
+                    milliseconds: !input speed
 
       # Short-Press on the dim-down button.
       - conditions:
@@ -142,7 +154,7 @@ action:
               entity_id: !input light
             data:
               brightness_step_pct: -20
-              transition: 0.5
+              transition: "{{ (var_speed / 1000)|float }}"
 
       # Long-Press on the dim-down button.
       - conditions:
@@ -157,9 +169,9 @@ action:
                     entity_id: !input light
                   data:
                     brightness_step_pct: -10
-                    transition: 0.25
+                    transition: "{{ (var_speed / 1000)|float }}"
                 - delay:
-                    milliseconds: 250
+                    milliseconds: !input speed
 
       # Short-Press on the color-up button.
       - conditions:
@@ -175,7 +187,7 @@ action:
           - service: light.turn_on
             data:
               entity_id: !input light
-              transition: 0.5
+              transition: "{{ (var_speed / 1000)|float }}"
               hs_color: "{{ states(var_preset) }}"
 
       # Long-Press on the color-up button.
@@ -195,10 +207,10 @@ action:
                 - service: light.turn_on
                   data:
                     entity_id: !input light
-                    transition: 0.25
+                    transition: "{{ (var_speed / 1000)|float }}"
                     hs_color: "{{ states(var_preset) }}"
                 - delay:
-                    milliseconds: 250
+                    milliseconds: !input speed
 
       # Short-Press on the color-down button.
       - conditions:
@@ -214,7 +226,7 @@ action:
           - service: light.turn_on
             data:
               entity_id: !input light
-              transition: 0.5
+              transition: "{{ (var_speed / 1000)|float }}"
               hs_color: "{{ states(var_preset) }}"
 
       # Long-Press on the color-down button.
@@ -234,10 +246,10 @@ action:
                 - service: light.turn_on
                   data:
                     entity_id: !input light
-                    transition: 0.25
+                    transition: "{{ (var_speed / 1000)|float }}"
                     hs_color: "{{ states(var_preset) }}"
                 - delay:
-                    milliseconds: 250
+                    milliseconds: !input speed
 
     # Any other event will cancel the repeat loops.
     default: []

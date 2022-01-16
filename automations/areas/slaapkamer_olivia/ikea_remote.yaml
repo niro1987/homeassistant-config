@@ -14,3 +14,4 @@ use_blueprint:
   input:
     remote: d2bc21bc89904851a76366dc3f2653ae
     light: light.olivia_plafond
+    speed: 300
