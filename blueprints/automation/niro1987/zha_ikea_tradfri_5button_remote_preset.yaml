@@ -88,7 +88,7 @@ action:
             state: "unknown"
         sequence:
           - service: input_select.select_last
-            data:
+            target:
               entity_id: !input preset
 
   - choose:
@@ -181,12 +181,14 @@ action:
             value_template: "{{ trigger.event.data.args == [256,13,0] }}"
         sequence:
           - service: input_select.select_next
+            target:
+              entity_id: !input preset
             data:
               cycle: true
-              entity_id: !input preset
           - service: light.turn_on
-            data:
+            target:
               entity_id: !input light
+            data:
               transition: "{{ (var_speed / 1000)|float }}"
               hs_color: "{{ states(var_preset) }}"
 
@@ -201,12 +203,14 @@ action:
               while: []
               sequence:
                 - service: input_select.select_next
+                  target:
+                    entity_id: !input preset
                   data:
                     cycle: true
-                    entity_id: !input preset
                 - service: light.turn_on
-                  data:
+                  target:
                     entity_id: !input light
+                  data:
                     transition: "{{ (var_speed / 1000)|float }}"
                     hs_color: "{{ states(var_preset) }}"
                 - delay:
@@ -220,12 +224,14 @@ action:
             value_template: "{{ trigger.event.data.args == [257,13,0] }}"
         sequence:
           - service: input_select.select_previous
+            target:
+              entity_id: !input preset
             data:
               cycle: true
-              entity_id: !input preset
           - service: light.turn_on
-            data:
+            target:
               entity_id: !input light
+            data:
               transition: "{{ (var_speed / 1000)|float }}"
               hs_color: "{{ states(var_preset) }}"
 
@@ -240,12 +246,14 @@ action:
               while: []
               sequence:
                 - service: input_select.select_previous
+                  target:
+                    entity_id: !input preset
                   data:
                     cycle: true
-                    entity_id: !input preset
                 - service: light.turn_on
-                  data:
+                  target:
                     entity_id: !input light
+                  data:
                     transition: "{{ (var_speed / 1000)|float }}"
                     hs_color: "{{ states(var_preset) }}"
                 - delay:

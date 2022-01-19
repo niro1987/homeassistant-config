@@ -78,19 +78,21 @@ action:
                     state: "unknown"
                 sequence:
                   - service: input_select.select_last
-                    data:
+                    target:
                       entity_id: !input preset
           # Select next option
           - service: input_select.select_next
+            target:
+              entity_id: !input preset
             data:
               cycle: true
-              entity_id: !input preset
           # Set the light to the selected option
           - service: light.turn_on
+            target:
+              entity_id: !input light
             data:
               hs_color: "{{ states(var_input) }}"
               transition: 0.5
-              entity_id: !input light
           - delay:
               milliseconds: 200
 

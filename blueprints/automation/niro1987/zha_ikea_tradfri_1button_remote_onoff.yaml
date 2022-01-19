@@ -46,7 +46,8 @@ action:
             value_template: '{{ trigger.event.data.command == "on" }}'
         sequence:
           - service: light.toggle
-            target: !input light
+            target:
+              entity_id: !input light
             data:
               brightness: 254
               hs_color:
@@ -61,7 +62,8 @@ action:
             value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
         sequence:
           - service: light.toggle
-            target: !input light
+            target:
+              entity_id: !input light
             data:
               brightness: 254
               hs_color:
