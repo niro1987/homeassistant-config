@@ -54,7 +54,7 @@ action:
           - choose: []
             default: !input short
           - delay:
-              milliseconds: 200
+              milliseconds: 500
 
       # Long-Press
       - conditions:
@@ -64,7 +64,7 @@ action:
           - choose: []
             default: !input long
           - delay:
-              milliseconds: 200
+              milliseconds: 500
 
     # Any other event will cancel the repeat loops (i.e. releasing the [on|off] button)
     default: []
