@@ -187,7 +187,7 @@ action:
           - service: light.turn_on
             target:
               entity_id: !input light
-            data: "{{ states('input_select.preset_select') }}"
+            data: "{{ states(var_preset) }}"
 
       # Long-Press on the color-up button.
       - conditions:
@@ -207,7 +207,7 @@ action:
                 - service: light.turn_on
                   target:
                     entity_id: !input light
-                  data: "{{ states('input_select.preset_select') }}"
+                  data: "{{ states(var_preset) }}"
                 - delay:
                     milliseconds: !input speed
 
@@ -226,7 +226,7 @@ action:
           - service: light.turn_on
             target:
               entity_id: !input light
-            data: "{{ states('input_select.preset_select') }}"
+            data: "{{ states(var_preset) }}"
 
       # Long-Press on the color-down button.
       - conditions:
@@ -246,7 +246,7 @@ action:
                 - service: light.turn_on
                   target:
                     entity_id: !input light
-                  data: "{{ states('input_select.preset_select') }}"
+                  data: "{{ states(var_preset) }}"
                 - delay:
                     milliseconds: !input speed
 
