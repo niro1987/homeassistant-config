@@ -1,0 +1,17 @@
+---
+#
+# This automation simulates the use of the IKEA TRADFRI Remote control
+# connected through zha but should also work for other type of events.
+# Requires Home Assistant 0.113 or higher.
+#
+id: slaapkamer_harvey-ikea_remote
+alias: Slaapkamer Harvey IKEA Remote
+description: >-
+  Bedien de verlichting met de IKEA Remote.
+
+use_blueprint:
+  path: niro1987/zha_ikea_tradfri_5button_remote_color.yaml
+  input:
+    remote: 61c87e4b3a45f41ad8de3f47d0e39317
+    light: light.harvey_plafond
+    speed: 300

@@ -1,0 +1,16 @@
+---
+substitutions:
+  devicename: slaapkamer_harvey
+
+packages:
+  device: !include common/devices/sonoff_mini.yaml
+  base: !include common/default_base.yaml
+
+binary_sensor:
+  - platform: gpio
+    id: binary_1
+    name: 'Slaapkamer Harvey Switch'
+    pin:
+      number: GPIO4
+      mode: INPUT_PULLUP
+      inverted: True
