@@ -6,11 +6,32 @@ packages:
   device: !include common/devices/sonoff_mini.yaml
   base: !include common/default_base.yaml
 
+output:
+  - platform: gpio
+    id: output_1
+    pin: GPIO12
+
 binary_sensor:
   - platform: gpio
     id: binary_1
     name: 'Slaapkamer Switch'
     pin:
+      number: GPIO16
+      # mode: INPUT_PULLUP
+      inverted: True
+  - platform: gpio
+    id: binary_2
+    name: 'Kantoor Switch'
+    pin:
       number: GPIO4
       mode: INPUT_PULLUP
       inverted: True
+    on_state:
+      then:
+        - light.toggle: light_1
+
+light:
+  - platform: binary
+    id: light_1
+    name: 'Kantoor'
+    output: output_1
