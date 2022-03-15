@@ -1,0 +1,12 @@
+---
+# Limits the volume for the Google Mini speaker.
+id: slaapkamer_harvey-volume_limit
+alias: Volume Limit Harvey
+description: >-
+  Limiteer het volume van de Google Mini speaker van Harvey
+
+use_blueprint:
+  path: niro1987/media_player_volume_limit.yaml
+  input:
+    player: media_player.harvey_mini
+    limit: 0.35
