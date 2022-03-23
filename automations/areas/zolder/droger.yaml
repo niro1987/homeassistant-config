@@ -18,6 +18,11 @@ trigger:
     from: "on"
     to: "off"
 
+condition:
+  - condition: state
+    entity_id: switch.droger
+    state: "on"
+
 action:
   - choose:
       - conditions:

@@ -16,6 +16,11 @@ trigger:
     from: "on"
     to: "off"
 
+condition:
+  - condition: state
+    entity_id: switch.wasmachine
+    state: "on"
+
 action:
   - choose:
       - conditions:
