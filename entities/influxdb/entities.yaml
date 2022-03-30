@@ -1,9 +1,0 @@
----
-#
-# https://www.home-assistant.io/integrations/influxdb/
-#
-entities:
-  - sensor.energy_consumption
-  - sensor.gas_consumption
-  - sensor.hourly_gas_consumption
-  - sensor.power_consumption

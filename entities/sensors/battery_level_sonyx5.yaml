@@ -1,8 +1,0 @@
----
-platform: template
-sensors:
-  battery_level_sonyx5:
-    friendly_name: "Sony X5 Battery Level"
-    value_template: "{{ state_attr('device_tracker.google_maps_111679937955604230591', 'battery_level') | int }}"
-    unit_of_measurement: "%"
-    icon_template: "mdi:battery-{%- if state_attr('device_tracker.google_maps_111679937955604230591', 'battery_charging') -%} charging- {%- endif -%} {{ [10,(((state_attr('device_tracker.google_maps_111679937955604230591', 'battery_level') | int / 10) | float) | round) * 10 | int] | max }}"
