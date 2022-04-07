@@ -21,7 +21,6 @@
 !/scenes.yaml
 !/scripts.yaml
 !/ui-lovelace*.yaml
-!/.HA_VERSION
 !/.gitignore
 !/README.md
 !/LICENSE
