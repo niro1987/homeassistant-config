@@ -12,7 +12,7 @@ sensors:
           'sensor.lily_luchtvochtigheid',
           'sensor.olivia_luchtvochtigheid',
           'sensor.slaapkamer_luchtvochtigheid',
-          'sensor.zolder_luchtvochtigheid'
+          'sensor.harvey_luchtvochtigheid'
         ]
       %}
       {% set VALUES = states
