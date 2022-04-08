@@ -1,5 +1,0 @@
----
-#
-# https://www.home-assistant.io/integrations/group/
-#
-group: !include_dir_named ../entities/groups

@@ -1,6 +1,0 @@
----
-name: Badkamer
-platform: group
-entities:
-  - light.badkamer_plafond
-  - light.badkamer_spiegel

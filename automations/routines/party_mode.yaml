@@ -1,9 +1,0 @@
-id: party-mode
-alias: Party Mode
-description: ""
-use_blueprint:
-  path: niro1987/party_lights.yaml
-  input:
-    light: light.woonkamer
-    switch: input_boolean.party_mode
-    speed: 1000
