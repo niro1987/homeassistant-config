@@ -15,7 +15,6 @@
 ## Allow files
 !/automations.yaml
 !/configuration.yaml
-!/customize.yaml
 !/light_profiles.csv
 !/scenes.yaml
 !/scripts.yaml
