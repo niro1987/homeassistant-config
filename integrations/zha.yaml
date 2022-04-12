@@ -1,0 +1,10 @@
+zha:
+  database_path: /config/zha/zigbee.db
+  enable_quirks: true
+  custom_quirks_path: /config/zha/quirks
+  zigpy_config:
+    ota:
+      ikea_provider: true # Auto update Trådfri devices
+      ledvance_provider: true # Auto update LEDVANCE/OSRAM devices
+      salus_provider: true # Auto update SALUS/Computime devices
+      otau_directory: /config/zha/ota # Utilize .ota files to update everything else
