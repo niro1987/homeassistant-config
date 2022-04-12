@@ -27,39 +27,5 @@ action:
       entity_id: media_player.woonkamer_mini
       media_content_id: !secret doorbell_sound
       media_content_type: music
-  - service: media_player.play_media
-    data:
-      entity_id: media_player.zolder_mini
-      media_content_id: !secret doorbell_sound
-      media_content_type: music
-  - choose:
-      - conditions:
-          - condition: state
-            entity_id: person.danielle
-            state: "home"
-        sequence:
-          - service: notify.mobile_app_j9210
-            data:
-              title: Deurbel
-              message: Ding Dong!
-              data:
-                group: Deurbel
-                tag: Deurbel
-                timeout: 60
-  - choose:
-      - conditions:
-          - condition: state
-            entity_id: person.niels
-            state: "home"
-        sequence:
-          - service: notify.mobile_app_nimbus_2000
-            data:
-              title: Deurbel
-              message: Ding! Dong!
-              data:
-                apns_headers:
-                  apns-collapse-id: Deurbel
-                push:
-                  thread-id: Deurbel
   - delay:
       seconds: 10
