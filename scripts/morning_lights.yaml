@@ -2,29 +2,28 @@
 #
 #
 #
-morning_lights:
-  alias: Morning Lights
-  description: Slowly turn on light(s)
-  icon: mdi:weather-sunset-up
+alias: Morning Lights
+description: Slowly turn on light(s)
+icon: mdi:weather-sunset-up
 
-  mode: parallel
-  max: 10
-  max_exceeded: silent
+mode: parallel
+max: 10
+max_exceeded: silent
 
-  sequence:
-    - service: light.turn_on
-      data:
-        entity_id:
-          - light.woonkamer
-          - light.keuken
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-        transition: 60
-    - delay:
-        seconds: 60
-    - service: light.turn_on
-      data:
-        entity_id:
-          - light.eetkamer
+sequence:
+  - service: light.turn_on
+    data:
+      entity_id:
+        - light.woonkamer
+        - light.keuken
+      brightness: 254
+      hs_color:
+        - 38.222
+        - 52.941
+      transition: 60
+  - delay:
+      seconds: 60
+  - service: light.turn_on
+    data:
+      entity_id:
+        - light.eetkamer

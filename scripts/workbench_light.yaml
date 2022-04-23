@@ -2,37 +2,36 @@
 #
 #
 #
-workbench_light:
-  alias: Workbench Light
-  description: Tripple state light (off|dim|bright)
-  icon: mdi:barn
+alias: Workbench Light
+description: Tripple state light (off|dim|bright)
+icon: mdi:barn
 
-  mode: restart
+mode: restart
 
-  sequence:
-    - choose:
-        - conditions:
-            - condition: state
+sequence:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: light.werkbank_dim
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            data:
               entity_id: light.werkbank_dim
-              state: "off"
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: light.werkbank_dim
-        - conditions:
-            - condition: state
-              entity_id: light.werkbank_dim
-              state: "on"
-            - condition: state
+      - conditions:
+          - condition: state
+            entity_id: light.werkbank_dim
+            state: "on"
+          - condition: state
+            entity_id: light.werkbank_vel
+            state: "off"
+        sequence:
+          - service: light.turn_on
+            data:
               entity_id: light.werkbank_vel
-              state: "off"
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: light.werkbank_vel
-      default:
-        - service: light.turn_off
-          data:
-            entity_id:
-              - light.werkbank_dim
-              - light.werkbank_vel
+    default:
+      - service: light.turn_off
+        data:
+          entity_id:
+            - light.werkbank_dim
+            - light.werkbank_vel

@@ -2,86 +2,85 @@
 #
 # Reset the lights to the position of the switch.
 #
-reset_wallswitches:
-  alias: Switches - Reset
-  description: Reset the lights to the state of the switches.
+alias: Switches - Reset
+description: Reset the lights to the state of the switches.
 
-  mode: single
-  max_exceeded: silent
+mode: single
+max_exceeded: silent
 
-  sequence:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.keukenplafond_switch
-              state: "on"
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: light.keuken_plafond
-                transition: 1
-      default:
-        - service: light.turn_off
-          data:
-            entity_id: light.keuken_plafond
-            transition: 1
+sequence:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.keukenplafond_switch
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.keuken_plafond
+              transition: 1
+    default:
+      - service: light.turn_off
+        data:
+          entity_id: light.keuken_plafond
+          transition: 1
 
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.keukenkastjes_switch
-              state: "on"
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: light.keukenkastjes
-                transition: 1
-      default:
-        - service: light.turn_off
-          data:
-            entity_id: light.keukenkastjes
-            transition: 1
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.keukenkastjes_switch
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.keukenkastjes
+              transition: 1
+    default:
+      - service: light.turn_off
+        data:
+          entity_id: light.keukenkastjes
+          transition: 1
 
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.bar_switch
-              state: "on"
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: light.bar
-      default:
-        - service: light.turn_off
-          data:
-            entity_id: light.bar
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.bar_switch
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.bar
+    default:
+      - service: light.turn_off
+        data:
+          entity_id: light.bar
 
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.eettafel_switch
-              state: "on"
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: light.eettafel
-      default:
-        - service: light.turn_off
-          data:
-            entity_id: light.eettafel
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.eettafel_switch
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.eettafel
+    default:
+      - service: light.turn_off
+        data:
+          entity_id: light.eettafel
 
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.woonkamer_switch
-              state: "on"
-          sequence:
-            - service: light.turn_on
-              data:
-                entity_id: light.woonkamer
-                transition: 1
-      default:
-        - service: light.turn_off
-          data:
-            entity_id: light.woonkamer
-            transition: 1
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.woonkamer_switch
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data:
+              entity_id: light.woonkamer
+              transition: 1
+    default:
+      - service: light.turn_off
+        data:
+          entity_id: light.woonkamer
+          transition: 1

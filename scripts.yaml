@@ -1,2 +1,8 @@
----
-{}
+'1650742929648':
+  alias: ZHA - Aqara Vibration - Set Sensitivity
+  use_blueprint:
+    path: niro1987/zha_aqara_vibration_set_sensitivity.yaml
+    input:
+      device: 578cb579860a961524fa56a029c2ebd6
+      sensitivity: Medium
+  mode: single

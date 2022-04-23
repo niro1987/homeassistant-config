@@ -2,32 +2,31 @@
 #
 #
 #
-find_my_iphone:
-  alias: Find my iPhone
-  description: Send a critical notification to my phone so that I can find it.
-  icon: mdi:bell-ring
+alias: Find my iPhone
+description: Send a critical notification to my phone so that I can find it.
+icon: mdi:bell-ring
 
-  mode: single
-  max_exceeded: silent
+mode: single
+max_exceeded: silent
 
-  sequence:
-    - repeat:
-        count: 5
-        sequence:
-          - service: notify.mobile_app_nimbus_2000
+sequence:
+  - repeat:
+      count: 5
+      sequence:
+        - service: notify.mobile_app_nimbus_2000
+          data:
+            title: Find my iPhone!
+            message: I'm right here, you idiot!
             data:
-              title: Find my iPhone!
-              message: I'm right here, you idiot!
-              data:
-                tag: "find_my_iphone"
-                push:
-                  sound:
-                    name: "Alarm_Nightstand_Haptic.caf"
-                    critical: 1
-                    volume: 1.0
-          - delay: 5
-          - service: notify.mobile_app_nimbus_2000
+              tag: "find_my_iphone"
+              push:
+                sound:
+                  name: "Alarm_Nightstand_Haptic.caf"
+                  critical: 1
+                  volume: 1.0
+        - delay: 5
+        - service: notify.mobile_app_nimbus_2000
+          data:
+            message: "clear_notification"
             data:
-              message: "clear_notification"
-              data:
-                tag: "find_my_iphone"
+              tag: "find_my_iphone"
