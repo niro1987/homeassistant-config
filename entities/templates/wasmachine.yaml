@@ -1,0 +1,10 @@
+---
+binary_sensor:
+  - name: Wasmachine
+    device_class: running
+    state: "{{ states('sensor.wasmachine_current_consumption')|float > 1.5 }}"
+    availability: "{{ states('sensor.wasmachine_current_consumption')|string != 'unknown' }}"
+    delay_off:
+      seconds: 35
+    delay_on:
+      seconds: 35
