@@ -1,4 +1,0 @@
----
-platform: google_maps
-username: !secret gmail_niels
-scan_interval: 60
