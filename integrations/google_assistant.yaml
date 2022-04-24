@@ -7,4 +7,4 @@ google_assistant:
   service_account: !include ../home-assistant-69a42-dba6c6ba38ce.json
   report_state: true
   expose_by_default: false
-  entity_config: !include_dir_named ../entities/assistants/google
+  entity_config: !include_dir_named ../assistants/google
