@@ -1,0 +1,14 @@
+---
+#
+# Custom Integration
+# https://github.com/cyberjunky/home-assistant-hvcgroep
+#
+sensor:
+  - platform: hvcgroep
+    postcode: !secret postcode
+    huisnummer: !secret huisnummer
+    resources:
+      - gft
+      - plastic
+      - papier
+      - restafval
