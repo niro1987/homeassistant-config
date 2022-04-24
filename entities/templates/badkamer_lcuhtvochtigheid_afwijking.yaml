@@ -1,0 +1,12 @@
+---
+sensor:
+  - name: Badkamer Luchtvochtigheid Afwijking
+    unit_of_measurement: "%"
+    device_class: humidity
+    state: >-
+      {% set TARGET = states('sensor.badkamer_luchtvochtigheid')|float(default=0.0) %}
+      {% set SOURCE = states('sensor.gemiddelde_luchtvochtigheid')|float(default=0.0) %}
+      {{ (TARGET - SOURCE) | round(2) }}
+    attributes:
+      target: "{{ states('sensor.badkamer_luchtvochtigheid')|float(default=0.0) }}"
+      source: "{{ states('sensor.gemiddelde_luchtvochtigheid')|float(default=0.0) }}"
