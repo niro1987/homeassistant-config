@@ -2,7 +2,7 @@
 binary_sensor:
   - name: Droger
     device_class: running
-    state: "{{ states('sensor.droger_current_consumption')|float > 2.5 }}"
+    state: "{{ states('sensor.droger_current_consumption')|float(0) > 2.5 }}"
     availability: "{{ states('sensor.droger_current_consumption')|string != 'None' }}"
     delay_off:
       seconds: 35
