@@ -4,7 +4,7 @@
 # [issue](https://github.com/zigpy/zha-device-handlers/issues/1404)
 # is resolved.
 id: system_smartplugs
-alias: Smartplugs
+alias: Smartplugs Workaround
 description: Workaround to read power measurements from the smartplugs.
 
 mode: restart
