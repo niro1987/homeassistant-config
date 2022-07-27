@@ -5,6 +5,6 @@ binary_sensor:
     state: "{{ states('sensor.droger_current_consumption')|float(0) > 170 }}"
     availability: "{{ states('sensor.droger_current_consumption')|string != 'None' }}"
     delay_off:
-      seconds: 60
+      minutes: 10
     delay_on:
       seconds: 0
