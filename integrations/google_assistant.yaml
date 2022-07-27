@@ -8,4 +8,3 @@ google_assistant:
   report_state: true
   expose_by_default: false
   entity_config: !include_dir_named ../assistants/google
-  secure_devices_pin: !secret secure_devices_pin
