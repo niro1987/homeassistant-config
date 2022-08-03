@@ -1,0 +1,82 @@
+---
+# Let's party!
+
+blueprint:
+  source_url: https://github.com/niro1987/homeassistant-config/blob/main/blueprints/automation/niro1987/lightsaver.yaml
+
+  name: Lightsaver
+
+  description: >-
+    Turn off the lights in a room when unnecessary. Requires the `sun` integration.
+
+  domain: automation
+
+  input:
+    light:
+      name: Light
+      description: The light entity to turn off.
+      selector:
+        entity:
+          domain: light
+    off_delay:
+      name: Off Delay
+      description: The time in minutes before the light turns off.
+      selector:
+        number:
+          step: 1
+          min: 1
+          max: 60
+          mode: slider
+          unit_of_measurement: minutes
+      default: 5
+    sunrise_delay:
+      name: Sunrise Delay
+      description: >-
+        The time in minutes after sunrise and before sunset in between of wich
+        the lights should be turned off.
+      selector:
+        number:
+          step: 1
+          min: 1
+          max: 60
+          mode: slider
+          unit_of_measurement: minutes
+      default: 5
+    sunset_delay:
+      name: Sunset Delay
+      description: >-
+        The time in minutes after sunrise and before sunset in between of wich
+        the lights should be turned off.
+      selector:
+        number:
+          step: 1
+          min: -60
+          max: -1
+          mode: slider
+          unit_of_measurement: minutes
+      default: -5
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: state
+    entity_id: !input light
+    to: "on"
+    for:
+      minutes: !input off_delay
+
+condition:
+  - condition: sun
+    after: sunrise
+    after_offset:
+      minutes: !input sunrise_delay
+  - condition: sun
+    before: sunset
+    before_offset:
+      minutes: !input sunset_delay
+
+action:
+  - service: light.turn_off
+    target:
+      entity_id: !input light

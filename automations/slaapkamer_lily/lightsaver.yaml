@@ -1,0 +1,10 @@
+id: lily-lightsaver
+alias: Lily Lightsaver
+description: ""
+use_blueprint:
+  path: niro1987/lightsaver.yaml
+  input:
+    light: light.lily_plafond
+    off_delay: 5
+    sunrise_delay: 30
+    sunset_delay: -30
