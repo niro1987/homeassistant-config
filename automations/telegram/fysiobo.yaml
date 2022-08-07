@@ -1,0 +1,31 @@
+---
+#
+# Send notification when FysioBO computers are offline
+#
+id: telegram-fysiobo
+alias: FysioBO Offline Notification
+description: Send a notification when one of the FysioBO computers is offline
+
+mode: parallel
+max: 3
+max_exceeded: silent
+
+variables:
+  telegram_target: !secret telegram_groupchat
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.fysiobo1
+      - binary_sensor.fysiobo2
+      - binary_sensor.fysiobo3
+
+action:
+  - service: telegram_bot.send_message
+    data:
+      target: "{{telegram_target}}"
+      title: "*FysioBO*"
+      message: >-
+        {{ state_attr(trigger.entity_id, 'friendly_name') }}
+        is nu
+        {{ trigger.to_state.state }}line!
