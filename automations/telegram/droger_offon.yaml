@@ -1,0 +1,44 @@
+---
+#
+# Notify anyone who is home that the tumble dryer is ready
+# Power-cycle the dryer to stop it from spinning,
+# the damn thing has a so called 'keep-soft' feature..
+#
+id: telegram-dryer_offon
+alias: Dryer Off-On
+description: Turn the dryer socket off and on again (stops the program)
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: event
+    event_type: "telegram_command"
+    event_data:
+      command: "/droger"
+
+condition:
+  - condition: state
+    entity_id: switch.droger
+    state: "on"
+
+action:
+  - service: telegram_bot.send_message
+    data:
+      target: "{{trigger.event.data.chat_id}}"
+      title: "*Droger*"
+      message: "Uit.."
+  - service: switch.turn_off
+    entity_id:
+      - switch.droger
+  - delay:
+      seconds: 1
+  - service: telegram_bot.edit_message
+    data:
+      chat_id: "{{trigger.event.data.chat_id}}"
+      message_id: "last"
+      title: "*Droger*"
+      message: "Uit..  Aan.."
+  - service: switch.turn_on
+    entity_id:
+      - switch.droger
