@@ -32,7 +32,7 @@ binary_sensor:
     device_class: connectivity
 
 sensor:
-  - name: FysioBO1
+  - name: FysioBO1 Latest Handshake
     value_template: "{{ value_json.FysioBO1.latest_handshake | as_datetime }}"
     device_class: timestamp
     json_attributes: FysioBO1
@@ -45,7 +45,7 @@ sensor:
     state_class: total
     unit_of_measurement: MB/s
 
-  - name: FysioBO2
+  - name: FysioBO2 Latest Handshake
     value_template: "{{ value_json.FysioBO2.latest_handshake | as_datetime }}"
     device_class: timestamp
     json_attributes: FysioBO2
@@ -58,7 +58,7 @@ sensor:
     state_class: total
     unit_of_measurement: MB/s
 
-  - name: FysioBO3
+  - name: FysioBO3 Latest Handshake
     value_template: "{{ value_json.FysioBO3.latest_handshake | as_datetime }}"
     device_class: timestamp
     json_attributes: FysioBO3
