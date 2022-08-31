@@ -5,8 +5,6 @@
 id: dimlicht
 name: Dimlicht
 entities:
-  switch.flux_woonkamer:
-    state: "off"
   light.woonkamer:
     state: "on"
     brightness: 100

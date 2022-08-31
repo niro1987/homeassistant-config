@@ -5,8 +5,6 @@
 id: avond
 name: Avond
 entities:
-  switch.flux_woonkamer:
-    state: "off"
   light.woonkamer:
     state: "on"
     brightness: 254
