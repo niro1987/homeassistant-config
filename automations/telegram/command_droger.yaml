@@ -4,8 +4,8 @@
 # Power-cycle the dryer to stop it from spinning,
 # the damn thing has a so called 'keep-soft' feature..
 #
-id: telegram-dryer_offon
-alias: Dryer Off-On
+id: telegram-command_droger
+alias: Telegram Dryer Off-On
 description: Turn the dryer socket off and on again (stops the program)
 
 mode: single
@@ -13,9 +13,13 @@ max_exceeded: silent
 
 trigger:
   - platform: event
-    event_type: "telegram_command"
+    event_type: telegram_command
     event_data:
-      command: "/droger"
+      command: /droger
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /droger@perforsn_bot
 
 condition:
   - condition: state

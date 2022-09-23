@@ -5,7 +5,7 @@
 # the damn thing has a so called 'keep-soft' feature..
 #
 id: telegram-dryer
-alias: Dryer Notification
+alias: Telegram Dryer Notification
 description: Send a notification when the dryer is ready
 
 mode: single

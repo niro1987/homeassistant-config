@@ -3,7 +3,7 @@
 # Send notification when FysioBO computers are offline
 #
 id: telegram-fysiobo
-alias: FysioBO Offline Notification
+alias: Telegram FysioBO Offline Notification
 description: Send a notification when one of the FysioBO computers is offline
 
 mode: parallel
