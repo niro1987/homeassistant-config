@@ -44,7 +44,7 @@ trigger:
 action:
   - service: scene.create
     data:
-      scene_id: party_lights_pre_state
+      scene_id: "party_{{this.attributes.id}}"
       snapshot_entities:
         - !input light
   - repeat:
@@ -71,4 +71,4 @@ action:
       milliseconds: !input speed
   - service: scene.turn_on
     target:
-      entity_id: scene.party_lights_pre_state
+      entity_id: "scene.party_{{this.attributes.id}}"

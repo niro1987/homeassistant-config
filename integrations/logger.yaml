@@ -3,7 +3,7 @@
 # https://www.home-assistant.io/integrations/logger/
 #
 logger:
-  default: warning
+  default: debug
   logs:
     homeassistant.components.stream: fatal
     homeassistant.components.foscam: fatal

@@ -7,7 +7,7 @@ mode: single
 max_exceeded: silent
 
 variables:
-  telegram_target: !secret telegram_niels
+  telegram_target: !secret telegram_groupchat
 
 trigger:
   - platform: time
