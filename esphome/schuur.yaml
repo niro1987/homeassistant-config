@@ -21,7 +21,7 @@ output:
 binary_sensor:
   - platform: gpio
     pin:
-      number: 15
+      number: 16
       mode: INPUT_PULLDOWN
     filters:
       - invert:
@@ -57,14 +57,9 @@ binary_sensor:
         max_length: 1000ms
         then:
           - light.turn_off: light_20
-          
-  - platform: gpio
-    pin:
-      number: 0
-    id: "boot"
-    on_press:
-      then:
-        - switch.turn_on: restrt
+
+esp32_ble_tracker:
+bluetooth_proxy:
 
 light:
   - platform: binary
