@@ -16,6 +16,7 @@ sensor:
 
 switch:
   - platform: restart
+    id: restrt
     name: "${devicename} Restart"
   - platform: safe_mode
     name: "${devicename} Restart (Safe Mode)"

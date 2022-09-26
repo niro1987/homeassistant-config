@@ -1,0 +1,28 @@
+---
+#
+# Send notification when FysioBO computers are offline
+#
+id: telegram-command_reboot
+alias: Telegram Home Assitant Reboot Command
+description: Reply to the reboot command
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /reboot
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /reboot@perforsn_bot
+
+action:
+  - service: telegram_bot.send_message
+    data:
+      target: "{{trigger.event.data.chat_id}}"
+      title: "*Home Assistant*"
+      message: "Home Assistant wordt nu opnieuw opgestart."
+  - service: homeassistant.restart

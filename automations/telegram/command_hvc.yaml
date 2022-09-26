@@ -1,0 +1,31 @@
+---
+#
+# Send notification when FysioBO computers are offline
+#
+id: telegram-command_hvc
+alias: Telegram HVC Afvalkalender
+description: Reply to the hvc command
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /hvc
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /hvc@perforsn_bot
+
+action:
+  - service: telegram_bot.send_message
+    data:
+      target: "{{trigger.event.data.chat_id}}"
+      title: "*HVC*"
+      message: |
+        Rest: {{states('sensor.hvc_groep_restafval')}}
+        Plastic: {{states('sensor.hvc_groep_plastic')}}
+        GFT: {{states('sensor.hvc_groep_gft')}}
+        Papier: {{states('sensor.hvc_groep_papier')}}

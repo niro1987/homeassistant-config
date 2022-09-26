@@ -1,0 +1,16 @@
+---
+#
+# Send notification when FysioBO computers are offline
+#
+id: telegram-command
+alias: Telegram Commands
+description: Reply to any command
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: event
+    event_type: telegram_text
+
+action: []

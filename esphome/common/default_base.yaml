@@ -3,9 +3,8 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   ap:
-    ssid: ${devicename}
     password: !secret wifi_password
-captive_portal:
+# captive_portal:
 
 web_server:
   port: 80
