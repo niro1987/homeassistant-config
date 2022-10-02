@@ -1,0 +1,33 @@
+---
+#
+id: woonkamer-stekkerblok
+alias: Stekkerblok
+description: Zet het stekkerblok aan en uit
+
+mode: single
+max_exceeded: silent
+
+variables:
+  future_state: "on"
+
+trigger:
+  - platform: time
+    at: "00:00:00"
+    variables:
+      future_state: "off"
+  - platform: time
+    at: "07:00:00"
+    variables:
+      future_state: "on"
+
+action:
+  - choose:
+      - conditions: "{{future_state == 'off'}}"
+        sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.tavel
+    default:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.tavel
