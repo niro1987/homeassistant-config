@@ -16,7 +16,7 @@ trigger:
     variables:
       future_state: "off"
   - platform: time
-    at: "07:00:00"
+    at: "06:00:00"
     variables:
       future_state: "on"
 
