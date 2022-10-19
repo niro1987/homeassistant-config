@@ -23,6 +23,10 @@ trigger:
     at: "02:00:00"
     variables:
       future_state: "off"
+  - platform: time
+    at: "05:00:00"
+    variables:
+      future_state: "on"
 
 action:
   - choose:
