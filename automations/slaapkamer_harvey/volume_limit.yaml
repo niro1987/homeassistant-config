@@ -9,4 +9,4 @@ use_blueprint:
   path: niro1987/media_player_volume_limit.yaml
   input:
     player: media_player.harvey_mini
-    limit: 0.35
+    limit: 0.5
