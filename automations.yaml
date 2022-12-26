@@ -1,1 +1,28 @@
-[]
+- id: '1666630558260'
+  alias: Tag Fietsenschuur is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: ebc73c3f-f42a-426e-a7fe-ae78f3457908
+  condition: []
+  action:
+  - type: toggle
+    device_id: e3891971c58e49ff873cb3c7e237cac0
+    entity_id: light.fietsenschuurtje
+    domain: light
+  mode: single
+- id: '1668577393619'
+  alias: Eerste verdieping uit
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.eerste_verdieping
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.eerste_verdieping
+  mode: single
