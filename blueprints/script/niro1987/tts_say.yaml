@@ -1,0 +1,37 @@
+---
+#
+# Announce a message on a speaker
+#
+blueprint:
+  source_url: https://github.com/niro1987/homeassistant-config/blob/main/blueprints/script/niro1987/zha_aqara_vibration_set_sensitivity.yaml
+
+  name: Announce Message
+  description: Announce a message on a speaker
+
+  domain: script
+
+  input:
+    speaker:
+      name: Speaker
+      description: The speaker
+      selector:
+        entity:
+          integration: media_player
+    message:
+      name: Message
+      description: The helper that stores the message
+      selector:
+        entity:
+          integration: input_text
+
+mode: restart
+
+variables:
+  message_entity: !input message
+
+sequence:
+  - service: tts.google_translate_say
+    data:
+      entity_id: !input speaker
+      language: nl
+      message: "{{states(message_entity)}}"

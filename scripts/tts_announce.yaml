@@ -1,0 +1,22 @@
+---
+#
+#
+#
+alias: Announce
+description: Announce a message on a Google Mini speaker
+icon: mdi:bullhorn
+
+mode: restart
+
+fields:
+  speaker_entity:
+    name: Speaker
+    description: The speaker to announce on
+    required: true
+
+sequence:
+  - service: tts.google_translate_say
+    data:
+      entity_id: "{{ speaker_entity }}"
+      language: nl
+      message: "{{states('input_text.omroep')}}"
