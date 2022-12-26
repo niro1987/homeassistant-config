@@ -2,4 +2,4 @@
 #
 # https://www.home-assistant.io/integrations/rest
 #
-rest: !include_dir_list ../entities/rest
+rest: !include_dir_merge_named ../entities/rest
