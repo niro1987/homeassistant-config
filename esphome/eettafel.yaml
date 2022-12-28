@@ -6,22 +6,14 @@ packages:
   device: !include common/devices/sonoff_mini.yaml
   base: !include common/default_base.yaml
 
-output:
-  - platform: gpio
-    id: output_1
-    pin: GPIO12
-
 binary_sensor:
   - platform: gpio
     id: binary_1
-    name: 'Eettafel Switch'
+    name: 'Tafel Switch'
     pin:
       number: GPIO4
       mode: INPUT_PULLUP
       inverted: True
-    on_state:
-      then:
-        - light.toggle: light_1
     
   - platform: gpio
     id: binary_2
@@ -30,9 +22,3 @@ binary_sensor:
       number: GPIO16
       # mode: INPUT_PULLUP
       inverted: True
-
-light:
-  - platform: binary
-    id: light_1
-    name: 'Eettafel'
-    output: output_1
