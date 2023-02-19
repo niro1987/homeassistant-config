@@ -5,13 +5,19 @@
 id: dimlicht
 name: Dimlicht
 entities:
-  light.woonkamer:
+  light.richting_hoek:
+    state: "on"
+    brightness: 5
+    color_temp: 500
+  light.richting_televisie:
     state: "on"
     brightness: 100
-    hs_color:
-      - 38.222
-      - 52.941
-  light.eettafel:
+    color_temp: 450
+  light.richting_trap:
+    state: "on"
+    brightness: 100
+    color_temp: 500
+  light.tafel:
     state: "off"
   light.bar:
     state: "off"
