@@ -245,13 +245,6 @@ action:
                 data:
                   brightness: 100
                   color_name: red
-              - service: spotcast.start
-                data:
-                  uri: "spotify:playlist:337EOawnNNDBG9IQEvLQf3"
-                  random_song: true
-                  shuffle: true
-                  start_volume: 30
-                  entity_id: media_player.slaapkamer_mini
 
       # # Long-Press on the color-up button.
       - conditions:
@@ -287,13 +280,6 @@ action:
                 data:
                   brightness: 100
                   color_name: red
-              - service: spotcast.start
-                data:
-                  uri: "spotify:playlist:337EOawnNNDBG9IQEvLQf3"
-                  random_song: true
-                  shuffle: true
-                  start_volume: 30
-                  entity_id: media_player.slaapkamer_mini
 
       # # Long-Press on the color-down button.
       - conditions:
