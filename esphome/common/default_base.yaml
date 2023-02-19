@@ -16,7 +16,11 @@ ota:
   password: !secret password
 
 api:
-  password: !secret password
+  # password: !secret password
+  reboot_timeout:
+    minutes: 10
+  encryption:
+    key: !secret encryption_key
 
 logger:
   level: DEBUG
