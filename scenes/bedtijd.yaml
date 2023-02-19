@@ -7,7 +7,7 @@ name: Bedtijd
 entities:
   light.woonkamer:
     state: "off"
-  light.eettafel:
+  light.tafel:
     state: "off"
   light.bar:
     state: "off"

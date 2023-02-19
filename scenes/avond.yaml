@@ -11,7 +11,7 @@ entities:
     hs_color:
       - 38.222
       - 52.941
-  light.eettafel:
+  light.tafel:
     state: "on"
   light.bar:
     state: "on"
