@@ -9,6 +9,6 @@ description: >-
 use_blueprint:
   path: niro1987/zha_ikea_tradfri_1button_remote_scenes.yaml
   input:
-    remote: 14a2ef3dbbd93a415abb3b8df25b1bad
+    remote: 0bf83d34452ac1108d4bca3a52a56653
     scene_short: scene.avond
     scene_long: scene.dimlicht
