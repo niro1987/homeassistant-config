@@ -15,25 +15,22 @@ trigger:
   - platform: numeric_state
     entity_id: sensor.badkamer_luchtvochtigheid_afwijking
     above: 20
+    id: "on"
   - platform: numeric_state
     entity_id: sensor.badkamer_luchtvochtigheid_afwijking
     below: 15
+    id: "off"
 
 action:
   - choose:
       - conditions:
-          - condition: numeric_state
-            entity_id: sensor.badkamer_luchtvochtigheid_afwijking
-            above: 20
+          - condition: trigger
+            id: "on"
         sequence:
           - service: switch.turn_on
             data_template:
               entity_id: switch.badkamer_spiegelverwarming
-      - conditions:
-          - condition: numeric_state
-            entity_id: sensor.badkamer_luchtvochtigheid_afwijking
-            below: 15
-        sequence:
-          - service: switch.turn_off
-            data_template:
-              entity_id: switch.badkamer_spiegelverwarming
+    default:
+      - service: switch.turn_off
+        data_template:
+          entity_id: switch.badkamer_spiegelverwarming

@@ -13,24 +13,22 @@ variables:
 trigger:
   - platform: sun
     event: sunset
-    variables:
-      future_state: "on"
+    id: "on"
   - platform: sun
     event: sunrise
-    variables:
-      future_state: "off"
+    id: "off"
   - platform: time
     at: "02:00:00"
-    variables:
-      future_state: "off"
+    id: "off"
   - platform: time
     at: "05:00:00"
-    variables:
-      future_state: "on"
+    id: "on"
 
 action:
   - choose:
-      - conditions: "{{future_state == 'off'}}"
+      - conditions:
+          - condition: trigger
+            id: "off"
         sequence:
           - service: switch.turn_off
             target:
