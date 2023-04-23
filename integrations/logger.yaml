@@ -7,4 +7,3 @@ logger:
   logs:
     homeassistant.components.stream: fatal
     homeassistant.components.foscam: fatal
-    homeassistant.components.braviatv: fatal
