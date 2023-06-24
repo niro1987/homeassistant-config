@@ -6,11 +6,8 @@ alias: ESPHome Update All
 description: Update all ESPHome devices
 icon: mdi:update
 
-mode: single
+mode: restart
 max_exceeded: silent
-
-variables:
-  telegram_target: !secret telegram_groupchat
 
 sequence:
   repeat:
