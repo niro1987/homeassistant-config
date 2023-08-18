@@ -23,6 +23,7 @@
 !/.gitignore
 !/README.md
 !/LICENSE
+!/.pre-commit-config.yaml
 
 ## Failsafe
 secrets.yaml

@@ -1,0 +1,31 @@
+---
+exclude: homeassistant/custom_components
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+        exclude: config/homeassistant/.HA_VERSION
+      - id: check-added-large-files
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: mixed-line-ending
+      - id: check-xml
+      - id: check-yaml
+        args: [--unsafe]
+      - id: sort-simple-yaml
+  - repo: https://github.com/IamTheFij/docker-pre-commit.git
+    rev: v3.0.1
+    hooks:
+      - id: docker-compose-check
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+  - repo: https://github.com/psf/black.git
+    rev: 23.7.0
+    hooks:
+      - id: black
