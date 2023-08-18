@@ -13,11 +13,11 @@ binary_sensor:
     pin:
       number: GPIO4
       mode: INPUT_PULLUP
-      inverted: True
+      inverted: true
   - platform: gpio
     id: binary_2
     name: 'Kantoor Switch'
     pin:
       number: GPIO16
       # mode: INPUT_PULLUP
-      inverted: True
+      inverted: true

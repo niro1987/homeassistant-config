@@ -4,7 +4,7 @@
 # to make sure I can still toggle the hue light when the switch is in the off position.
 #
 id: woonkamer-schakelaar
-alias: Woonkamer Schakelaar 
+alias: Woonkamer Schakelaar
 description: >-
   Zet het licht in de woonkamer aan/uit wanneer de schakelaar wordt geschakeld.
 

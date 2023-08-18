@@ -18,7 +18,7 @@ binary_sensor:
     pin:
       number: GPIO4
       mode: INPUT_PULLUP
-      inverted: True
+      inverted: true
     on_state:
       then:
         - light.toggle: light_1
@@ -28,7 +28,7 @@ binary_sensor:
     pin:
       number: GPIO16
       # mode: INPUT_PULLUP
-      inverted: True
+      inverted: true
     on_state:
       then:
         - light.toggle: light_1

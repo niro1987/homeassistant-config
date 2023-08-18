@@ -10,7 +10,7 @@ output:
   - platform: gpio
     pin: GPIO27
     id: 'output_2'
-    
+
   - platform: gpio
     pin: GPIO26
     id: 'output_3'
@@ -25,7 +25,7 @@ binary_sensor:
   - platform: gpio
     id: 'binary_2'
     name: 'Badkamer Spiegel Switch'
-    pin: 
+    pin:
       number: GPIO17
       mode: INPUT_PULLDOWN
     on_state:

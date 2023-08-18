@@ -21,7 +21,7 @@ binary_sensor:
     pin:
       number: GPIO4
       mode: INPUT_PULLUP
-      inverted: True
+      inverted: true
     filters:
       - delayed_on_off: 10ms
     on_state:
