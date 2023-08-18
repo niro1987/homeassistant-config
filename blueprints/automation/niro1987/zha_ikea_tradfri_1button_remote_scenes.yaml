@@ -19,21 +19,24 @@ blueprint:
       description: Select the remote control you wish to use.
       selector:
         device:
-          integration: zha
-          manufacturer: IKEA of Sweden
-          model: TRADFRI SHORTCUT Button
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: TRADFRI SHORTCUT Button
     scene_short:
       name: Short Press Scene
       description: Select the scene to be activated with a short press.
       selector:
         entity:
-          domain: scene
+          filter:
+            - domain: scene
     scene_long:
       name: Long Press Scene
       description: Select the scene to be activated with a long press.
       selector:
         entity:
-          domain: scene
+          filter:
+            - domain: scene
 
 mode: single
 max_exceeded: silent

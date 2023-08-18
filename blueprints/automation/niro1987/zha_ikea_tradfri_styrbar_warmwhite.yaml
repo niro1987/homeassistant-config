@@ -19,16 +19,18 @@ blueprint:
       description: Select the remote control you wish to use.
       selector:
         device:
-          integration: zha
-          manufacturer: IKEA of Sweden
-          model: Remote Control N2
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: Remote Control N2
 
     light:
       name: Light
       description: Select the light entity you wish to control.
       selector:
         entity:
-          domain: light
+          filter:
+            - domain: light
 
     speed:
       name: Speed

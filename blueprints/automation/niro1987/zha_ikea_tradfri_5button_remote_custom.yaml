@@ -19,9 +19,10 @@ blueprint:
       description: Select the remote control you wish to use.
       selector:
         device:
-          integration: zha
-          manufacturer: IKEA of Sweden
-          model: TRADFRI remote control
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: TRADFRI remote control
     power_short:
       name: Short Press - Power Button
       description: The action to perform on Short Press of the Power Button

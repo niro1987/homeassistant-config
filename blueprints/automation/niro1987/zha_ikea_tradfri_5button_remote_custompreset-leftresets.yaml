@@ -38,15 +38,17 @@ blueprint:
       description: Select the remote control you wish to use.
       selector:
         device:
-          integration: zha
-          manufacturer: IKEA of Sweden
-          model: TRADFRI remote control
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: TRADFRI remote control
     light:
       name: Light
       description: Select the light entity you wish to control.
       selector:
         entity:
-          domain: light
+          filter:
+            - domain: light
     speed:
       name: Speed
       description: The speed in which to update the light when the button is held.
@@ -63,7 +65,8 @@ blueprint:
       description: Select the helper entity with you pre defined settings.
       selector:
         entity:
-          domain: input_select
+          filter:
+            - domain: input_select
 
 mode: restart
 max_exceeded: silent
