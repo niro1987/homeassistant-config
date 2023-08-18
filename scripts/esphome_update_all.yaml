@@ -1,0 +1,18 @@
+---
+#
+# Update all ESPHome devices
+#
+alias: ESPHome Update All
+description: Update all ESPHome devices
+icon: mdi:update
+
+mode: restart
+max_exceeded: silent
+
+sequence:
+  - service: update.install
+    target:
+      entity_id: >-
+        {{ states.update | selectattr('state', 'eq', 'on') |
+        map(attribute='entity_id') | select('in',
+        integration_entities('esphome')) | list }}
