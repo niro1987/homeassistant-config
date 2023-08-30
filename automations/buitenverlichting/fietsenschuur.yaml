@@ -1,0 +1,13 @@
+---
+#
+#
+#
+id: buitenverlichting-fietsenschuur
+alias: Fietsenschuur
+description: >-
+  Schakelt verlichting in fietsenschuur
+use_blueprint:
+  path: niro1987/zha_ikea_tradfri_1button_remote_onoff.yaml
+  input:
+    remote: 14a2ef3dbbd93a415abb3b8df25b1bad
+    light: light.fietsenschuurtje
