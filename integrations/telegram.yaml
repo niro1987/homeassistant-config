@@ -6,9 +6,5 @@ telegram_bot:
   - platform: webhooks
     api_key: !secret telegram_api_key
     allowed_chat_ids: !secret telegram_allowed_chat_ids
-    trusted_networks:
-      - 149.154.160.0/20
-      - 91.108.4.0/22
-      - 127.0.0.1
-      - !secret http_trusted_proxies
+    trusted_networks: !secret telegram_trusted_networks
     url: !secret telegram_url
