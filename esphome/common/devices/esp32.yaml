@@ -8,18 +8,19 @@ binary_sensor:
   - platform: status
     name: "${devicename} Status"
 
+button:
+  - platform: restart
+    id: btn_restart
+    name: "${devicename} Restart"
+  - platform: safe_mode
+    id: btn_restart_safe
+    name: "${devicename} Restart (Safe Mode)"
+
 sensor:
   - platform: wifi_signal
     id: "wifisignal"
     update_interval: 60s
     name: "${devicename} Signal"
-
-switch:
-  - platform: restart
-    id: restrt
-    name: "${devicename} Restart"
-  - platform: safe_mode
-    name: "${devicename} Restart (Safe Mode)"
 
 text_sensor:
   - platform: wifi_info
