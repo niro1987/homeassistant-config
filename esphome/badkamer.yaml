@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: badkamer
+  static_ip: !secret badkamer_ip
 
 packages:
   device: !include common/devices/esp32.yaml

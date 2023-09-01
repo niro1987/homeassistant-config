@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: afzuiging
+  static_ip: !secret afzuiging_ip
 
 packages:
   device: !include common/devices/d1_mini.yaml

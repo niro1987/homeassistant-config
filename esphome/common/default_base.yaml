@@ -4,6 +4,11 @@ wifi:
   password: !secret wifi_password
   ap:
     password: !secret wifi_password
+  manual_ip:
+    static_ip: ${static_ip}
+    gateway: !secret gateway
+    subnet: !secret subnet
+    dns1: !secret dns1
 # captive_portal:
 
 web_server:

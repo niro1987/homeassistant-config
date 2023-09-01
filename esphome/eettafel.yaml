@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: eettafel
+  static_ip: !secret eettafel_ip
 
 packages:
   device: !include common/devices/sonoff_mini.yaml

@@ -1,9 +1,7 @@
 ---
-#
-#
-#
 substitutions:
   devicename: toilet
+  static_ip: !secret toilet_ip
 
 packages:
   device: !include common/devices/sonoff_mini.yaml

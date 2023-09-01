@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: zolder
+  static_ip: !secret zolder_ip
 
 packages:
   device: !include common/devices/sonoff_mini.yaml

@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: slaapkamer_lily
+  static_ip: !secret slaapkamer_lily_ip
 
 packages:
   device: !include common/devices/sonoff_mini.yaml

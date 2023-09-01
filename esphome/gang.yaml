@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: gang
+  static_ip: !secret gang_ip
 
 packages:
   device: !include common/devices/sonoff_mini.yaml

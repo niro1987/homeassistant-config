@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: bar
+  static_ip: !secret bar_ip
 
 packages:
   device: !include common/devices/sonoff_mini.yaml

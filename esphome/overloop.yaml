@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: overloop
+  static_ip: !secret overloop_ip
 
 packages:
   device: !include common/devices/sonoff_mini.yaml

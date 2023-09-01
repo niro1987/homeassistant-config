@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: keuken
+  static_ip: !secret keuken_ip
 
 packages:
   device: !include common/devices/sonoff_mini.yaml
