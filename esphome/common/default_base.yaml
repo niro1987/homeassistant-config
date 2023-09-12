@@ -9,6 +9,8 @@ wifi:
     gateway: !secret gateway
     subnet: !secret subnet
     dns1: !secret dns1
+  domain: .local
+  use_address: ${devicename}.local
 # captive_portal:
 
 web_server:
