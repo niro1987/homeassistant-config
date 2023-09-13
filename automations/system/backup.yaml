@@ -1,0 +1,19 @@
+---
+#
+# Generate an automated backup
+#
+id: system-backup
+alias: Automated Backup
+description: Create a daily backup of Home Assistant
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: time
+    at: "03:00:00"
+
+action:
+  - service: hassio.backup_full
+    data:
+      compressed: false
