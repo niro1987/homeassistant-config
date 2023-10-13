@@ -1,0 +1,10 @@
+---
+#
+# https://www.home-assistant.io/integrations/wake_on_lan/
+#
+platform: wake_on_lan
+name: HAGRID
+mac: !secret HAGRID_MAC
+host: !secret HAGRID_IP
+turn_off:
+  service: shell_command.turn_off_hagrid
