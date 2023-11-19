@@ -1,6 +1,7 @@
 ---
 substitutions:
   devicename: bbq
+  static_ip: !secret bbq_ip
 
 packages:
   device: !include common/devices/esp32.yaml
@@ -28,7 +29,7 @@ ble_client:
 sensor:
   - platform: igrill
     ble_client_id: igrill_mini
-    update_interval: 5s # default
+    update_interval: 10s # default
     send_value_when_unplugged: true # default
     unplugged_probe_value: 0 # default
     battery_level:
