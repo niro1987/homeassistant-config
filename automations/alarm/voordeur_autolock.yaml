@@ -1,0 +1,17 @@
+---
+#
+#
+#
+id: alarm-voordeur_autolock
+alias: Voordeur Auto Lock
+description: >-
+  Voordeur dagelijks automatisch op slot.
+
+trigger:
+  - platform: time
+    at: "00:00:00"
+
+action:
+  - service: lock.lock
+    target:
+      entity_id: lock.voordeur

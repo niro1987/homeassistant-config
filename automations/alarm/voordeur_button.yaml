@@ -1,0 +1,25 @@
+id: alarm-voordeur_button
+alias: Voordeur Button
+description: >-
+  Open en sluit voordeur met IKEA knop
+
+use_blueprint:
+  path: niro1987/zha_ikea_tradfri_2button_remote_custom.yaml
+  input:
+    remote: 05c5ad32692a45cf985ab7ace8893fa4
+    on_short:
+      - service: lock.lock
+        target:
+          entity_id: lock.voordeur
+    off_short:
+      - service: lock.unlock
+        target:
+          entity_id: lock.voordeur
+    on_long:
+      - service: lock.lock
+        target:
+          entity_id: lock.voordeur
+    off_long:
+      - service: lock.unlock
+        target:
+          entity_id: lock.voordeur
