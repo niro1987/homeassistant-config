@@ -16,11 +16,17 @@ max_exceeded: silent
 trigger:
   - platform: numeric_state
     entity_id: sensor.badkamer_luchtvochtigheid_afwijking
-    above: 30
+    above: 20
     id: "on"
   - platform: numeric_state
     entity_id: sensor.badkamer_luchtvochtigheid_afwijking
-    below: 25
+    below: 15
+    id: "off"
+  - platform: state
+    entity_id: fan.afzuiging
+    to: "on"
+    for:
+      hours: 1
     id: "off"
 
 action:
@@ -33,19 +39,7 @@ action:
             target:
               entity_id: fan.afzuiging
             data:
-              percentage: 90
-          - delay:
-              seconds: 2
-          - service: fan.turn_off
-            target:
-              entity_id: fan.afzuiging
-          - delay:
-              seconds: 2
-          - service: fan.turn_on
-            target:
-              entity_id: fan.afzuiging
-            data:
-              percentage: 90
+              percentage: 100
 
     default:
       - service: fan.turn_off
