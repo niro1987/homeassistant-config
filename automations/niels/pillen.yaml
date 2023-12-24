@@ -1,0 +1,31 @@
+---
+#
+id: niels-pillen
+alias: Niels Pillen Herinnering
+description: Stuur een herinnering om 21:00 om pillen in te nemen
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: time
+    at: "21:00:00"
+
+condition:
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: person.niels
+        state: home
+
+action:
+  - service: notify.mobile_app_nimbus_2000
+    data:
+      title: Pillen
+      message: Het is tijd om je pilletje in te nemen
+      data:
+        push:
+          sound:
+            name: Alert_Health_Haptic.caf
+            critical: 1
+            volume: 1
