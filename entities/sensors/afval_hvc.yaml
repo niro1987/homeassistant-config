@@ -4,64 +4,61 @@ sensors:
   afval_hvc:
     friendly_name_template: >-
       {% if is_state_attr('sensor.hvc_gft', 'day', 'Vandaag') %}
-        {% set afval = 'Vandaag' %}
+        {{ 'Vandaag' }}
       {% elif is_state_attr('sensor.hvc_papier', 'day', 'Vandaag') %}
-        {% set afval = 'Vandaag' %}
+        {{ 'Vandaag' }}
       {% elif is_state_attr('sensor.hvc_plastic', 'day', 'Vandaag') %}
-        {% set afval = 'Vandaag' %}
+        {{ 'Vandaag' }}
       {% elif is_state_attr('sensor.hvc_restafval', 'day', 'Vandaag') %}
-        {% set afval = 'Vandaag' %}
+        {{ 'Vandaag' }}
       {% elif is_state_attr('sensor.hvc_gft', 'day', 'Morgen') %}
-        {% set afval = 'Morgen' %}
+        {{ 'Morgen' }}
       {% elif is_state_attr('sensor.hvc_papier', 'day', 'Morgen') %}
-        {% set afval = 'Morgen' %}
+        {{ 'Morgen' }}
       {% elif is_state_attr('sensor.hvc_plastic', 'day', 'Morgen') %}
-        {% set afval = 'Morgen' %}
+        {{ 'Morgen' }}
       {% elif is_state_attr('sensor.hvc_restafval', 'day', 'Morgen') %}
-        {% set afval = 'Morgen' %}
+        {{ 'Morgen' }}
       {% else %}
-        {% set afval = 'Afval' %}
+        {{ 'Afval' }}
       {% endif %}
-      {{afval}}
     value_template: >-
       {% if is_state_attr('sensor.hvc_gft', 'day', 'Vandaag') %}
-        {% set afval = 'GFT' %}
+        {{ 'GFT' }}
       {% elif is_state_attr('sensor.hvc_papier', 'day', 'Vandaag') %}
-        {% set afval = 'Papier' %}
+        {{ 'Papier' }}
       {% elif is_state_attr('sensor.hvc_plastic', 'day', 'Vandaag') %}
-        {% set afval = 'Plastic' %}
+        {{ 'Plastic' }}
       {% elif is_state_attr('sensor.hvc_restafval', 'day', 'Vandaag') %}
-        {% set afval = 'Rest' %}
+        {{ 'Rest' }}
       {% elif is_state_attr('sensor.hvc_gft', 'day', 'Morgen') %}
-        {% set afval = 'GFT' %}
+        {{ 'GFT' }}
       {% elif is_state_attr('sensor.hvc_papier', 'day', 'Morgen') %}
-        {% set afval = 'Papier' %}
+        {{ 'Papier' }}
       {% elif is_state_attr('sensor.hvc_plastic', 'day', 'Morgen') %}
-        {% set afval = 'Plastic' %}
+        {{ 'Plastic' }}
       {% elif is_state_attr('sensor.hvc_restafval', 'day', 'Morgen') %}
-        {% set afval = 'Rest' %}
+        {{ 'Rest' }}
       {% else %}
-        {% set afval = 'Geen' %}
+        {{ 'Geen' }}
       {% endif %}
-      {{afval}}
     icon_template: >-
       {% if is_state_attr('sensor.hvc_gft', 'day', 'Vandaag') %}
-        {% set afval = 'mdi:food-apple-outline' %}
+        {{ 'mdi:food-apple-outline' }}
       {% elif is_state_attr('sensor.hvc_papier', 'day', 'Vandaag') %}
-        {% set afval = 'mdi:text-box-multiple-outline' %}
+        {{ 'mdi:text-box-multiple-outline' }}
       {% elif is_state_attr('sensor.hvc_plastic', 'day', 'Vandaag') %}
-        {% set afval = 'mdi:recycle' %}
+        {{ 'mdi:recycle' }}
       {% elif is_state_attr('sensor.hvc_restafval', 'day', 'Vandaag') %}
-        {% set afval = 'mdi:delete-empty' %}
+        {{ 'mdi:delete-empty' }}
       {% elif is_state_attr('sensor.hvc_gft', 'day', 'Morgen') %}
-        {% set afval = 'mdi:food-apple-outline' %}
+        {{ 'mdi:food-apple-outline' }}
       {% elif is_state_attr('sensor.hvc_papier', 'day', 'Morgen') %}
-        {% set afval = 'mdi:text-box-multiple-outline' %}
+        {{ 'mdi:text-box-multiple-outline' }}
       {% elif is_state_attr('sensor.hvc_plastic', 'day', 'Morgen') %}
-        {% set afval = 'mdi:recycle' %}
+        {{ 'mdi:recycle' }}
       {% elif is_state_attr('sensor.hvc_restafval', 'day', 'Morgen') %}
-        {% set afval = 'mdi:delete-empty' %}
+        {{ 'mdi:delete-empty' }}
       {% else %}
-        {% set afval = 'mdi:border-none-variant' %}
+        {{ 'mdi:border-none-variant' }}
       {% endif %}
-      {{afval}}

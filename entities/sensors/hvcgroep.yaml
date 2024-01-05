@@ -1,0 +1,14 @@
+---
+# Custom Integration
+# https://github.com/cyberjunky/home-assistant-hvcgroep
+platform: hvcgroep
+postcode: !secret postcode
+huisnummer: !secret huisnummer
+resources:
+  - gft
+  - plastic
+  - papier
+  - restafval
+date_format_default: "%d-%m-%Y"
+date_format_tomorrow: "Morgen"
+date_format_today: "Vandaag"
