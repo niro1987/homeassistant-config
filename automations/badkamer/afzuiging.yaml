@@ -40,6 +40,20 @@ action:
               entity_id: fan.afzuiging
             data:
               percentage: 100
+          - delay:
+              seconds: 1
+          - service: fan.turn_on
+            target:
+              entity_id: fan.afzuiging
+            data:
+              percentage: 90
+          - delay:
+              seconds: 1
+          - service: fan.turn_on
+            target:
+              entity_id: fan.afzuiging
+            data:
+              percentage: 100
 
     default:
       - service: fan.turn_off
