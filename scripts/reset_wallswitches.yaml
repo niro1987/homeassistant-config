@@ -58,16 +58,16 @@ sequence:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.eettafel_switch
+            entity_id: binary_sensor.tafel_switch
             state: "on"
         sequence:
           - service: light.turn_on
             data:
-              entity_id: light.eettafel
+              entity_id: light.tafel
     default:
       - service: light.turn_off
         data:
-          entity_id: light.eettafel
+          entity_id: light.tafel
 
   - choose:
       - conditions:
