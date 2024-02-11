@@ -1,0 +1,84 @@
+---
+id: alarm-smoke_detected
+alias: Brand!
+description: Er is brand!
+
+mode: single
+max_exceeded: silent
+
+variables:
+  telegram_target: !secret telegram_groupchat
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.brandmelder_keuken_smoke
+      - binary_sensor.brandmelder_lily_smoke
+      - binary_sensor.brandmelder_olivia_smoke
+      - binary_sensor.brandmelder_harvey_smoke
+      - binary_sensor.brandmelder_slaapkamer_smoke
+    to: "on"
+  - platform: state
+    entity_id:
+      - siren.brandmelder_keuken_siren
+      - siren.brandmelder_lily_siren
+      - siren.brandmelder_olivia_siren
+      - siren.brandmelder_harvey_siren
+      - siren.brandmelder_slaapkamer_siren
+    to: "off"
+    from: "on"
+
+condition:
+  condition: state
+  entity_id:
+    - binary_sensor.brandmelder_keuken_smoke
+    - binary_sensor.brandmelder_lily_smoke
+    - binary_sensor.brandmelder_olivia_smoke
+    - binary_sensor.brandmelder_harvey_smoke
+    - binary_sensor.brandmelder_slaapkamer_smoke
+  match: any
+  state: "on"
+
+action:
+  - parallel:
+      - service: siren.turn_on
+        target:
+          entity_id:
+            - siren.brandmelder_keuken_siren
+            - siren.brandmelder_lily_siren
+            - siren.brandmelder_olivia_siren
+            - siren.brandmelder_harvey_siren
+            - siren.brandmelder_slaapkamer_siren
+      - service: telegram_bot.send_message
+        continue_on_error: true
+        data:
+          target: "{{telegram_target}}"
+          title: "*BRAND*"
+          message: "Er is brand! {{ trigger.from_state.attributes.friendly_name }}"
+      - service: notify.mobile_app_nimbus_2000
+        continue_on_error: true
+        data:
+          title: BRAND!
+          message: "Er is brand! {{ trigger.from_state.attributes.friendly_name }}"
+          data:
+            push:
+              sound:
+                name: alarm.caf
+                critical: 1
+                volume: 1.0
+      - service: notify.mobile_app_danielle
+        continue_on_error: true
+        data:
+          title: BRNAD!
+          message: "Er is brand! {{ trigger.from_state.attributes.friendly_name }}"
+          data:
+            ttl: 0
+            priority: high
+            channel: alarm_stream
+      - service: notify.persistent_notification
+        continue_on_error: true
+        data:
+          title: BRNAD!
+          message: "Er is brand! {{ trigger.from_state.attributes.friendly_name }}"
+          data:
+            notification_id: fire
