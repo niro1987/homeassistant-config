@@ -1,0 +1,20 @@
+---
+#
+# Check for updates in the ESP Home domain and install all.
+#
+id: system-tado_add_readings
+alias: Tado Add gas reading
+description: Add gas consumption to Tado
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: time
+    at: 00:00:00
+
+action:
+  - service: tado.add_meter_reading
+    data:
+      config_entry: ef2e84b3dfc0aee85ed44ac8e8038ccf
+      reading: "{{ states('sensor.gas_consumption') | int }}"
