@@ -14,4 +14,4 @@ use_blueprint:
   path: niro1987/binary_sensor_toggle_light.yaml
   input:
     switch_entity: binary_sensor.slaapkamer_olivia_switch
-    light_entity: light.olivia_plafond
+    light_entity: light.olivia

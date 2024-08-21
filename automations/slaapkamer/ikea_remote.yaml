@@ -10,9 +10,6 @@ description: >-
 mode: restart
 max_exceeded: silent
 
-variables:
-  lights: light.woonkamer
-
 trigger:
   - platform: event
     event_type: zha_event

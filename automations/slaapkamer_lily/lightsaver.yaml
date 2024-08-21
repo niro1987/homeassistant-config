@@ -4,7 +4,7 @@ description: ""
 use_blueprint:
   path: niro1987/lightsaver.yaml
   input:
-    light: light.lily_plafond
+    light: light.lily
     off_delay: 5
     sunrise_delay: 30
     sunset_delay: -30

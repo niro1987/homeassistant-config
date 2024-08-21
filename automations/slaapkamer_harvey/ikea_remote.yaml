@@ -13,5 +13,5 @@ use_blueprint:
   path: niro1987/zha_ikea_tradfri_5button_remote_color.yaml
   input:
     remote: 61c87e4b3a45f41ad8de3f47d0e39317
-    light: light.harvey_plafond
+    light: light.harvey
     speed: 300

@@ -13,4 +13,4 @@ use_blueprint:
   path: niro1987/binary_sensor_toggle_light.yaml
   input:
     switch_entity: binary_sensor.keukenkastjes_switch
-    light_entity: light.keukenkastjes
+    light_entity: light.keuken_kastjes

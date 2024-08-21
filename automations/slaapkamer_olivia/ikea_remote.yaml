@@ -13,5 +13,5 @@ use_blueprint:
   path: niro1987/zha_ikea_tradfri_5button_remote_color.yaml
   input:
     remote: d2bc21bc89904851a76366dc3f2653ae
-    light: light.olivia_plafond
+    light: light.olivia
     speed: 300
