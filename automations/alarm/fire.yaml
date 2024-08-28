@@ -50,7 +50,7 @@ action:
             - siren.rookmelder_harvey_siren
             - siren.rookmelder_slaapkamer_siren
         data:
-          duration: 60
+          duration: 10
       - service: telegram_bot.send_message
         continue_on_error: true
         data:
