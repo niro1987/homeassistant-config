@@ -8,7 +8,7 @@ use_blueprint:
   input:
     remote: 05c5ad32692a45cf985ab7ace8893fa4
     on_short:
-      - wait_template: "{{ is_state('binary_sensor.voordeur', 'off') }}"
+      - wait_template: "{{ is_state('binary_sensor.voordeur_opening', 'off') }}"
         timeout:
           minutes: 1
         continue_on_timeout: false
@@ -20,7 +20,7 @@ use_blueprint:
         target:
           entity_id: lock.voordeur
     on_long:
-      - wait_template: "{{ is_state('binary_sensor.voordeur', 'off') }}"
+      - wait_template: "{{ is_state('binary_sensor.voordeur_opening', 'off') }}"
         timeout:
           minutes: 1
         continue_on_timeout: false
