@@ -1,0 +1,100 @@
+---
+id: alarm-fire
+alias: Brand!
+description: Er is brand!
+
+mode: single
+max_exceeded: silent
+
+variables:
+  telegram_target: !secret telegram_groupchat
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.rookmelder_keuken_smoke
+      - binary_sensor.rookmelder_lily_smoke
+      - binary_sensor.rookmelder_olivia_smoke
+      - binary_sensor.rookmelder_harvey_smoke
+      - binary_sensor.rookmelder_slaapkamer_smoke
+    to: "on"
+  - platform: state
+    entity_id:
+      - siren.rookmelder_keuken_siren
+      - siren.rookmelder_lily_siren
+      - siren.rookmelder_olivia_siren
+      - siren.rookmelder_harvey_siren
+      - siren.rookmelder_slaapkamer_siren
+    to: "off"
+    from: "on"
+
+condition:
+  condition: state
+  entity_id:
+    - binary_sensor.rookmelder_keuken_smoke
+    - binary_sensor.rookmelder_lily_smoke
+    - binary_sensor.rookmelder_olivia_smoke
+    - binary_sensor.rookmelder_harvey_smoke
+    - binary_sensor.rookmelder_slaapkamer_smoke
+  match: any
+  state: "on"
+
+action:
+  - parallel:
+      - service: siren.turn_on
+        target:
+          entity_id:
+            - siren.rookmelder_keuken_siren
+            - siren.rookmelder_lily_siren
+            - siren.rookmelder_olivia_siren
+            - siren.rookmelder_harvey_siren
+            - siren.rookmelder_slaapkamer_siren
+      - service: telegram_bot.send_message
+        continue_on_error: true
+        data:
+          target: "{{telegram_target}}"
+          title: "*BRAND!*"
+          message: >
+            {% for state in states.binary_sensor if is_state_attr(state.entity_id, 'device_class', 'smoke') and is_state(state.entity_id, 'on') -%}
+            {{- state.attributes.friendly_name }}
+
+            {% endfor %}
+      - service: notify.mobile_app_nimbus_2000
+        continue_on_error: true
+        data:
+          title: BRAND!
+          message: >
+            {% for state in states.binary_sensor if is_state_attr(state.entity_id, 'device_class', 'smoke') and is_state(state.entity_id, 'on') -%}
+            {{- state.attributes.friendly_name }}
+
+            {% endfor %}
+          data:
+            push:
+              sound:
+                name: alarm.caf
+                critical: 1
+                volume: 1.0
+      - service: notify.mobile_app_danielle
+        continue_on_error: true
+        data:
+          title: BRAND!
+          message: >
+            {% for state in states.binary_sensor if is_state_attr(state.entity_id, 'device_class', 'smoke') and is_state(state.entity_id, 'on') -%}
+            {{- state.attributes.friendly_name }}
+
+            {% endfor %}
+          data:
+            ttl: 0
+            priority: high
+            channel: alarm_stream
+      - service: notify.persistent_notification
+        continue_on_error: true
+        data:
+          title: BRAND!
+          message: >
+            {% for state in states.binary_sensor if is_state_attr(state.entity_id, 'device_class', 'smoke') and is_state(state.entity_id, 'on') -%}
+            {{- state.attributes.friendly_name }}
+
+            {% endfor %}
+          data:
+            notification_id: fire
