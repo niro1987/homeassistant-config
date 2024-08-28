@@ -49,6 +49,8 @@ action:
             - siren.rookmelder_olivia_siren
             - siren.rookmelder_harvey_siren
             - siren.rookmelder_slaapkamer_siren
+        data:
+          duration: 60
       - service: telegram_bot.send_message
         continue_on_error: true
         data:
