@@ -1,1 +1,31 @@
-[]
+- id: '1727716571707'
+  alias: App - Lock door
+  description: ''
+  trigger:
+  - event_type: ios.action_fired
+    platform: event
+    event_data:
+      actionID: 23157A7D-6931-485B-A4E3-23E3B0F3226C
+  condition: []
+  action:
+  - action: lock.lock
+    metadata: {}
+    data: {}
+    target:
+      entity_id: lock.voordeur
+  mode: single
+- id: '1727716714681'
+  alias: App - Open door
+  description: ''
+  trigger:
+  - event_data:
+      actionID: 28C02FBA-55CB-4421-BD32-E8BBB2056210
+    event_type: ios.action_fired
+    platform: event
+  condition: []
+  action:
+  - action: lock.unlock
+    target:
+      entity_id: lock.voordeur
+    data: {}
+  mode: single

@@ -9,7 +9,7 @@ description: >-
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.voordeur
+    entity_id: binary_sensor.voordeur_opening
     from: "off"
     to: "on"
 
@@ -29,7 +29,7 @@ action:
       transition: 1
   - wait_for_trigger:
       - platform: state
-        entity_id: binary_sensor.voordeur
+        entity_id: binary_sensor.voordeur_opening
         from: "on"
         to: "off"
     timeout:
