@@ -23,7 +23,7 @@ entities:
     state: "off"
   light.keuken_plafond:
     state: "off"
-  light.keukenkastjes:
+  light.keuken_kastjes:
     state: "on"
     brightness: 100
 icon: mdi:brightness-4

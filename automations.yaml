@@ -29,3 +29,80 @@
       entity_id: lock.voordeur
     data: {}
   mode: single
+- id: '1732692880064'
+  alias: Telegram HVC Notification
+  description: Send a notification when there is a garbage collection
+  triggers:
+  - at: '19:00:00'
+    trigger: time
+  conditions:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: sensor.hvc_restafval
+      attribute: day
+      state: Morgen
+    - condition: state
+      entity_id: sensor.hvc_gft
+      attribute: day
+      state: Morgen
+    - condition: state
+      entity_id: sensor.hvc_plastic
+      attribute: day
+      state: Morgen
+    - condition: state
+      entity_id: sensor.hvc_papier
+      attribute: day
+      state: Morgen
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.hvc_restafval
+        attribute: day
+        state: Morgen
+      sequence:
+      - data:
+          title: HVC
+          message: 'Morgen komt Restafval, vergeet de bak niet aan de weg te zetten!
+
+            '
+        action: notify.mobile_app_nimbus_2000
+    - conditions:
+      - condition: state
+        entity_id: sensor.hvc_gft
+        attribute: day
+        state: Morgen
+      sequence:
+      - data:
+          title: HVC
+          message: 'Morgen komt GFT, vergeet de bak niet aan de weg te zetten!
+
+            '
+        action: notify.mobile_app_nimbus_2000
+    - conditions:
+      - condition: state
+        entity_id: sensor.hvc_plastic
+        attribute: day
+        state: Morgen
+      sequence:
+      - data:
+          title: HVC
+          message: 'Morgen komt Plastic, vergeet de bak niet aan de weg te zetten!
+
+            '
+        action: notify.mobile_app_nimbus_2000
+    - conditions:
+      - condition: state
+        entity_id: sensor.hvc_papier
+        attribute: day
+        state: Morgen
+      sequence:
+      - data:
+          title: HVC
+          message: 'Morgen komt Oud Papier, vergeet het niet aan de weg te zetten!
+
+            '
+        action: notify.mobile_app_nimbus_2000
+  mode: single
+  max_exceeded: silent
