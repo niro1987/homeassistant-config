@@ -1,5 +1,0 @@
----
-#
-# https://community.home-assistant.io/t/remotely-shutting-down-a-windows-10-pc-with-ssh/91715
-#
-turn_off_hagrid: !secret ssh_turn_off_hagrid
