@@ -1,0 +1,25 @@
+---
+#
+# Binary sensor to check that my kids stay with me.
+#
+trigger:
+  - platform: time_pattern
+    seconds: /10
+action:
+  - service: calendar.get_events
+    data:
+      duration:
+        seconds: 1
+    target:
+      entity_id: calendar.kinderen
+    response_variable: agenda
+binary_sensor:
+  - name: Kinderen Papa
+    device_class: presence
+    state: |-
+      {{ 
+      agenda['calendar.kinderen'].events 
+      | selectattr('summary', 'match', "^papa$", ignorecase=true)
+      | list 
+      | count > 0 
+      }}
