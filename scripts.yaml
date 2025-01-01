@@ -1,11 +1,14 @@
 omroepen:
   alias: Omroepen
   sequence:
-  - data:
-      entity_id: '{{ speaker_entity }}'
-      language: nl
+  - action: tts.speak
+    target:
+      entity_id: tts.google_translate_nl_nl
+    data:
+      cache: false
+      media_player_entity_id: '{{ speaker_entity }}'
       message: '{{states(''input_text.omroep'')}}'
-    action: tts.google_translate_say
+      language: nl
   description: Roep een bericht om
   icon: mdi:bullhorn
   mode: restart
