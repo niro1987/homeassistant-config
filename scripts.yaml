@@ -1,1 +1,16 @@
-{}
+omroepen:
+  alias: Omroepen
+  sequence:
+  - data:
+      entity_id: '{{ speaker_entity }}'
+      language: nl
+      message: '{{states(''input_text.omroep'')}}'
+    action: tts.google_translate_say
+  description: Roep een bericht om
+  icon: mdi:bullhorn
+  mode: restart
+  fields:
+    speaker_entity:
+      name: Speaker
+      description: The speaker to announce on
+      required: true

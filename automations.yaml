@@ -1,34 +1,3 @@
-- id: '1727716571707'
-  alias: App - Lock door
-  description: ''
-  trigger:
-  - event_type: ios.action_fired
-    platform: event
-    event_data:
-      actionID: 23157A7D-6931-485B-A4E3-23E3B0F3226C
-  condition: []
-  action:
-  - action: lock.lock
-    metadata: {}
-    data: {}
-    target:
-      entity_id: lock.voordeur
-  mode: single
-- id: '1727716714681'
-  alias: App - Open door
-  description: ''
-  trigger:
-  - event_data:
-      actionID: 28C02FBA-55CB-4421-BD32-E8BBB2056210
-    event_type: ios.action_fired
-    platform: event
-  condition: []
-  action:
-  - action: lock.unlock
-    target:
-      entity_id: lock.voordeur
-    data: {}
-  mode: single
 - id: '1732692880064'
   alias: Telegram HVC Notification
   description: Send a notification when there is a garbage collection
@@ -1207,27 +1176,6 @@
     action: light.toggle
   mode: single
   max_exceeded: silent
-- id: '1733777098090'
-  alias: Volume Limit Harvey
-  description: Limiteer het volume van de Google Mini speaker van Harvey
-  triggers:
-  - entity_id: media_player.harvey_mini
-    attribute: volume_level
-    trigger: state
-  conditions:
-  - condition: template
-    value_template: '{{ trigger.to_state.attributes.volume_level|float > limit_var|float
-      }}'
-  actions:
-  - data:
-      entity_id: media_player.harvey_mini
-      volume_level: 0.3
-    action: media_player.volume_set
-  mode: restart
-  max_exceeded: silent
-  variables:
-    player_var: media_player.harvey_mini
-    limit_var: 0.3
 - id: '1733777111973'
   alias: Slaapkamer Lily IKEA Remote
   description: Bedien de verlichting met de IKEA Remote.
@@ -1390,31 +1338,6 @@
   variables:
     var_light: light.lily
     var_speed: 300
-- id: '1733777130121'
-  alias: Lily Lightsaver
-  description: ''
-  triggers:
-  - entity_id: light.lily
-    to: 'on'
-    for:
-      minutes: 5
-    trigger: state
-  conditions:
-  - condition: sun
-    after: sunrise
-    after_offset:
-      minutes: 30
-  - condition: sun
-    before: sunset
-    before_offset:
-      minutes: -30
-  actions:
-  - target:
-      entity_id: light.lily
-    action: light.turn_off
-    data: {}
-  mode: single
-  max_exceeded: silent
 - id: '1733777146578'
   alias: Slaapkamer Lily Schakelaar
   description: Zet het licht in de slaapkamer van Lily aan/uit wanneer de schakelaar
@@ -1439,27 +1362,6 @@
     action: light.toggle
   mode: single
   max_exceeded: silent
-- id: '1733777159886'
-  alias: Volume Limit Lily
-  description: Limiteer het volume van de Google Mini speaker van Lily
-  triggers:
-  - entity_id: media_player.lily_mini
-    attribute: volume_level
-    trigger: state
-  conditions:
-  - condition: template
-    value_template: '{{ trigger.to_state.attributes.volume_level|float > limit_var|float
-      }}'
-  actions:
-  - data:
-      entity_id: media_player.lily_mini
-      volume_level: 0.3
-    action: media_player.volume_set
-  mode: restart
-  max_exceeded: silent
-  variables:
-    player_var: media_player.lily_mini
-    limit_var: 0.3
 - id: '1733777175463'
   alias: Slaapkamer Olivia IKEA Remote
   description: Bedien de verlichting met de IKEA Remote.
@@ -1622,31 +1524,6 @@
   variables:
     var_light: light.olivia
     var_speed: 300
-- id: '1733777188683'
-  alias: Olivia Lightsaver
-  description: ''
-  triggers:
-  - entity_id: light.olivia
-    to: 'on'
-    for:
-      minutes: 5
-    trigger: state
-  conditions:
-  - condition: sun
-    after: sunrise
-    after_offset:
-      minutes: 30
-  - condition: sun
-    before: sunset
-    before_offset:
-      minutes: -30
-  actions:
-  - target:
-      entity_id: light.olivia
-    action: light.turn_off
-    data: {}
-  mode: single
-  max_exceeded: silent
 - id: '1733777200549'
   alias: Slaapkamer Olivia Schakelaar
   description: Zet het licht in de slaapkamer van Olivia aan/uit wanneer de schakelaar
@@ -1671,27 +1548,6 @@
     action: light.toggle
   mode: single
   max_exceeded: silent
-- id: '1733777212085'
-  alias: Volume Limit Olivia
-  description: Limiteer het volume van de Google Mini speaker van Olivia
-  triggers:
-  - entity_id: media_player.olivia_mini
-    attribute: volume_level
-    trigger: state
-  conditions:
-  - condition: template
-    value_template: '{{ trigger.to_state.attributes.volume_level|float > limit_var|float
-      }}'
-  actions:
-  - data:
-      entity_id: media_player.olivia_mini
-      volume_level: 0.3
-    action: media_player.volume_set
-  mode: restart
-  max_exceeded: silent
-  variables:
-    player_var: media_player.olivia_mini
-    limit_var: 0.3
 - id: '1733777237775'
   alias: Automated Backup
   description: Create a daily backup of Home Assistant
@@ -1762,40 +1618,6 @@
       action: light.turn_off
   mode: single
   max_exceeded: silent
-- id: '1733777293174'
-  alias: Woonkamer Preset
-  description: Schakelt tussen twee scenes
-  triggers:
-  - event_type: zha_event
-    event_data:
-      device_id: 0bf83d34452ac1108d4bca3a52a56653
-    trigger: event
-  conditions: []
-  actions:
-  - choose:
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "on" }}'
-      sequence:
-      - target:
-          entity_id: scene.avond
-        action: scene.turn_on
-        data: {}
-      - delay:
-          milliseconds: 500
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
-      sequence:
-      - target:
-          entity_id: scene.dimlicht
-        action: scene.turn_on
-        data: {}
-      - delay:
-          milliseconds: 500
-    default: []
-  mode: single
-  max_exceeded: silent
 - id: '1733777303411'
   alias: Woonkamer Schakelaar
   description: Zet het licht in de woonkamer aan/uit wanneer de schakelaar wordt geschakeld.
@@ -1819,3 +1641,42 @@
     action: light.toggle
   mode: single
   max_exceeded: silent
+- id: '1734813107840'
+  alias: Verwarming Kinderen
+  description: Zet verwarming aan en uit op basis van agenda
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.kinderen_papa
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - alias: Kinderen niet Thuis
+        condition: state
+        entity_id: binary_sensor.kinderen_papa
+        state: 'off'
+      sequence:
+      - alias: Zet verwarming uit
+        action: climate.set_hvac_mode
+        metadata: {}
+        data:
+          hvac_mode: 'off'
+        target:
+          entity_id:
+          - climate.lily
+          - climate.olivia
+          - climate.harvey
+      alias: Verwarming uit als kinderen niet thuis zijn
+    default:
+    - action: climate.set_hvac_mode
+      metadata: {}
+      data:
+        hvac_mode: auto
+      target:
+        entity_id:
+        - climate.lily
+        - climate.olivia
+        - climate.harvey
+      alias: Verwarming op Auto (volgens schema)
+  mode: single

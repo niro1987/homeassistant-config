@@ -14,12 +14,26 @@ action:
       entity_id: calendar.kinderen
     response_variable: agenda
 binary_sensor:
-  - name: Kinderen Papa
+  - unique_id: template_binary_kinderen_papa
+    name: Kinderen Papa
     device_class: presence
     state: |-
       {{ 
-      agenda['calendar.kinderen'].events 
-      | selectattr('summary', 'match', "^papa$", ignorecase=true)
-      | list 
-      | count > 0 
+        agenda['calendar.kinderen'].events 
+        | selectattr('summary', 'match', "^papa$", ignorecase=true)
+        | list 
+        | count > 0 
+      }}
+    availability: |-
+      {{ 
+        (
+          agenda['calendar.kinderen'].events
+          | selectattr('summary', 'match', "^papa$", ignorecase=true)
+          | list
+          +
+          agenda['calendar.kinderen'].events
+          | selectattr('summary', 'match', '^mama$', ignorecase=true)
+          | list
+        )
+        | count > 0
       }}

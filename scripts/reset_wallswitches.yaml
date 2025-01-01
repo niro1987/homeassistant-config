@@ -33,12 +33,12 @@ sequence:
         sequence:
           - service: light.turn_on
             data:
-              entity_id: light.keukenkastjes
+              entity_id: light.keuken_kastjes
               transition: 1
     default:
       - service: light.turn_off
         data:
-          entity_id: light.keukenkastjes
+          entity_id: light.keuken_kastjes
           transition: 1
 
   - choose:
