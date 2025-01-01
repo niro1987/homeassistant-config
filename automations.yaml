@@ -584,10 +584,11 @@
   description: Laat de bel afgaan via de Google Speakers en stuur een melding naar
     iedereen die thuis is.
   triggers:
-  - entity_id: binary_sensor.voordeur_ding
+  - trigger: state
+    entity_id:
+    - binary_sensor.deurbel_ding
     from: 'off'
     to: 'on'
-    trigger: state
   conditions: []
   actions:
   - data:
