@@ -4,12 +4,12 @@
 #
 trigger:
   - platform: time_pattern
-    seconds: /10
+    minutes: /10
 action:
   - service: calendar.get_events
     data:
       duration:
-        seconds: 1
+        hours: 6
     target:
       entity_id: calendar.kinderen
     response_variable: agenda
@@ -27,13 +27,17 @@ binary_sensor:
     availability: |-
       {{ 
         (
-          agenda['calendar.kinderen'].events
-          | selectattr('summary', 'match', "^papa$", ignorecase=true)
-          | list
+          (
+            agenda['calendar.kinderen'].events
+            | selectattr('summary', 'match', "^papa$", ignorecase=true)
+            | list
+          )
           +
-          agenda['calendar.kinderen'].events
-          | selectattr('summary', 'match', '^mama$', ignorecase=true)
-          | list
+          (
+            agenda['calendar.kinderen'].events
+            | selectattr('summary', 'match', '^mama$', ignorecase=true)
+            | list
+          )
         )
         | count > 0
       }}
