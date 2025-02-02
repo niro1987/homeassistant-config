@@ -1,1736 +1,1668 @@
-- id: "1732692880064"
+- id: '1732692880064'
   alias: Telegram HVC Notification
   description: Send a notification when there is a garbage collection
   triggers:
-    - at: "19:00:00"
-      trigger: time
+  - at: '19:00:00'
+    trigger: time
   conditions:
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: sensor.hvc_restafval
-          attribute: day
-          state: Morgen
-        - condition: state
-          entity_id: sensor.hvc_gft
-          attribute: day
-          state: Morgen
-        - condition: state
-          entity_id: sensor.hvc_plastic
-          attribute: day
-          state: Morgen
-        - condition: state
-          entity_id: sensor.hvc_papier
-          attribute: day
-          state: Morgen
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: sensor.hvc_restafval
+      attribute: day
+      state: Morgen
+    - condition: state
+      entity_id: sensor.hvc_gft
+      attribute: day
+      state: Morgen
+    - condition: state
+      entity_id: sensor.hvc_plastic
+      attribute: day
+      state: Morgen
+    - condition: state
+      entity_id: sensor.hvc_papier
+      attribute: day
+      state: Morgen
   actions:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: sensor.hvc_restafval
-              attribute: day
-              state: Morgen
-          sequence:
-            - data:
-                title: HVC
-                message:
-                  "Morgen komt Restafval, vergeet de bak niet aan de weg te zetten!
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.hvc_restafval
+        attribute: day
+        state: Morgen
+      sequence:
+      - data:
+          title: HVC
+          message: 'Morgen komt Restafval, vergeet de bak niet aan de weg te zetten!
 
-                  "
-              action: notify.mobile_app_nimbus_2000
-        - conditions:
-            - condition: state
-              entity_id: sensor.hvc_gft
-              attribute: day
-              state: Morgen
-          sequence:
-            - data:
-                title: HVC
-                message:
-                  "Morgen komt GFT, vergeet de bak niet aan de weg te zetten!
+            '
+        action: notify.mobile_app_nimbus_2000
+    - conditions:
+      - condition: state
+        entity_id: sensor.hvc_gft
+        attribute: day
+        state: Morgen
+      sequence:
+      - data:
+          title: HVC
+          message: 'Morgen komt GFT, vergeet de bak niet aan de weg te zetten!
 
-                  "
-              action: notify.mobile_app_nimbus_2000
-        - conditions:
-            - condition: state
-              entity_id: sensor.hvc_plastic
-              attribute: day
-              state: Morgen
-          sequence:
-            - data:
-                title: HVC
-                message:
-                  "Morgen komt Plastic, vergeet de bak niet aan de weg te zetten!
+            '
+        action: notify.mobile_app_nimbus_2000
+    - conditions:
+      - condition: state
+        entity_id: sensor.hvc_plastic
+        attribute: day
+        state: Morgen
+      sequence:
+      - data:
+          title: HVC
+          message: 'Morgen komt Plastic, vergeet de bak niet aan de weg te zetten!
 
-                  "
-              action: notify.mobile_app_nimbus_2000
-        - conditions:
-            - condition: state
-              entity_id: sensor.hvc_papier
-              attribute: day
-              state: Morgen
-          sequence:
-            - data:
-                title: HVC
-                message:
-                  "Morgen komt Oud Papier, vergeet het niet aan de weg te zetten!
+            '
+        action: notify.mobile_app_nimbus_2000
+    - conditions:
+      - condition: state
+        entity_id: sensor.hvc_papier
+        attribute: day
+        state: Morgen
+      sequence:
+      - data:
+          title: HVC
+          message: 'Morgen komt Oud Papier, vergeet het niet aan de weg te zetten!
 
-                  "
-              action: notify.mobile_app_nimbus_2000
+            '
+        action: notify.mobile_app_nimbus_2000
   mode: single
   max_exceeded: silent
-- id: "1733776537852"
+- id: '1733776537852'
   alias: Brand!
   description: Er is brand!
   triggers:
-    - entity_id:
-        - binary_sensor.rookmelder_keuken_smoke
-        - binary_sensor.rookmelder_lily_smoke
-        - binary_sensor.rookmelder_olivia_smoke
-        - binary_sensor.rookmelder_harvey_smoke
-        - binary_sensor.rookmelder_slaapkamer_smoke
-      to: "on"
-      trigger: state
-    - entity_id:
+  - entity_id:
+    - binary_sensor.rookmelder_keuken_smoke
+    - binary_sensor.rookmelder_lily_smoke
+    - binary_sensor.rookmelder_olivia_smoke
+    - binary_sensor.rookmelder_harvey_smoke
+    - binary_sensor.rookmelder_slaapkamer_smoke
+    to: 'on'
+    trigger: state
+  - entity_id:
+    - siren.rookmelder_keuken_siren
+    - siren.rookmelder_lily_siren
+    - siren.rookmelder_olivia_siren
+    - siren.rookmelder_harvey_siren
+    - siren.rookmelder_slaapkamer_siren
+    to: 'off'
+    from: 'on'
+    trigger: state
+  conditions:
+  - condition: state
+    entity_id:
+    - binary_sensor.rookmelder_keuken_smoke
+    - binary_sensor.rookmelder_lily_smoke
+    - binary_sensor.rookmelder_olivia_smoke
+    - binary_sensor.rookmelder_harvey_smoke
+    - binary_sensor.rookmelder_slaapkamer_smoke
+    match: any
+    state: 'on'
+  actions:
+  - parallel:
+    - target:
+        entity_id:
         - siren.rookmelder_keuken_siren
         - siren.rookmelder_lily_siren
         - siren.rookmelder_olivia_siren
         - siren.rookmelder_harvey_siren
         - siren.rookmelder_slaapkamer_siren
-      to: "off"
-      from: "on"
-      trigger: state
-  conditions:
-    - condition: state
-      entity_id:
-        - binary_sensor.rookmelder_keuken_smoke
-        - binary_sensor.rookmelder_lily_smoke
-        - binary_sensor.rookmelder_olivia_smoke
-        - binary_sensor.rookmelder_harvey_smoke
-        - binary_sensor.rookmelder_slaapkamer_smoke
-      match: any
-      state: "on"
-  actions:
-    - parallel:
-        - target:
-            entity_id:
-              - siren.rookmelder_keuken_siren
-              - siren.rookmelder_lily_siren
-              - siren.rookmelder_olivia_siren
-              - siren.rookmelder_harvey_siren
-              - siren.rookmelder_slaapkamer_siren
-          data:
-            duration: 10
-          action: siren.turn_on
-        - continue_on_error: true
-          data:
-            target: "{{telegram_target}}"
-            title: "*BRAND!*"
-            message:
-              "{% for state in states.binary_sensor if is_state_attr(state.entity_id,
-              'device_class', 'smoke') and is_state(state.entity_id, 'on') -%} {{-
-              state.attributes.friendly_name }}
+      data:
+        duration: 10
+      action: siren.turn_on
+    - continue_on_error: true
+      data:
+        title: BRAND!
+        message: '{% for state in states.binary_sensor if is_state_attr(state.entity_id,
+          ''device_class'', ''smoke'') and is_state(state.entity_id, ''on'') -%} {{-
+          state.attributes.friendly_name }}
 
-              {% endfor %}
+          {% endfor %}
 
-              "
-          action: telegram_bot.send_message
-        - continue_on_error: true
-          data:
-            title: BRAND!
-            message:
-              "{% for state in states.binary_sensor if is_state_attr(state.entity_id,
-              'device_class', 'smoke') and is_state(state.entity_id, 'on') -%} {{-
-              state.attributes.friendly_name }}
+          '
+        data:
+          push:
+            sound:
+              name: alarm.caf
+              critical: 1
+              volume: 1
+      action: notify.mobile_app_nimbus_2000
+    - continue_on_error: true
+      data:
+        title: BRAND!
+        message: '{% for state in states.binary_sensor if is_state_attr(state.entity_id,
+          ''device_class'', ''smoke'') and is_state(state.entity_id, ''on'') -%} {{-
+          state.attributes.friendly_name }}
 
-              {% endfor %}
+          {% endfor %}
 
-              "
-            data:
-              push:
-                sound:
-                  name: alarm.caf
-                  critical: 1
-                  volume: 1
-          action: notify.mobile_app_nimbus_2000
-        - continue_on_error: true
-          data:
-            title: BRAND!
-            message:
-              "{% for state in states.binary_sensor if is_state_attr(state.entity_id,
-              'device_class', 'smoke') and is_state(state.entity_id, 'on') -%} {{-
-              state.attributes.friendly_name }}
-
-              {% endfor %}
-
-              "
-            data:
-              ttl: 0
-              priority: high
-              channel: alarm_stream
-          action: notify.mobile_app_danielle
-        - continue_on_error: true
-          data:
-            title: BRAND!
-            message:
-              "{% for state in states.binary_sensor if is_state_attr(state.entity_id,
-              'device_class', 'smoke') and is_state(state.entity_id, 'on') -%} {{-
-              state.attributes.friendly_name }}
-
-              {% endfor %}
-
-              "
-            data:
-              notification_id: fire
-          action: notify.persistent_notification
+          '
+        data:
+          notification_id: fire
+      action: notify.persistent_notification
   mode: single
   max_exceeded: silent
   variables:
     telegram_target: -788454569
-- id: "1733776593318"
+- id: '1733776593318'
   alias: Voordeur Auto Lock
   description: Voordeur dagelijks automatisch op slot.
   triggers:
-    - at: 00:00:00
-      trigger: time
+  - at: 00:00:00
+    trigger: time
   conditions:
-    - condition: not
-      conditions:
-        - condition: state
-          entity_id: lock.voordeur
-          state: locked
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: lock.voordeur
+      state: locked
   actions:
-    - wait_template: "{{ is_state('binary_sensor.voordeur_opening', 'off') }}"
-      timeout:
-        minutes: 10
-      continue_on_timeout: true
-    - target:
-        entity_id: lock.voordeur
-      action: lock.lock
-      data: {}
+  - wait_template: '{{ is_state(''binary_sensor.voordeur_opening'', ''off'') }}'
+    timeout:
+      minutes: 10
+    continue_on_timeout: true
+  - target:
+      entity_id: lock.voordeur
+    action: lock.lock
+    data: {}
   mode: single
-- id: "1733776611957"
+- id: '1733776611957'
   alias: Voordeur Button
   description: Open en sluit voordeur met IKEA knop
   triggers:
-    - event_type: zha_event
-      event_data:
-        device_id: 05c5ad32692a45cf985ab7ace8893fa4
-      trigger: event
+  - event_type: zha_event
+    event_data:
+      device_id: 05c5ad32692a45cf985ab7ace8893fa4
+    trigger: event
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "on" }}'
-          sequence:
-            - wait_template: "{{ is_state('binary_sensor.voordeur_opening', 'off') }}"
-              timeout:
-                minutes: 1
-              continue_on_timeout: false
-            - target:
-                entity_id: lock.voordeur
-              action: lock.lock
-              data: {}
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
-          sequence:
-            - wait_template: "{{ is_state('binary_sensor.voordeur_opening', 'off') }}"
-              timeout:
-                minutes: 1
-              continue_on_timeout: false
-            - target:
-                entity_id: lock.voordeur
-              action: lock.lock
-              data: {}
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "off" }}'
-          sequence:
-            - target:
-                entity_id: lock.voordeur
-              action: lock.unlock
-              data: {}
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move" }}'
-          sequence:
-            - target:
-                entity_id: lock.voordeur
-              action: lock.unlock
-              data: {}
-      default: []
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "on" }}'
+      sequence:
+      - wait_template: '{{ is_state(''binary_sensor.voordeur_opening'', ''off'') }}'
+        timeout:
+          minutes: 1
+        continue_on_timeout: false
+      - target:
+          entity_id: lock.voordeur
+        action: lock.lock
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+      sequence:
+      - wait_template: '{{ is_state(''binary_sensor.voordeur_opening'', ''off'') }}'
+        timeout:
+          minutes: 1
+        continue_on_timeout: false
+      - target:
+          entity_id: lock.voordeur
+        action: lock.lock
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "off" }}'
+      sequence:
+      - target:
+          entity_id: lock.voordeur
+        action: lock.unlock
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move" }}'
+      sequence:
+      - target:
+          entity_id: lock.voordeur
+        action: lock.unlock
+        data: {}
+    default: []
   mode: restart
   max_exceeded: silent
-- id: "1733776624719"
+- id: '1733776624719'
   alias: Voordeur NFC Tag
   description: Open voordeur zodra NFC tag wordt gescand.
   triggers:
-    - tag_id: ef228741-9c01-4742-9460-22eac6841a4f
-      trigger: tag
+  - tag_id: ef228741-9c01-4742-9460-22eac6841a4f
+    trigger: tag
   conditions: []
   actions:
-    - target:
-        entity_id: lock.voordeur
-      action: lock.unlock
-      data: {}
+  - target:
+      entity_id: lock.voordeur
+    action: lock.unlock
+    data: {}
   mode: single
-- id: "1733776641109"
+- id: '1733776641109'
   alias: Badkamer Afzuiging
-  description:
-    Zet de afzuiging aan/uit op basis van het verschil in luchtvochtigheid
+  description: Zet de afzuiging aan/uit op basis van het verschil in luchtvochtigheid
     tussen de badkamer en de rest van de verdieping.
   triggers:
-    - entity_id: sensor.badkamer_luchtvochtigheid_afwijking
-      above: 20
-      id: "on"
-      trigger: numeric_state
-    - entity_id: sensor.badkamer_luchtvochtigheid_afwijking
-      below: 15
-      id: "off"
-      trigger: numeric_state
-    - entity_id: fan.afzuiging
-      to: "on"
-      for:
-        hours: 1
-      id: "off"
-      trigger: state
+  - entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+    above: 20
+    id: 'on'
+    trigger: numeric_state
+  - entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+    below: 15
+    id: 'off'
+    trigger: numeric_state
+  - entity_id: fan.afzuiging
+    to: 'on'
+    for:
+      hours: 1
+    id: 'off'
+    trigger: state
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: "on"
-          sequence:
-            - target:
-                entity_id: fan.afzuiging
-              data:
-                percentage: 100
-              action: fan.turn_on
-            - delay:
-                seconds: 1
-            - target:
-                entity_id: fan.afzuiging
-              data:
-                percentage: 90
-              action: fan.turn_on
-            - delay:
-                seconds: 1
-            - target:
-                entity_id: fan.afzuiging
-              data:
-                percentage: 100
-              action: fan.turn_on
-      default:
-        - target:
-            entity_id: fan.afzuiging
-          action: fan.turn_off
-          data: {}
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: 'on'
+      sequence:
+      - target:
+          entity_id: fan.afzuiging
+        data:
+          percentage: 100
+        action: fan.turn_on
+      - delay:
+          seconds: 1
+      - target:
+          entity_id: fan.afzuiging
+        data:
+          percentage: 90
+        action: fan.turn_on
+      - delay:
+          seconds: 1
+      - target:
+          entity_id: fan.afzuiging
+        data:
+          percentage: 100
+        action: fan.turn_on
+    default:
+    - target:
+        entity_id: fan.afzuiging
+      action: fan.turn_off
+      data: {}
   mode: single
   max_exceeded: silent
-- id: "1733776653408"
+- id: '1733776653408'
   alias: Badkamer Schakelaar
   description: Zet het licht in de badkamer aan/uit wanneer de schakelaar wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.badkamer_plafond_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.badkamer_plafond_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.badkamer_plafond
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.badkamer_plafond
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733776664320"
+- id: '1733776664320'
   alias: Badkamer Spiegelverwarming
-  description:
-    Zet de spiegelverwarming aan/uit op basis van het verschil in luchtvochtigheid
+  description: Zet de spiegelverwarming aan/uit op basis van het verschil in luchtvochtigheid
     tussen de badkamer en de rest van de verdieping.
   triggers:
-    - entity_id: sensor.badkamer_luchtvochtigheid_afwijking
-      above: 20
-      id: "on"
-      trigger: numeric_state
-    - entity_id: sensor.badkamer_luchtvochtigheid_afwijking
-      below: 15
-      id: "off"
-      trigger: numeric_state
+  - entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+    above: 20
+    id: 'on'
+    trigger: numeric_state
+  - entity_id: sensor.badkamer_luchtvochtigheid_afwijking
+    below: 15
+    id: 'off'
+    trigger: numeric_state
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: "on"
-          sequence:
-            - data_template:
-                entity_id: switch.badkamer_spiegelverwarming
-              action: switch.turn_on
-      default:
-        - data_template:
-            entity_id: switch.badkamer_spiegelverwarming
-          action: switch.turn_off
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: 'on'
+      sequence:
+      - data_template:
+          entity_id: switch.badkamer_spiegelverwarming
+        action: switch.turn_on
+    default:
+    - data_template:
+        entity_id: switch.badkamer_spiegelverwarming
+      action: switch.turn_off
   mode: single
   max_exceeded: silent
-- id: "1733776683437"
+- id: '1733776683437'
   alias: Buitenverlichting Achterdeur
   description: Zet het licht bij de achterdeur aan/uit op basis van de zon.
   triggers:
-    - event: sunrise
-      id: "off"
-      trigger: sun
-    - event: sunset
-      id: "on"
-      trigger: sun
+  - event: sunrise
+    id: 'off'
+    trigger: sun
+  - event: sunset
+    id: 'on'
+    trigger: sun
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: "off"
-          sequence:
-            - target:
-                entity_id: light.achterdeur
-              action: light.turn_off
-              data: {}
-      default:
-        - target:
-            entity_id: light.achterdeur
-          action: light.turn_on
-          data: {}
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: 'off'
+      sequence:
+      - target:
+          entity_id: light.achterdeur
+        action: light.turn_off
+        data: {}
+    default:
+    - target:
+        entity_id: light.achterdeur
+      action: light.turn_on
+      data: {}
   mode: single
-- id: "1733776695860"
+- id: '1733776695860'
   alias: Voordeur feller zetten als de deur open gaat
   description: Zet het licht bij de voordeur feller als de deur open gaat.
   triggers:
-    - entity_id: binary_sensor.voordeur_opening
-      from: "off"
-      to: "on"
-      trigger: state
+  - entity_id: binary_sensor.voordeur_opening
+    from: 'off'
+    to: 'on'
+    trigger: state
   conditions:
-    - condition: state
-      entity_id: light.voordeur
-      state: "on"
+  - condition: state
+    entity_id: light.voordeur
+    state: 'on'
   actions:
-    - variables:
-        brightness_now: "{{ state_attr('light.voordeur', 'brightness') }}"
-    - target:
-        entity_id: light.voordeur
-      data:
-        brightness_pct: 100
-        transition: 1
-      action: light.turn_on
-    - wait_for_trigger:
-        - entity_id: binary_sensor.voordeur_opening
-          from: "on"
-          to: "off"
-          trigger: state
-      timeout:
-        minutes: 10
-      continue_on_timeout: true
-    - target:
-        entity_id: light.voordeur
-      data:
-        brightness: "{{ brightness_now }}"
-        transition: 2
-      action: light.turn_on
+  - variables:
+      brightness_now: '{{ state_attr(''light.voordeur'', ''brightness'') }}'
+  - target:
+      entity_id: light.voordeur
+    data:
+      brightness_pct: 100
+      transition: 1
+    action: light.turn_on
+  - wait_for_trigger:
+    - entity_id: binary_sensor.voordeur_opening
+      from: 'on'
+      to: 'off'
+      trigger: state
+    timeout:
+      minutes: 10
+    continue_on_timeout: true
+  - target:
+      entity_id: light.voordeur
+    data:
+      brightness: '{{ brightness_now }}'
+      transition: 2
+    action: light.turn_on
   mode: single
-- id: "1733776711872"
+- id: '1733776711872'
   alias: Buitenverlichting Voordeur
   description: Zet het licht bij de voordeur aan/uit op basis van de zon.
   triggers:
-    - event: sunrise
-      id: "off"
-      trigger: sun
-    - event: sunset
-      id: "on"
-      trigger: sun
+  - event: sunrise
+    id: 'off'
+    trigger: sun
+  - event: sunset
+    id: 'on'
+    trigger: sun
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: "off"
-          sequence:
-            - target:
-                entity_id: light.voordeur
-              action: light.turn_off
-              data: {}
-      default:
-        - target:
-            entity_id: light.voordeur
-          action: light.turn_on
-          data: {}
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: 'off'
+      sequence:
+      - target:
+          entity_id: light.voordeur
+        action: light.turn_off
+        data: {}
+    default:
+    - target:
+        entity_id: light.voordeur
+      action: light.turn_on
+      data: {}
   mode: single
-- id: "1733776728832"
+- id: '1733776728832'
   alias: Bar Schakelaar
   description: Zet het licht boven de bar aan/uit wanneer de schakelaar wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.bar_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.bar_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.bar
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.bar
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733776741467"
+- id: '1733776741467'
   alias: Tafel Schakelaar
   description: Zet het licht boven de tafel aan/uit wanneer de schakelaar wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.tafel_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.tafel_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.tafel
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.eettafel
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733776754262"
+- id: '1733776754262'
   alias: Keuken Schakelaar Kastjes
-  description:
-    Zet het licht onder de keukenkastjes aan/uit wanneer de schakelaar
+  description: Zet het licht onder de keukenkastjes aan/uit wanneer de schakelaar
     wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.keukenkastjes_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.keukenkastjes_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.keuken_kastjes
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.keuken_kastjes
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733776768342"
+- id: '1733776768342'
   alias: Keuken Schakelaar Plafond
   description: Zet het licht in de keuken aan/uit wanneer de schakelaar wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.keukenplafond_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.keukenplafond_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.keuken_plafond
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
+    target:
+      entity_id: light.keuken_plafond
   mode: single
   max_exceeded: silent
-- id: "1733776950068"
+- id: '1733776950068'
   alias: Kleedkamer Schakelaar
-  description:
-    Zet het licht in de kleedkamer aan/uit wanneer de schakelaar wordt
+  description: Zet het licht in de kleedkamer aan/uit wanneer de schakelaar wordt
     geschakeld.
   triggers:
-    - entity_id: binary_sensor.kleedkamer_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.kleedkamer_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.kleedkamer
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.kleedkamer
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733776963050"
+- id: '1733776963050'
   alias: Meterkast Deurbel
-  description:
-    Laat de bel afgaan via de Google Speakers en stuur een melding naar
+  description: Laat de bel afgaan via de Google Speakers en stuur een melding naar
     iedereen die thuis is.
   triggers:
-    - trigger: state
-      entity_id:
-        - event.deurbel_ding
-      not_from: unavailable
-      not_to: unavailable
+  - trigger: state
+    entity_id:
+    - event.deurbel_ding
+    not_from: unavailable
+    not_to: unavailable
   conditions: []
   actions:
-    - data:
-        entity_id: media_player.woonkamer_mini
-        media_content_id: http://192.168.0.1:8123/local/deurbel.mp3
-        media_content_type: music
-      action: media_player.play_media
-    - delay:
-        seconds: 10
+  - data:
+      entity_id: media_player.woonkamer_mini
+      media_content_id: http://192.168.0.1:8123/local/deurbel.mp3
+      media_content_type: music
+    action: media_player.play_media
+  - delay:
+      seconds: 10
   mode: single
   max_exceeded: silent
-- id: "1733776979297"
+- id: '1733776979297'
   alias: Niels Pillen Herinnering
   description: Stuur een herinnering om 21:00 om pillen in te nemen
   triggers:
-    - trigger: time
-      at: "21:00:00"
+  - trigger: time
+    at: '21:00:00'
   conditions: []
   actions:
-    - alias: Turn on helper
-      action: input_boolean.turn_on
-      target:
-        entity_id:
+  - alias: Turn on helper
+    action: input_boolean.turn_on
+    target:
+      entity_id:
+      - input_boolean.niels_pillen
+    data: {}
+  - alias: Repeat every 10 minutes
+    repeat:
+      while:
+      - alias: Helper is On
+        condition: state
+        entity_id: input_boolean.niels_pillen
+        state: 'on'
+      sequence:
+      - alias: Send actionable notification
+        action: notify.mobile_app_nimbus_2000
+        data:
+          title: Pillen
+          message: Het is tijd om je pilletje in te nemen
+          data:
+            url: /lovelace/pillen
+            push:
+              sound:
+                name: Alert_Health_Haptic.caf
+                critical: 1
+                volume: 1
+            actions:
+            - action: PILLS_DONE
+              title: Ingenomen
+              authenticationRequired: true
+              icon: sfsymbols:pill
+      - alias: Wait for confirmation
+        wait_for_trigger:
+        - alias: Confirmation given
+          trigger: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: PILLS_DONE
+        - alias: Helper turned Off
+          trigger: state
+          entity_id:
           - input_boolean.niels_pillen
-      data: {}
-    - alias: Repeat every 10 minutes
-      repeat:
-        while:
-          - alias: Helper is On
-            condition: state
+          to: 'off'
+        timeout:
+          minutes: 10
+      - alias: Turn off helper on confirmation
+        if:
+        - alias: Confirmation is given
+          condition: template
+          value_template: '{{ wait.trigger.event.data.action == ''PILLS_DONE'' }}'
+        then:
+        - alias: Turn helper Off
+          action: input_boolean.turn_off
+          target:
             entity_id: input_boolean.niels_pillen
-            state: "on"
-        sequence:
-          - alias: Send actionable notification
-            action: notify.mobile_app_nimbus_2000
-            data:
-              title: Pillen
-              message: Het is tijd om je pilletje in te nemen
-              data:
-                url: /lovelace/pillen
-                push:
-                  sound:
-                    name: Alert_Health_Haptic.caf
-                    critical: 1
-                    volume: 1
-                actions:
-                  - action: PILLS_DONE
-                    title: Ingenomen
-                    authenticationRequired: true
-                    icon: sfsymbols:pill
-          - alias: Wait for confirmation
-            wait_for_trigger:
-              - alias: Confirmation given
-                trigger: event
-                event_type: mobile_app_notification_action
-                event_data:
-                  action: PILLS_DONE
-              - alias: Helper turned Off
-                trigger: state
-                entity_id:
-                  - input_boolean.niels_pillen
-                to: "off"
-            timeout:
-              minutes: 10
-          - alias: Turn off helper on confirmation
-            if:
-              - alias: Confirmation is given
-                condition: template
-                value_template: "{{ wait.trigger.event.data.action == 'PILLS_DONE' }}"
-            then:
-              - alias: Turn helper Off
-                action: input_boolean.turn_off
-                target:
-                  entity_id: input_boolean.niels_pillen
-                data: {}
+          data: {}
   mode: restart
-- id: "1733776990052"
+- id: '1733776990052'
   alias: Overloop Schakelaar
   description: Zet het licht op de overloop aan/uit wanneer de schakelaar wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.overloop_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.overloop_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.overloop
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.overloop
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733777007479"
+- id: '1733777007479'
   alias: Slaapkamer IKEA Remote
   description: Zet alle verlichting uit met de druk van elke knop op de IKEA Remote.
   triggers:
-    - event_type: zha_event
-      event_data:
-        device_id: 5279ce03243d54e6596565d4af4d3567
-      trigger: event
+  - event_type: zha_event
+    event_data:
+      device_id: 5279ce03243d54e6596565d4af4d3567
+    trigger: event
   conditions: []
   actions:
-    - choose:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "toggle" }}'
+      sequence:
+      - entity_id: automation.slaapkamer_schakelaar
+        action: automation.trigger
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off"
+          }}'
+      sequence:
+      - target:
+          entity_id: light.slaapkamer
+        data:
+          brightness: 254
+          hs_color:
+          - 38.222
+          - 52.941
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+      sequence:
+      - choose:
         - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "toggle" }}'
+          - condition: template
+            value_template: "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
+              \   |selectattr('state', 'eq', 'on')\n    |map(attribute='entity_id')\n
+              \   |list\n    |count\n  > 0\n}}"
           sequence:
-            - entity_id: automation.slaapkamer_schakelaar
-              action: automation.trigger
-        - conditions:
-            - condition: template
-              value_template:
-                '{{ trigger.event.data.command == "move_to_level_with_on_off"
-                }}'
-          sequence:
+          - target:
+              entity_id: "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
+                \ |selectattr('state', 'eq', 'on')\n  |map(attribute='entity_id')\n
+                \ |list\n}}"
+            data:
+              brightness_step_pct: 10
+            action: light.turn_on
+        default:
+        - choose:
+          - conditions:
+            - condition: time
+              before: '10:00'
+              after: '21:00'
+            sequence:
             - target:
-                entity_id: light.slaapkamer
+                entity_id: light.bed
               data:
-                brightness: 254
-                hs_color:
-                  - 38.222
-                  - 52.941
+                brightness_step_pct: 10
               action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+          default:
+          - target:
+              entity_id: light.slaapkamer
+            data:
+              brightness_step_pct: 10
+            action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
+                  \   |selectattr('state', 'eq', 'on')\n    |map(attribute='entity_id')\n
+                  \   |list\n    |count\n  > 0\n}}"
+              sequence:
+              - target:
+                  entity_id: "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
+                    \ |selectattr('state', 'eq', 'on')\n  |map(attribute='entity_id')\n
+                    \ |list\n}}"
+                data:
+                  brightness_step_pct: 10
+                  transition: 0.5
+                action: light.turn_on
+            default:
             - choose:
-                - conditions:
-                    - condition: template
-                      value_template:
-                        "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
-                        \   |selectattr('state', 'eq', 'on')\n    |map(attribute='entity_id')\n
-                        \   |list\n    |count\n  > 0\n}}"
-                  sequence:
-                    - target:
-                        entity_id:
-                          "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
-                          \ |selectattr('state', 'eq', 'on')\n  |map(attribute='entity_id')\n
-                          \ |list\n}}"
-                      data:
-                        brightness_step_pct: 10
-                      action: light.turn_on
-              default:
-                - choose:
-                    - conditions:
-                        - condition: time
-                          before: "10:00"
-                          after: "21:00"
-                      sequence:
-                        - target:
-                            entity_id: light.bed
-                          data:
-                            brightness_step_pct: 10
-                          action: light.turn_on
-                  default:
-                    - target:
-                        entity_id: light.slaapkamer
-                      data:
-                        brightness_step_pct: 10
-                      action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
-          sequence:
-            - repeat:
-                while: []
+              - conditions:
+                - condition: time
+                  before: '10:00'
+                  after: '21:00'
                 sequence:
-                  - choose:
-                      - conditions:
-                          - condition: template
-                            value_template:
-                              "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
-                              \   |selectattr('state', 'eq', 'on')\n    |map(attribute='entity_id')\n
-                              \   |list\n    |count\n  > 0\n}}"
-                        sequence:
-                          - target:
-                              entity_id:
-                                "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
-                                \ |selectattr('state', 'eq', 'on')\n  |map(attribute='entity_id')\n
-                                \ |list\n}}"
-                            data:
-                              brightness_step_pct: 10
-                              transition: 0.5
-                            action: light.turn_on
-                    default:
-                      - choose:
-                          - conditions:
-                              - condition: time
-                                before: "10:00"
-                                after: "21:00"
-                            sequence:
-                              - target:
-                                  entity_id: light.bed
-                                data:
-                                  brightness_step_pct: 10
-                                  transition: 0.5
-                                action: light.turn_on
-                        default:
-                          - target:
-                              entity_id: light.slaapkamer
-                            data:
-                              brightness_step_pct: 10
-                              transition: 0.5
-                            action: light.turn_on
-                  - delay:
-                      milliseconds: 500
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "step" }}'
-          sequence:
-            - target:
-                entity_id:
-                  "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
-                  \ |map(attribute='entity_id')\n  |list\n}}"
-              data:
-                brightness_step_pct: -10
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move" }}'
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - choose:
-                      - conditions:
-                          - condition: template
-                            value_template:
-                              "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
-                              \   |selectattr('state', 'eq', 'on')\n    |map(attribute='entity_id')\n
-                              \   |list\n    |count\n  > 0\n}}"
-                        sequence:
-                          - target:
-                              entity_id:
-                                "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
-                                \ |selectattr('state', 'eq', 'on')\n  |map(attribute='entity_id')\n
-                                \ |list\n}}"
-                            data:
-                              brightness_step_pct: -10
-                              transition: 0.5
-                            action: light.turn_on
-                    default:
-                      - choose:
-                          - conditions:
-                              - condition: time
-                                before: "10:00"
-                                after: "21:00"
-                            sequence:
-                              - target:
-                                  entity_id: light.bed
-                                data:
-                                  brightness_step_pct: -10
-                                  transition: 0.5
-                                action: light.turn_on
-                        default:
-                          - target:
-                              entity_id: light.slaapkamer
-                            data:
-                              brightness_step_pct: -10
-                              transition: 0.5
-                            action: light.turn_on
-                  - delay:
-                      milliseconds: 500
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "press" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [256,13,0] }}"
-          sequence:
-            - choose:
-                - conditions:
-                    - condition: state
-                      entity_id: media_player.slaapkamer_mini
-                      state: playing
-                  sequence:
-                    - target:
-                        entity_id: media_player.slaapkamer_mini
-                      action: media_player.media_next_track
-                      data: {}
-              default:
                 - target:
                     entity_id: light.bed
                   data:
-                    brightness: 100
-                    color_name: red
+                    brightness_step_pct: 10
+                    transition: 0.5
                   action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "hold" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [3328,0] }}"
-          sequence:
-            - target:
-                entity_id: media_player.slaapkamer_mini
-              action: media_player.turn_off
-              data: {}
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "press" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [257,13,0] }}"
-          sequence:
-            - choose:
-                - conditions:
-                    - condition: state
-                      entity_id: media_player.slaapkamer_mini
-                      state: playing
-                  sequence:
-                    - target:
-                        entity_id: media_player.slaapkamer_mini
-                      action: media_player.media_previous_track
-                      data: {}
               default:
+              - target:
+                  entity_id: light.slaapkamer
+                data:
+                  brightness_step_pct: 10
+                  transition: 0.5
+                action: light.turn_on
+          - delay:
+              milliseconds: 500
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step" }}'
+      sequence:
+      - target:
+          entity_id: "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
+            \ |map(attribute='entity_id')\n  |list\n}}"
+        data:
+          brightness_step_pct: -10
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move" }}'
+      sequence:
+      - repeat:
+          while: []
+          sequence:
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
+                  \   |selectattr('state', 'eq', 'on')\n    |map(attribute='entity_id')\n
+                  \   |list\n    |count\n  > 0\n}}"
+              sequence:
+              - target:
+                  entity_id: "{{\n  expand(state_attr('light.slaapkamer', 'entity_id'))\n
+                    \ |selectattr('state', 'eq', 'on')\n  |map(attribute='entity_id')\n
+                    \ |list\n}}"
+                data:
+                  brightness_step_pct: -10
+                  transition: 0.5
+                action: light.turn_on
+            default:
+            - choose:
+              - conditions:
+                - condition: time
+                  before: '10:00'
+                  after: '21:00'
+                sequence:
                 - target:
                     entity_id: light.bed
                   data:
-                    brightness: 100
-                    color_name: red
+                    brightness_step_pct: -10
+                    transition: 0.5
                   action: light.turn_on
+              default:
+              - target:
+                  entity_id: light.slaapkamer
+                data:
+                  brightness_step_pct: -10
+                  transition: 0.5
+                action: light.turn_on
+          - delay:
+              milliseconds: 500
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [256,13,0] }}'
+      sequence:
+      - choose:
         - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "hold" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [3329,0] }}"
+          - condition: state
+            entity_id: media_player.slaapkamer_mini
+            state: playing
           sequence:
-            - target:
-                entity_id: media_player.slaapkamer_mini
-              action: media_player.turn_off
-              data: {}
-      default: []
+          - target:
+              entity_id: media_player.slaapkamer_mini
+            action: media_player.media_next_track
+            data: {}
+        default:
+        - target:
+            entity_id: light.bed
+          data:
+            brightness: 100
+            color_name: red
+          action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3328,0] }}'
+      sequence:
+      - target:
+          entity_id: media_player.slaapkamer_mini
+        action: media_player.turn_off
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [257,13,0] }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: media_player.slaapkamer_mini
+            state: playing
+          sequence:
+          - target:
+              entity_id: media_player.slaapkamer_mini
+            action: media_player.media_previous_track
+            data: {}
+        default:
+        - target:
+            entity_id: light.bed
+          data:
+            brightness: 100
+            color_name: red
+          action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3329,0] }}'
+      sequence:
+      - target:
+          entity_id: media_player.slaapkamer_mini
+        action: media_player.turn_off
+        data: {}
+    default: []
   mode: restart
   max_exceeded: silent
-- id: "1733777034423"
+- id: '1733777034423'
   alias: Kantoor Schakelaar
   description: Zet het licht op het kantoor aan/uit wanneer de schakelaar wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.kantoor_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.kantoor_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.kantoor
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.kantoor
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733777054072"
+- id: '1733777054072'
   alias: Slaapkamer Schakelaar
-  description:
-    Zet het licht in de slaapkamer aan/uit wanneer de schakelaar wordt
+  description: Zet het licht in de slaapkamer aan/uit wanneer de schakelaar wordt
     geschakeld.
   triggers:
-    - entity_id: binary_sensor.slaapkamer_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.slaapkamer_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - choose:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.slaapkamer
+        state: 'off'
+      sequence:
+      - choose:
         - conditions:
-            - condition: state
-              entity_id: light.slaapkamer
-              state: "off"
+          - condition: time
+            before: '10:00'
+            after: '21:00'
           sequence:
-            - choose:
-                - conditions:
-                    - condition: time
-                      before: "10:00"
-                      after: "21:00"
-                  sequence:
-                    - entity_id: light.bed
-                      data:
-                        brightness: 50
-                        hs_color:
-                          - 38.222
-                          - 52.941
-                      action: light.turn_on
-              default:
-                - entity_id: light.slaapkamer
-                  data:
-                    brightness: 254
-                    hs_color:
-                      - 38.222
-                      - 52.941
-                  action: light.turn_on
-      default:
+          - entity_id: light.bed
+            data:
+              brightness: 50
+              hs_color:
+              - 38.222
+              - 52.941
+            action: light.turn_on
+        default:
         - entity_id: light.slaapkamer
-          action: light.turn_off
+          data:
+            brightness: 254
+            hs_color:
+            - 38.222
+            - 52.941
+          action: light.turn_on
+    default:
+    - entity_id: light.slaapkamer
+      action: light.turn_off
   mode: single
   max_exceeded: silent
-- id: "1733777070069"
+- id: '1733777070069'
   alias: Slaapkamer Harvey IKEA Remote
   description: Bedien de verlichting met de IKEA Remote.
   triggers:
-    - event_type: zha_event
-      event_data:
-        device_id: 61c87e4b3a45f41ad8de3f47d0e39317
-      trigger: event
+  - event_type: zha_event
+    event_data:
+      device_id: 61c87e4b3a45f41ad8de3f47d0e39317
+    trigger: event
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "toggle" }}'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "toggle" }}'
+      sequence:
+      - target:
+          entity_id: light.harvey
+        action: light.toggle
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off"
+          }}'
+      sequence:
+      - target:
+          entity_id: light.harvey
+        data:
+          brightness: 254
+          hs_color:
+          - 38.222
+          - 52.941
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+      sequence:
+      - target:
+          entity_id: light.harvey
+        data:
+          brightness_step_pct: 20
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.harvey
-              action: light.toggle
-              data: {}
-        - conditions:
-            - condition: template
-              value_template:
-                '{{ trigger.event.data.command == "move_to_level_with_on_off"
-                }}'
+          - target:
+              entity_id: light.harvey
+            data:
+              brightness_step_pct: 10
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step" }}'
+      sequence:
+      - target:
+          entity_id: light.harvey
+        data:
+          brightness_step_pct: -20
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move" }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.harvey
-              data:
-                brightness: 254
-                hs_color:
-                  - 38.222
-                  - 52.941
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+          - target:
+              entity_id: light.harvey
+            data:
+              brightness_step_pct: -10
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [256,13,0] }}'
+      sequence:
+      - target:
+          entity_id: light.harvey
+        data:
+          hs_color:
+          - "{% if state_attr(var, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var,
+            \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[0]
+            + 18 }}\n{% endif %}"
+          - '{{ state_attr(var, "hs_color")[1] }}'
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3328,0] }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.harvey
-              data:
-                brightness_step_pct: 20
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+          - target:
+              entity_id: light.harvey
+            data:
+              hs_color:
+              - "{% if state_attr(var, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var,
+                \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[0]
+                + 18 }}\n{% endif %}"
+              - '{{ state_attr(var, "hs_color")[1] }}'
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [257,13,0] }}'
+      sequence:
+      - target:
+          entity_id: light.harvey
+        data:
+          hs_color:
+          - '{{ state_attr(var, "hs_color")[0] }}'
+          - "{% if state_attr(var, \"hs_color\")[1] - 20 < 0 %}\n  {{ state_attr(var,
+            \"hs_color\")[1] - 20 + 100 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[1]
+            - 20 }}\n{% endif %}"
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3329,0] }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.harvey
-                    data:
-                      brightness_step_pct: 10
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "step" }}'
-          sequence:
-            - target:
-                entity_id: light.harvey
-              data:
-                brightness_step_pct: -20
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move" }}'
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.harvey
-                    data:
-                      brightness_step_pct: -10
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "press" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [256,13,0] }}"
-          sequence:
-            - target:
-                entity_id: light.harvey
-              data:
-                hs_color:
-                  - "{% if state_attr(var_light, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[0] + 18 }}\n{% endif %}"
-                  - '{{ state_attr(var_light, "hs_color")[1] }}'
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "hold" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [3328,0] }}"
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.harvey
-                    data:
-                      hs_color:
-                        - "{% if state_attr(var_light, \"hs_color\")[0] + 18 > 360 %}\n  {{
-                          state_attr(var_light, \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n
-                          \ {{ state_attr(var_light, \"hs_color\")[0] + 18 }}\n{% endif %}"
-                        - '{{ state_attr(var_light, "hs_color")[1] }}'
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "press" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [257,13,0] }}"
-          sequence:
-            - target:
-                entity_id: light.harvey
-              data:
-                hs_color:
-                  - '{{ state_attr(var_light, "hs_color")[0] }}'
-                  - "{% if state_attr(var_light, \"hs_color\")[1] - 20 < 0 %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[1] - 20 + 100 }}\n{% else %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[1] - 20 }}\n{% endif %}"
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "hold" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [3329,0] }}"
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.harvey
-                    data:
-                      hs_color:
-                        - '{{ state_attr(var_light, "hs_color")[0] }}'
-                        - "{% if state_attr(var_light, \"hs_color\")[1] - 10 < 0 %}\n  {{ state_attr(var_light,
-                          \"hs_color\")[1] - 10 + 100 }}\n{% else %}\n  {{ state_attr(var_light,
-                          \"hs_color\")[1] - 10 }}\n{% endif %}"
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-      default: []
+          - target:
+              entity_id: light.harvey
+            data:
+              hs_color:
+              - '{{ state_attr(var, "hs_color")[0] }}'
+              - "{% if state_attr(var, \"hs_color\")[1] - 10 < 0 %}\n  {{ state_attr(var,
+                \"hs_color\")[1] - 10 + 100 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[1]
+                - 10 }}\n{% endif %}"
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    default: []
   mode: restart
   max_exceeded: silent
   variables:
-    var_light: light.harvey
+    var: light.harvey
     var_speed: 300
-- id: "1733777083660"
+- id: '1733777083660'
   alias: Slaapkamer Harvey Schakelaar
-  description:
-    Zet het licht in de slaapkamer van Harvey aan/uit wanneer de schakelaar
+  description: Zet het licht in de slaapkamer van Harvey aan/uit wanneer de schakelaar
     wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.slaapkamer_harvey_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.slaapkamer_harvey_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.harvey
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.harvey_plafond
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733777111973"
+- id: '1733777111973'
   alias: Slaapkamer Lily IKEA Remote
   description: Bedien de verlichting met de IKEA Remote.
   triggers:
-    - event_type: zha_event
-      event_data:
-        device_id: 10059a40954f471f8c4328ce1ec10c44
-      trigger: event
+  - event_type: zha_event
+    event_data:
+      device_id: 10059a40954f471f8c4328ce1ec10c44
+    trigger: event
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "toggle" }}'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "toggle" }}'
+      sequence:
+      - target:
+          entity_id: light.lily
+        action: light.toggle
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off"
+          }}'
+      sequence:
+      - target:
+          entity_id: light.lily
+        data:
+          brightness: 254
+          hs_color:
+          - 38.222
+          - 52.941
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+      sequence:
+      - target:
+          entity_id: light.lily
+        data:
+          brightness_step_pct: 20
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.lily
-              action: light.toggle
-              data: {}
-        - conditions:
-            - condition: template
-              value_template:
-                '{{ trigger.event.data.command == "move_to_level_with_on_off"
-                }}'
+          - target:
+              entity_id: light.lily
+            data:
+              brightness_step_pct: 10
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step" }}'
+      sequence:
+      - target:
+          entity_id: light.lily
+        data:
+          brightness_step_pct: -20
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move" }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.lily
-              data:
-                brightness: 254
-                hs_color:
-                  - 38.222
-                  - 52.941
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+          - target:
+              entity_id: light.lily
+            data:
+              brightness_step_pct: -10
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [256,13,0] }}'
+      sequence:
+      - target:
+          entity_id: light.lily
+        data:
+          hs_color:
+          - "{% if state_attr(var, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var,
+            \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[0]
+            + 18 }}\n{% endif %}"
+          - '{{ state_attr(var, "hs_color")[1] }}'
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3328,0] }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.lily
-              data:
-                brightness_step_pct: 20
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+          - target:
+              entity_id: light.lily
+            data:
+              hs_color:
+              - "{% if state_attr(var, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var,
+                \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[0]
+                + 18 }}\n{% endif %}"
+              - '{{ state_attr(var, "hs_color")[1] }}'
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [257,13,0] }}'
+      sequence:
+      - target:
+          entity_id: light.lily
+        data:
+          hs_color:
+          - '{{ state_attr(var, "hs_color")[0] }}'
+          - "{% if state_attr(var, \"hs_color\")[1] - 20 < 0 %}\n  {{ state_attr(var,
+            \"hs_color\")[1] - 20 + 100 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[1]
+            - 20 }}\n{% endif %}"
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3329,0] }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.lily
-                    data:
-                      brightness_step_pct: 10
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "step" }}'
-          sequence:
-            - target:
-                entity_id: light.lily
-              data:
-                brightness_step_pct: -20
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move" }}'
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.lily
-                    data:
-                      brightness_step_pct: -10
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "press" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [256,13,0] }}"
-          sequence:
-            - target:
-                entity_id: light.lily
-              data:
-                hs_color:
-                  - "{% if state_attr(var_light, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[0] + 18 }}\n{% endif %}"
-                  - '{{ state_attr(var_light, "hs_color")[1] }}'
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "hold" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [3328,0] }}"
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.lily
-                    data:
-                      hs_color:
-                        - "{% if state_attr(var_light, \"hs_color\")[0] + 18 > 360 %}\n  {{
-                          state_attr(var_light, \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n
-                          \ {{ state_attr(var_light, \"hs_color\")[0] + 18 }}\n{% endif %}"
-                        - '{{ state_attr(var_light, "hs_color")[1] }}'
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "press" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [257,13,0] }}"
-          sequence:
-            - target:
-                entity_id: light.lily
-              data:
-                hs_color:
-                  - '{{ state_attr(var_light, "hs_color")[0] }}'
-                  - "{% if state_attr(var_light, \"hs_color\")[1] - 20 < 0 %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[1] - 20 + 100 }}\n{% else %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[1] - 20 }}\n{% endif %}"
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "hold" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [3329,0] }}"
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.lily
-                    data:
-                      hs_color:
-                        - '{{ state_attr(var_light, "hs_color")[0] }}'
-                        - "{% if state_attr(var_light, \"hs_color\")[1] - 10 < 0 %}\n  {{ state_attr(var_light,
-                          \"hs_color\")[1] - 10 + 100 }}\n{% else %}\n  {{ state_attr(var_light,
-                          \"hs_color\")[1] - 10 }}\n{% endif %}"
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-      default: []
+          - target:
+              entity_id: light.lily
+            data:
+              hs_color:
+              - '{{ state_attr(var, "hs_color")[0] }}'
+              - "{% if state_attr(var, \"hs_color\")[1] - 10 < 0 %}\n  {{ state_attr(var,
+                \"hs_color\")[1] - 10 + 100 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[1]
+                - 10 }}\n{% endif %}"
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    default: []
   mode: restart
   max_exceeded: silent
   variables:
-    var_light: light.lily
+    var: light.lily
     var_speed: 300
-- id: "1733777146578"
+- id: '1733777146578'
   alias: Slaapkamer Lily Schakelaar
-  description:
-    Zet het licht in de slaapkamer van Lily aan/uit wanneer de schakelaar
+  description: Zet het licht in de slaapkamer van Lily aan/uit wanneer de schakelaar
     wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.slaapkamer_lily_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.slaapkamer_lily_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.lily
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.lily_plafond
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733777175463"
+- id: '1733777175463'
   alias: Slaapkamer Olivia IKEA Remote
   description: Bedien de verlichting met de IKEA Remote.
   triggers:
-    - event_type: zha_event
-      event_data:
-        device_id: d2bc21bc89904851a76366dc3f2653ae
-      trigger: event
+  - event_type: zha_event
+    event_data:
+      device_id: d2bc21bc89904851a76366dc3f2653ae
+    trigger: event
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "toggle" }}'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "toggle" }}'
+      sequence:
+      - target:
+          entity_id: light.olivia
+        action: light.toggle
+        data: {}
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off"
+          }}'
+      sequence:
+      - target:
+          entity_id: light.olivia
+        data:
+          brightness: 254
+          hs_color:
+          - 38.222
+          - 52.941
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+      sequence:
+      - target:
+          entity_id: light.olivia
+        data:
+          brightness_step_pct: 20
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.olivia
-              action: light.toggle
-              data: {}
-        - conditions:
-            - condition: template
-              value_template:
-                '{{ trigger.event.data.command == "move_to_level_with_on_off"
-                }}'
+          - target:
+              entity_id: light.olivia
+            data:
+              brightness_step_pct: 10
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "step" }}'
+      sequence:
+      - target:
+          entity_id: light.olivia
+        data:
+          brightness_step_pct: -20
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "move" }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.olivia
-              data:
-                brightness: 254
-                hs_color:
-                  - 38.222
-                  - 52.941
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+          - target:
+              entity_id: light.olivia
+            data:
+              brightness_step_pct: -10
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [256,13,0] }}'
+      sequence:
+      - target:
+          entity_id: light.olivia
+        data:
+          hs_color:
+          - "{% if state_attr(var, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var,
+            \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[0]
+            + 18 }}\n{% endif %}"
+          - '{{ state_attr(var, "hs_color")[1] }}'
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3328,0] }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - target:
-                entity_id: light.olivia
-              data:
-                brightness_step_pct: 20
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+          - target:
+              entity_id: light.olivia
+            data:
+              hs_color:
+              - "{% if state_attr(var, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var,
+                \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[0]
+                + 18 }}\n{% endif %}"
+              - '{{ state_attr(var, "hs_color")[1] }}'
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "press" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [257,13,0] }}'
+      sequence:
+      - target:
+          entity_id: light.olivia
+        data:
+          hs_color:
+          - '{{ state_attr(var, "hs_color")[0] }}'
+          - "{% if state_attr(var, \"hs_color\")[1] - 20 < 0 %}\n  {{ state_attr(var,
+            \"hs_color\")[1] - 20 + 100 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[1]
+            - 20 }}\n{% endif %}"
+          transition: '{{ (var_speed / 1000)|float }}'
+        action: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.command == "hold" }}'
+      - condition: template
+        value_template: '{{ trigger.event.data.args == [3329,0] }}'
+      sequence:
+      - repeat:
+          while: []
           sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.olivia
-                    data:
-                      brightness_step_pct: 10
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "step" }}'
-          sequence:
-            - target:
-                entity_id: light.olivia
-              data:
-                brightness_step_pct: -20
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "move" }}'
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.olivia
-                    data:
-                      brightness_step_pct: -10
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "press" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [256,13,0] }}"
-          sequence:
-            - target:
-                entity_id: light.olivia
-              data:
-                hs_color:
-                  - "{% if state_attr(var_light, \"hs_color\")[0] + 18 > 360 %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[0] + 18 }}\n{% endif %}"
-                  - '{{ state_attr(var_light, "hs_color")[1] }}'
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "hold" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [3328,0] }}"
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.olivia
-                    data:
-                      hs_color:
-                        - "{% if state_attr(var_light, \"hs_color\")[0] + 18 > 360 %}\n  {{
-                          state_attr(var_light, \"hs_color\")[0] + 18 - 360 }}\n{% else %}\n
-                          \ {{ state_attr(var_light, \"hs_color\")[0] + 18 }}\n{% endif %}"
-                        - '{{ state_attr(var_light, "hs_color")[1] }}'
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "press" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [257,13,0] }}"
-          sequence:
-            - target:
-                entity_id: light.olivia
-              data:
-                hs_color:
-                  - '{{ state_attr(var_light, "hs_color")[0] }}'
-                  - "{% if state_attr(var_light, \"hs_color\")[1] - 20 < 0 %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[1] - 20 + 100 }}\n{% else %}\n  {{ state_attr(var_light,
-                    \"hs_color\")[1] - 20 }}\n{% endif %}"
-                transition: "{{ (var_speed / 1000)|float }}"
-              action: light.turn_on
-        - conditions:
-            - condition: template
-              value_template: '{{ trigger.event.data.command == "hold" }}'
-            - condition: template
-              value_template: "{{ trigger.event.data.args == [3329,0] }}"
-          sequence:
-            - repeat:
-                while: []
-                sequence:
-                  - target:
-                      entity_id: light.olivia
-                    data:
-                      hs_color:
-                        - '{{ state_attr(var_light, "hs_color")[0] }}'
-                        - "{% if state_attr(var_light, \"hs_color\")[1] - 10 < 0 %}\n  {{ state_attr(var_light,
-                          \"hs_color\")[1] - 10 + 100 }}\n{% else %}\n  {{ state_attr(var_light,
-                          \"hs_color\")[1] - 10 }}\n{% endif %}"
-                      transition: "{{ (var_speed / 1000)|float }}"
-                    action: light.turn_on
-                  - delay:
-                      milliseconds: 300
-      default: []
+          - target:
+              entity_id: light.olivia
+            data:
+              hs_color:
+              - '{{ state_attr(var, "hs_color")[0] }}'
+              - "{% if state_attr(var, \"hs_color\")[1] - 10 < 0 %}\n  {{ state_attr(var,
+                \"hs_color\")[1] - 10 + 100 }}\n{% else %}\n  {{ state_attr(var, \"hs_color\")[1]
+                - 10 }}\n{% endif %}"
+              transition: '{{ (var_speed / 1000)|float }}'
+            action: light.turn_on
+          - delay:
+              milliseconds: 300
+    default: []
   mode: restart
   max_exceeded: silent
   variables:
-    var_light: light.olivia
+    var: light.olivia
     var_speed: 300
-- id: "1733777200549"
+- id: '1733777200549'
   alias: Slaapkamer Olivia Schakelaar
-  description:
-    Zet het licht in de slaapkamer van Olivia aan/uit wanneer de schakelaar
+  description: Zet het licht in de slaapkamer van Olivia aan/uit wanneer de schakelaar
     wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.slaapkamer_olivia_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.slaapkamer_olivia_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.olivia
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.olivia_plafond
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1733777237775"
-  alias: Automated Backup
-  description: Create a daily backup of Home Assistant
-  triggers:
-    - at: 03:00:00
-      trigger: time
-  conditions: []
-  actions:
-    - data:
-        compressed: false
-      action: hassio.backup_full
-  mode: single
-  max_exceeded: silent
-- id: "1733777249293"
+- id: '1733777249293'
   alias: ESPHome Update All
   description: Update all ESP Home devices automatically.
   triggers:
-    - at: 04:00:00
-      trigger: time
+  - at: 04:00:00
+    trigger: time
   conditions: []
   actions:
-    - target:
-        entity_id:
-          "{{ states.update | selectattr('state', 'eq', 'on') | map(attribute='entity_id')
-          | select('in', integration_entities('esphome')) | list }}"
-      action: update.install
+  - target:
+      entity_id: '{{ states.update | selectattr(''state'', ''eq'', ''on'') | map(attribute=''entity_id'')
+        | select(''in'', integration_entities(''esphome'')) | list }}'
+    action: update.install
   mode: single
   max_exceeded: silent
-- id: "1733777262551"
+- id: '1733777262551'
   alias: Tado Add gas reading
   description: Add gas consumption to Tado
   triggers:
-    - at: 00:00:00
-      trigger: time
+  - at: 00:00:00
+    trigger: time
   conditions: []
   actions:
-    - data:
-        config_entry: ef2e84b3dfc0aee85ed44ac8e8038ccf
-        reading: "{{ states('sensor.gas_consumption') | int }}"
-      action: tado.add_meter_reading
+  - data:
+      config_entry: ef2e84b3dfc0aee85ed44ac8e8038ccf
+      reading: '{{ states(''sensor.gas_consumption'') | int }}'
+    action: tado.add_meter_reading
   mode: single
   max_exceeded: silent
-- id: "1733777278503"
+- id: '1733777278503'
   alias: Toilet Verlichting
   description: Zet de toilet verlichting aan/uit wanneer er beweging wordt gedetecteerd.
   triggers:
-    - entity_id: binary_sensor.toilet_beweging
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.toilet_motion
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.toilet_beweging
-              state: "on"
-          sequence:
-            - data:
-                entity_id: light.toilet
-              action: light.turn_on
-      default:
-        - data:
-            entity_id: light.toilet
-          action: light.turn_off
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.toilet_motion
+        state: 'on'
+      sequence:
+      - data:
+          entity_id: light.toilet
+        action: light.turn_on
+    default:
+    - data:
+        entity_id: light.toilet
+      action: light.turn_off
   mode: single
   max_exceeded: silent
-- id: "1733777303411"
+- id: '1733777303411'
   alias: Woonkamer Schakelaar
   description: Zet het licht in de woonkamer aan/uit wanneer de schakelaar wordt geschakeld.
   triggers:
-    - entity_id: binary_sensor.woonkamer_switch
-      from:
-        - "on"
-        - "off"
-      to:
-        - "off"
-        - "on"
-      trigger: state
+  - entity_id: binary_sensor.woonkamer_switch
+    from:
+    - 'on'
+    - 'off'
+    to:
+    - 'off'
+    - 'on'
+    trigger: state
   conditions: []
   actions:
-    - data:
-        entity_id: light.woonkamer
-        brightness: 254
-        hs_color:
-          - 38.222
-          - 52.941
-      action: light.toggle
+  - data:
+      entity_id: light.woonkamer
+      brightness: 254
+      hs_color:
+      - 38.222
+      - 52.941
+    action: light.toggle
   mode: single
   max_exceeded: silent
-- id: "1734813107840"
+- id: '1734813107840'
   alias: Verwarming Kinderen
   description: Zet verwarming aan en uit op basis van agenda
   triggers:
-    - trigger: state
-      entity_id:
-        - binary_sensor.kinderen_papa
+  - trigger: state
+    entity_id:
+    - binary_sensor.kinderen_papa
   conditions: []
   actions:
-    - choose:
-        - conditions:
-            - alias: Kinderen niet Thuis
-              condition: state
-              entity_id: binary_sensor.kinderen_papa
-              state: "off"
-          sequence:
-            - alias: Zet verwarming uit
-              action: climate.set_hvac_mode
-              metadata: {}
-              data:
-                hvac_mode: "off"
-              target:
-                entity_id:
-                  - climate.lily
-                  - climate.olivia
-                  - climate.harvey
-          alias: Verwarming uit als kinderen niet thuis zijn
-      default:
-        - action: climate.set_hvac_mode
-          metadata: {}
-          data:
-            hvac_mode: auto
-          target:
-            entity_id:
-              - climate.lily
-              - climate.olivia
-              - climate.harvey
-          alias: Verwarming op Auto (volgens schema)
+  - choose:
+    - conditions:
+      - alias: Kinderen niet Thuis
+        condition: state
+        entity_id: binary_sensor.kinderen_papa
+        state: 'off'
+      sequence:
+      - alias: Zet verwarming uit
+        action: climate.set_hvac_mode
+        metadata: {}
+        data:
+          hvac_mode: 'off'
+        target:
+          entity_id:
+          - climate.lily
+          - climate.olivia
+          - climate.harvey
+      alias: Verwarming uit als kinderen niet thuis zijn
+    default:
+    - action: climate.set_hvac_mode
+      metadata: {}
+      data:
+        hvac_mode: auto
+      target:
+        entity_id:
+        - climate.lily
+        - climate.olivia
+        - climate.harvey
+      alias: Verwarming op Auto (volgens schema)
   mode: single
-- id: "1735727448720"
+- id: '1735727448720'
   alias: Deurbel
   description: Er wordt aangebeld
   triggers:
-    - trigger: state
-      entity_id:
-        - event.deurbel_ding
-      not_from: unavailable
-      not_to: unavailable
+  - trigger: state
+    entity_id:
+    - event.deurbel_ding
+    not_from: unavailable
+    not_to: unavailable
   conditions: []
   actions:
-    - alias: Send actionable notification
-      action: notify.mobile_app_nimbus_2000
+  - alias: Send actionable notification
+    action: notify.mobile_app_nimbus_2000
+    data:
+      title: Deurbel
+      message: Er is iemand bij de voordeur
       data:
-        title: Deurbel
-        message: Er is iemand bij de voordeur
-        data:
-          url: /lovelace/deurbel
-          push:
-            sound:
-              name: Alert_1stParty_Haptic.caf
-              critical: 1
-              volume: 1
+        url: /lovelace/deurbel
+        push:
+          sound:
+            name: Alert_1stParty_Haptic.caf
+            critical: 1
+            volume: 1
   mode: restart

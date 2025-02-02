@@ -7,6 +7,11 @@ packages:
   device: !include common/devices/sonoff_mini.yaml
   base: !include common/default_base.yaml
 
+output:
+  - platform: gpio
+    id: output_1
+    pin: GPIO12
+
 binary_sensor:
   - platform: gpio
     id: binary_1
@@ -15,3 +20,9 @@ binary_sensor:
       number: GPIO4
       mode: INPUT_PULLUP
       inverted: true
+
+light:
+  - platform: binary
+    id: light_1
+    name: 'Slaapkamer Lily Relay'
+    output: output_1
