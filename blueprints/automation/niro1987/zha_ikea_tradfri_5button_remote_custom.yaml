@@ -55,7 +55,9 @@ blueprint:
       default: []
     power_long:
       name: Long Press - Power Button
-      description: The action to perform on Long Press of the Power Button
+      description: 'The action to perform on Long Press of the Power Button
+
+       **NOTE:** This action starts with a short press'
       selector:
         action:
       default: []
